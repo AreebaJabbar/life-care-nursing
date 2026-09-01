@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeCare Nursing & Medical Services — Trusted Home Healthcare</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<style>
+  :root{
+    --teal-900:#0E3B36;
+    --teal-700:#1B6B63;
+    --teal-500:#2E8C82;
+    --amber-500:#D9A441;
+    --amber-100:#F7E8C9;
+    --cream:#FAF8F3;
+    --ink:#1F2A28;
+    --line:#E4DFD3;
+    --font-display:'Fraunces', serif;
+    --font-body:'Manrope', sans-serif;
+    --brand-navy:#03357A;
+    --brand-teal:#029491;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.display-font{
+    font-family:var(--font-display);
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:.75rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--amber-500);
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:2px;background:var(--amber-500);display:inline-block;
+  }
+  a{text-decoration:none;}
+  .btn-care{
+    background: var(--brand-teal);
+    color:#fff;
+    border:none;
+    padding:1rem 1.9rem;
+    border-radius:6px;
+    font-weight:700;
+    font-size:.85rem;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    transition:.25s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+  }
+  .btn-care:hover{background:var(--brand-navy); color:#fff;}
+  .btn-outline-care{
+    border:none;
+    background:var(--brand-navy);
+    color:#fff;
+    padding:1rem 1.9rem;
+    border-radius:6px;
+    font-weight:700;
+    font-size:.85rem;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    transition:.25s ease;
+  }
+  .btn-outline-care:hover{background:var(--brand-teal); color:#fff;}
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    background:var(--teal-900);
+    color:#DCEAE7;
+    font-size:.82rem;
+    padding:.5rem 0;
+  }
+  .topbar a{color:#DCEAE7; opacity:.9;}
+  .topbar a:hover{color:var(--amber-500);}
+
+  /* ---------- Nav ---------- */
+  .navbar-care{
+    background:#fff;
+    padding:1rem 0;
+    border-bottom:1px solid var(--line);
+  }
+  .navbar-care .navbar-brand{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.35rem;
+    color:var(--teal-900);
+  }
+  .navbar-care .navbar-brand span{color:var(--amber-500);}
+  .brand-logo{height:64px; width:auto;}
+  @media(max-width:575px){ .brand-logo{height:50px;} }
+  .navbar-care .nav-link{
+    color:var(--ink);
+    font-weight:600;
+    font-size:.92rem;
+    margin:0 .7rem;
+  }
+  .navbar-care .nav-link:hover{color:var(--teal-700);}
+  .dropdown-menu{border-radius:2px; border-color:var(--line);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:linear-gradient(120deg, var(--teal-900) 0%, var(--teal-700) 100%);
+    color:#fff;
+    overflow:hidden;
+    padding:5.5rem 0 6rem;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-120px; top:-120px;
+    width:420px;height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(217,164,65,.28), transparent 70%);
+  }
+  .hero .eyebrow{color:var(--amber-100);}
+  .hero .eyebrow::before{background:var(--amber-100);}
+  .hero h1{
+    font-size:clamp(2.2rem, 4vw, 3.4rem);
+    line-height:1.12;
+    color:#fff;
+  }
+  .hero p.lead-text{
+    color:#D9E7E4;
+    font-size:1.05rem;
+    max-width:520px;
+  }
+  .hero-stats{
+    display:flex;
+    gap:2.2rem;
+    margin-top:2.6rem;
+    flex-wrap:wrap;
+  }
+  .hero-stats .num{
+    font-family:var(--font-display);
+    font-size:2rem;
+    color:var(--amber-500);
+    font-weight:700;
+    line-height:1;
+  }
+  .hero-stats .lbl{
+    font-size:.78rem;
+    color:#BFD6D2;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .hero-visual{
+    position:relative;
+    background:#fff;
+    border-radius:6px;
+    padding:1.4rem;
+    color:var(--ink);
+    box-shadow:0 30px 60px rgba(0,0,0,.25);
+  }
+  .hero-visual .pulse-strip{
+    height:46px;
+    width:100%;
+  }
+  .hero-photo-block{
+    height:280px;
+    border-radius:4px;
+    background:linear-gradient(135deg,#DCEFEA,#F7E8C9);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--teal-700);
+    font-size:3rem;
+  }
+  .float-card{
+    position:absolute;
+    bottom:-22px; left:24px;
+    background:#fff;
+    border-radius:4px;
+    padding:.9rem 1.2rem;
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+    display:flex;
+    align-items:center;
+    gap:.7rem;
+    font-size:.85rem;
+    font-weight:700;
+  }
+  .float-card i{color:var(--amber-500); font-size:1.4rem;}
+
+  /* ---------- Hero Carousel (3 slides) ---------- */
+  .hero-carousel{position:relative;}
+  .hero-carousel .carousel-item{transition:opacity .9s ease, transform .9s ease;}
+  .hero-slide{position:relative; min-height:640px; display:flex; align-items:center; overflow:hidden; background-size:cover; background-position:center;}
+  .hero-slide .container{position:relative; z-index:2;}
+  .hero-slide::before{
+    content:""; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(100deg, rgba(14,59,54,.88) 0%, rgba(14,59,54,.72) 38%, rgba(14,59,54,.35) 62%, rgba(14,59,54,.12) 100%);
+  }
+  .hero-slide.slide-1{background-image:url('./assets/ChatGPT Image Aug 25, 2026, 05_12_11 PM (1).png');}
+  .hero-slide.slide-2{background-image:url('./assets/home-care-facility.jpg');}
+  .hero-slide-text{max-width:640px;}
+  .hero-slide-text .eyebrow{color:var(--amber-100);}
+  .hero-slide-text .eyebrow::before{background:var(--amber-100);}
+  .hero-slide-text h1{color:#fff; font-size:clamp(2.1rem,4vw,3.2rem); line-height:1.15;}
+  .hero-slide-text p.lead-text{color:rgba(255,255,255,.9); font-size:1.05rem; max-width:480px;}
+  .hero-slide-text .float-card{
+    position:static; display:inline-flex; align-items:center; gap:.7rem; background:#fff; color:var(--teal-900);
+    border-radius:8px; padding:.65rem 1.1rem; font-size:.85rem; font-weight:700;
+    box-shadow:0 15px 30px rgba(14,59,54,.25); margin-top:1.6rem;
+  }
+  .hero-slide-text .float-card i{color:var(--amber-500); font-size:1.4rem;}
+  .hero-dots{
+    position:absolute; z-index:6; bottom:26px; left:50%; transform:translateX(-50%);
+    display:flex; gap:.5rem;
+  }
+  .hero-dots button{
+    width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.4);
+    border:none; padding:0; opacity:1; transition:.25s ease;
+  }
+  .hero-dots button.active{background:var(--amber-500); width:26px; border-radius:5px;}
+
+  @media(max-width:991px){
+    .hero-slide{min-height:auto; padding:4rem 0 4.5rem; text-align:center;}
+    .hero-slide-text{margin:0 auto;}
+    .hero-slide-text p.lead-text{margin:0 auto;}
+    .hero-slide-text .d-flex{justify-content:center;}
+    .hero-dots{bottom:14px;}
+  }
+
+  /* pulse divider */
+  .pulse-divider{
+    width:100%; height:40px; margin:0 auto;
+    display:block;
+  }
+
+  section{padding:5rem 0;}
+  .section-tight{padding:3.5rem 0;}
+
+  /* ---------- About / Who we are ---------- */
+  .about-photo{
+    height:420px;
+    border-radius:4px;
+    background:linear-gradient(160deg,#EFEAD9,#DCEFEA);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--teal-700); font-size:4rem;
+    position:relative;
+  }
+  .about-badge{
+    position:absolute; bottom:-20px; right:-20px;
+    background:var(--amber-500); color:#fff;
+    width:120px;height:120px; border-radius:50%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:700; text-align:center;
+    box-shadow:0 12px 24px rgba(0,0,0,.15);
+  }
+  .about-badge .n{font-size:1.6rem; line-height:1;}
+  .about-badge .t{font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; margin-top:.2rem;}
+
+  .mv-card{
+    border-left:3px solid var(--amber-500);
+    padding-left:1.1rem;
+    margin-bottom:1.4rem;
+  }
+  .mv-card h4{font-size:1.05rem; margin-bottom:.4rem; color:var(--teal-900);}
+  .mv-card p{font-size:.92rem; color:#4C5754; margin:0;}
+
+  /* ---------- Who We Are (reference-style) ---------- */
+  .who-we-are-section{position:relative; overflow:hidden; background:#fff;}
+  .who-we-are-backdrop{
+    position:absolute; top:-140px; right:-180px;
+    width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(217,164,65,.12), rgba(27,107,99,.07) 55%, transparent 72%);
+    z-index:0;
+  }
+  .who-we-are-container{position:relative; z-index:1;}
+
+  .about-media-block{position:relative; display:flex; align-items:stretch; gap:0;}
+  .about-image-holder{
+    position:relative; width:100%; border-radius:10px; overflow:hidden;
+    box-shadow:0 30px 60px rgba(14,59,54,.18); cursor:pointer;
+  }
+  .about-image-holder img{
+    width:100%; height:460px; object-fit:cover; display:block;
+    transition:transform .5s ease;
+  }
+  .about-image-holder:hover img{transform:scale(1.05);}
+  .about-image-play-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(14,59,54,0) 45%, rgba(14,59,54,.4) 100%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .play-btn-circle{
+    width:64px; height:64px; border-radius:50%;
+    background:#fff; color:var(--teal-700);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem; box-shadow:0 10px 24px rgba(0,0,0,.25);
+    transition:.25s ease;
+  }
+  .about-image-holder:hover .play-btn-circle{background:var(--amber-500); color:#fff; transform:scale(1.08);}
+
+  .play-video-side-label{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    font-weight:700; font-size:.8rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--teal-700); display:flex; align-items:center; gap:.5rem;
+    padding:0 1rem; cursor:pointer; white-space:nowrap; flex-shrink:0;
+  }
+  .play-video-side-label i{font-size:1.15rem; writing-mode:horizontal-tb;}
+  .play-video-side-label:hover{color:var(--amber-500);}
+
+  .eyebrow-teal-tag{
+    display:inline-flex; align-items:center; gap:.5rem;
+    background:var(--amber-100); color:var(--teal-700);
+    font-weight:700; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase;
+    padding:.45rem 1.05rem; border-radius:30px;
+  }
+  .eyebrow-teal-tag i{font-size:.95rem;}
+
+  .who-we-are-heading-text{font-size:2.6rem; color:var(--teal-900); margin-bottom:1.2rem;}
+  .who-we-are-paragraph{font-size:1.02rem; line-height:1.85; color:#4C5754;}
+  .who-we-are-paragraph strong{color:var(--teal-900);}
+
+  @media(max-width:991px){
+    .who-we-are-heading-text{font-size:2rem;}
+    .about-image-holder img{height:320px;}
+  }
+  @media(max-width:575px){
+    .about-media-block{gap:.4rem;}
+    .play-video-side-label{font-size:.7rem;}
+  }
+
+  /* ---------- Office Location / Facilities / Vision & Mission ---------- */
+  .facilities-vision-section{position:relative; background:#fff; overflow:hidden;}
+
+  .facilities-image-container{position:relative; padding-bottom:60px;}
+  .facilities-bg-shape{
+    position:absolute; top:-30px; right:6%;
+    width:78%; height:82%;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(46,140,130,.16), rgba(217,164,65,.08) 60%, transparent 75%);
+    z-index:0;
+  }
+  .facilities-main-photo-card{
+    position:relative; z-index:1;
+    max-width:92%;
+    border-radius:10px; overflow:hidden;
+    box-shadow:0 30px 60px rgba(14,59,54,.18);
+  }
+  .facilities-main-photo-card img{width:100%; height:420px; object-fit:cover; display:block;}
+
+  .facilities-floating-video-card{
+    position:absolute; bottom:0; left:0; z-index:2;
+    width:44%; max-width:230px;
+    border:6px solid #fff; border-radius:10px; overflow:hidden;
+    box-shadow:0 20px 40px rgba(14,59,54,.25);
+    cursor:pointer;
+  }
+  .facilities-floating-video-card img{width:100%; height:150px; object-fit:cover; display:block;}
+  .floating-play-btn{
+    position:absolute; top:50%; right:-22px; transform:translateY(-50%);
+    width:46px; height:46px; border-radius:50%;
+    background:var(--brand-teal); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1rem; box-shadow:0 10px 20px rgba(14,59,54,.3);
+    transition:.25s ease;
+  }
+  .facilities-floating-video-card:hover .floating-play-btn{background:var(--amber-500);}
+
+  .location-bullet-list{list-style:none; padding-left:0; margin:0;}
+  .location-bullet-list li{
+    position:relative; padding-left:1.7rem;
+    font-size:1rem; line-height:1.9; color:#3F4A47;
+  }
+  .location-bullet-list li::before{
+    content:""; position:absolute; left:0; top:.6rem;
+    width:8px; height:8px; border-radius:50%;
+    background:var(--amber-500);
+  }
+  .location-bullet-list li strong{color:var(--teal-900);}
+
+  .btn-care-cyan{
+        background: var(--brand-teal); color:#fff;
+    border:none; padding:.9rem 1.9rem; border-radius:2px;
+    font-weight:700; font-size:.9rem; letter-spacing:.02em;
+    display:inline-flex; align-items:center; gap:.5rem;
+    transition:.25s ease; flex-shrink:0;
+  }
+  .btn-care-cyan:hover{background:var(--brand-navy); color:#fff;}
+
+  .phone-icon-circle{
+    width:52px; height:52px; border-radius:50%;
+    border:1.5px solid var(--teal-500); color:var(--teal-700);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem; flex-shrink:0; transition:.25s ease;
+  }
+  .phone-icon-circle:hover{background:var(--brand-teal); color:#fff;}
+  .phone-numbers-text{font-size:.95rem; font-weight:700; color:var(--teal-900); line-height:1.5;}
+
+  .vision-mission-box{background:#EAF1F3; border-radius:8px; padding:2rem;}
+  .vm-title{font-size:1.15rem; color:var(--teal-900); margin-bottom:.6rem;}
+  .vm-text{font-size:.92rem; line-height:1.8; color:#586360; margin:0;}
+  .vm-text strong{color:var(--teal-900);}
+
+  @media(max-width:991px){
+    .facilities-main-photo-card img{height:320px;}
+    .facilities-floating-video-card{width:50%;}
+    .vision-mission-box{padding:1.5rem;}
+  }
+  @media(max-width:575px){
+    .facilities-floating-video-card{position:relative; width:70%; margin-top:1rem; bottom:auto; left:auto;}
+    .facilities-image-container{padding-bottom:0;}
+  }
+
+  /* ---------- Home Care Facility (service detail) ---------- */
+  .home-care-facility-section{position:relative; background:#fff; overflow:hidden;}
+
+  .facility-photo-wrapper{position:relative;}
+  .facility-bg-curve{
+    position:absolute; top:-24px; left:-24px;
+    width:82%; height:82%; border-radius:16px;
+    background:radial-gradient(circle at 30% 30%, rgba(46,140,130,.16), rgba(217,164,65,.08) 60%, transparent 75%);
+    z-index:0;
+  }
+  .facility-photo-card{
+    position:relative; z-index:1;
+    border-radius:10px; overflow:hidden;
+    box-shadow:0 30px 60px rgba(14,59,54,.18);
+  }
+  .facility-photo-card img{width:100%; height:460px; object-fit:cover; display:block;}
+
+  .facility-badge-icon{
+    position:absolute; top:20px; left:20px; z-index:2;
+    width:56px; height:56px; border-radius:12px;
+    background:var(--teal-500); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem; box-shadow:0 10px 20px rgba(14,59,54,.3);
+  }
+
+  .facility-heading-text{font-size:2.6rem; color:var(--teal-900);}
+  .facility-heading-divider{width:70px; height:3px; background:var(--amber-500); border-radius:2px;}
+  .facility-lead-paragraph{font-size:1.02rem; line-height:1.85; color:#4C5754;}
+  .facility-lead-paragraph strong{color:var(--teal-900);}
+
+  @media(max-width:991px){
+    .facility-heading-text{font-size:2rem;}
+    .facility-photo-card img{height:320px;}
+    .facility-bg-curve{width:88%; height:88%;}
+  }
+
+  /* ---------- Services ---------- */
+  .bg-alt{background:#fff;}
+  .service-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:2rem 1.6rem;
+    height:100%;
+    transition:.25s ease;
+  }
+  .service-card:hover{
+    border-color:var(--teal-700);
+    transform:translateY(-4px);
+    box-shadow:0 16px 30px rgba(14,59,54,.08);
+  }
+  .service-icon{
+    width:52px;height:52px;
+    border-radius:4px;
+    background:var(--teal-900);
+    color:var(--amber-100);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem;
+    margin-bottom:1.2rem;
+  }
+  .service-card h5{font-size:1.05rem; color:var(--teal-900); margin-bottom:.6rem;}
+  .service-card p{font-size:.88rem; color:#586360; margin-bottom:0;}
+  .service-card a.more{
+    font-size:.8rem; font-weight:700; color:var(--teal-700);
+    display:inline-flex; align-items:center; gap:.3rem; margin-top:.9rem;
+  }
+
+  .cta-strip{
+    background:var(--teal-900);
+    color:#fff;
+    border-radius:4px;
+    padding:2.2rem 2.5rem;
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    gap:1rem;
+    margin-top:3rem;
+  }
+  .cta-strip h4{color:#fff; margin:0; font-size:1.2rem;}
+  .cta-strip p{color:#BFD6D2; margin:0; font-size:.88rem;}
+
+  /* ---------- Why choose us ---------- */
+  .why-item{
+    display:flex; gap:1rem; margin-bottom:1.8rem;
+  }
+  .why-num{
+    font-family:var(--font-display);
+    font-size:1.1rem; font-weight:700;
+    color:var(--amber-500);
+    border:1.5px solid var(--amber-500);
+    width:42px; height:42px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .why-item h5{font-size:1rem; margin-bottom:.25rem; color:var(--teal-900);}
+  .why-item p{font-size:.86rem; color:#586360; margin:0;}
+
+  .why-visual{
+    height:100%;
+    min-height:460px;
+    border-radius:4px;
+    background:linear-gradient(160deg,var(--teal-700),var(--teal-900));
+    color:#fff;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:2rem;
+  }
+  .why-visual i{font-size:3rem; color:var(--amber-500); margin-bottom:1rem;}
+
+  /* ---------- Partners ---------- */
+  .partners-table{
+    background:#fff; border:1px solid var(--line); border-radius:4px; overflow:hidden;
+  }
+  .partners-table .col-head{
+    background:var(--teal-900); color:#fff; font-weight:700; padding:.9rem 1.2rem; font-size:.92rem;
+  }
+  .partners-table ul{list-style:none; padding:1.2rem; margin:0;}
+  .partners-table li{
+    padding:.5rem 0; font-size:.9rem; color:#3A4441;
+    border-bottom:1px dashed var(--line);
+    display:flex; align-items:center; gap:.6rem;
+  }
+  .partners-table li:last-child{border-bottom:none;}
+  .partners-table li i{color:var(--amber-500);}
+
+  /* ---------- Team ---------- */
+  .team-card{
+    background:#fff; border:1px solid var(--line); border-radius:4px; overflow:hidden; text-align:center;
+  }
+  .team-photo{
+    height:230px;
+    background:linear-gradient(160deg,#DCEFEA,#F7E8C9);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--teal-700); font-size:2.6rem;
+  }
+  .team-card .info{padding:1.2rem;}
+  .team-card h5{font-size:1rem; margin-bottom:.2rem; color:var(--teal-900);}
+  .team-card p{font-size:.82rem; color:var(--amber-500); font-weight:700; margin:0; text-transform:uppercase; letter-spacing:.03em;}
+
+  /* ---------- Testimonials ---------- */
+  .testi-section{
+    background:var(--teal-900);
+    color:#fff;
+  }
+  .testi-section .eyebrow{color:var(--amber-100);}
+  .testi-section .eyebrow::before{background:var(--amber-100);}
+  .testi-card{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:4px;
+    padding:2rem;
+    height:100%;
+  }
+  .testi-card i.quote{color:var(--amber-500); font-size:1.6rem; margin-bottom:1rem; display:block;}
+  .testi-card p{font-size:.95rem; color:#D9E7E4; line-height:1.6;}
+  .testi-card .who{margin-top:1.2rem; font-weight:700; font-size:.9rem; color:#fff;}
+  .testi-card .who span{color:#9FC2BC; font-weight:500; display:block; font-size:.8rem;}
+
+  /* ---------- Blog ---------- */
+  .blog-card{
+    background:#fff; border:1px solid var(--line); border-radius:4px; overflow:hidden; height:100%;
+  }
+  .blog-photo{
+    height:190px;
+    background:linear-gradient(160deg,#EFEAD9,#DCEFEA);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--teal-700); font-size:2.2rem;
+    overflow:hidden;
+  }
+  .blog-photo img{width:100%; height:100%; object-fit:cover; object-position:top center; display:block;}
+  .blog-card .info{padding:1.3rem;}
+  .blog-date{font-size:.76rem; color:var(--amber-500); font-weight:700; text-transform:uppercase; letter-spacing:.04em;}
+  .blog-card h5{font-size:1.02rem; margin:.5rem 0 .7rem; color:var(--teal-900);}
+  .blog-card a.more{font-size:.82rem; font-weight:700; color:var(--teal-700);}
+
+  /* ---------- Newsletter ---------- */
+  .newsletter{
+    background:var(--amber-100);
+    border-radius:4px;
+    padding:3rem;
+    text-align:center;
+  }
+  .newsletter h3{color:var(--teal-900);}
+  .newsletter-form{
+    max-width:480px; margin:1.5rem auto 0;
+    display:flex; gap:.6rem;
+  }
+  .newsletter-form input{
+    flex:1; border:1px solid var(--line); border-radius:2px; padding:.75rem 1rem; font-size:.9rem;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--teal-900);
+    color:#BFD6D2;
+    padding:4rem 0 1.5rem;
+    font-size:.9rem;
+  }
+  footer h5{color:#fff; font-size:1rem; margin-bottom:1.1rem;}
+  footer a{color:#BFD6D2;}
+  footer a:hover{color:var(--amber-500);}
+  footer ul{list-style:none; padding:0; margin:0;}
+  footer li{margin-bottom:.6rem;}
+  .footer-brand{font-family:var(--font-display); color:#fff; font-size:1.3rem; font-weight:700;}
+  .footer-logo{height:72px; width:auto; background:#fff; border-radius:8px; padding:.35rem .5rem;}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.12);
+    margin-top:2.5rem; padding-top:1.5rem;
+    font-size:.8rem; color:#9FC2BC;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
+  }
+  .social-dot{
+    width:36px;height:36px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.25);
+    display:inline-flex; align-items:center; justify-content:center;
+    margin-right:.5rem;
+  }
+  .social-dot:hover{background:var(--amber-500); border-color:var(--amber-500);}
+
+  .whatsapp-fab{
+    position:fixed; bottom:22px; right:22px; z-index:999;
+    width:56px;height:56px; border-radius:50%;
+    background:var(--brand-teal); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.6rem;
+  }
+
+  /* ---------- Appointments Banner Strip ---------- */
+  .appointments-strip-card {
+    background: #00a896;
+    border-radius: 16px;
+    padding: 2.2rem 2.8rem;
+    color: #ffffff;
+    box-shadow: 0 16px 36px rgba(0, 168, 150, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .appointments-clock-badge {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #008778;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .btn-banner-white {
+    background: #ffffff;
+    color: var(--brand-teal);
+    font-weight: 700;
+    font-size: 0.98rem;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.25s ease;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .btn-banner-white:hover {
+    background: var(--brand-teal);
+    color: #ffffff;
+  }
+  .btn-banner-navy {
+    background: var(--brand-navy);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.98rem;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.25s ease;
+    display: inline-block;
+    box-shadow: 0 4px 12px rgba(15, 46, 74, 0.2);
+  }
+  .btn-banner-navy:hover {
+    background: var(--brand-teal);
+    color: #ffffff;
+  }
+
+  /* ---------- Our Services grid ---------- */
+  .services-matching-section{background:#F5F9F8; padding:5.5rem 0 6rem;}
+  .services-main-title{font-size:2.6rem; color:var(--teal-900);}
+
+  .service-box-card{
+    background:#fff; border-radius:12px; padding:2.3rem 1.7rem;
+    height:100%; box-shadow:0 10px 30px rgba(14,59,54,.06);
+    transition:.3s ease;
+  }
+  .service-box-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(14,59,54,.12);}
+  .service-box-card h5{
+    font-family:var(--font-display); font-weight:700; font-size:1.15rem;
+    color:var(--teal-900); margin-bottom:.7rem;
+  }
+  .service-box-card p{font-size:.9rem; line-height:1.65; color:#586360; margin:0;}
+
+  .service-icon-badge{
+    width:64px; height:64px; border-radius:50%;
+    background:var(--amber-100); color:var(--teal-700);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.6rem; margin-bottom:1.3rem;
+  }
+
+  .featured-highlight-card{background:var(--teal-500); box-shadow:0 20px 45px rgba(46,140,130,.35);}
+  .featured-highlight-card:hover{transform:translateY(-6px); box-shadow:0 26px 50px rgba(46,140,130,.4);}
+  .featured-badge{background:rgba(255,255,255,.18); color:#fff;}
+  .text-white-80{color:rgba(255,255,255,.85)!important;}
+
+  @media(max-width:991px){
+    .services-main-title{font-size:2rem;}
+  }
+
+  /* ---------- Why Choose Us 3-Column Layout ---------- */
+  .why-choose-us-section {
+    background: #ffffff;
+    padding: 5.5rem 0;
+    position: relative;
+  }
+  .why-main-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 3.8vw, 3rem);
+    font-weight: 700;
+    color: #1F2A28;
+  }
+  .why-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2.8rem;
+  }
+  .why-feature-item:last-child {
+    margin-bottom: 0;
+  }
+  .why-feature-item.item-right-aligned {
+    justify-content: flex-end;
+    text-align: right;
+    flex-direction: row;
+  }
+  .why-feature-item.item-left-aligned {
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row;
+  }
+  .why-feature-item h5 {
+    font-family: var(--font-display);
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: #1F2A28;
+    margin-bottom: 0.3rem;
+  }
+  .why-feature-item p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #586360;
+    margin-bottom: 0;
+  }
+  .why-icon-badge {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #00a896;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(0, 168, 150, 0.25);
+  }
+  .why-center-image-card {
+    width: 270px !important;
+    max-width: 270px !important;
+    height: 430px !important;
+    margin: 0 auto !important;
+    border-radius: 135px !important;
+    overflow: hidden !important;
+    box-shadow: 0 20px 45px rgba(14, 59, 54, 0.14) !important;
+    border: 6px solid #ffffff !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+  .why-center-image-card img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    border-radius: 135px !important;
+  }
+
+  @media(max-width:991px){
+    .why-feature-item.item-right-aligned {
+      justify-content: flex-start;
+      text-align: left;
+      flex-direction: row-reverse;
+    }
+    .why-center-image-card {
+      height: 360px;
+      margin: 2rem auto;
+    }
+  }
+
+  .floating-contact-stack{
+    position:fixed; right:22px; bottom:22px; z-index:999;
+    display:flex; flex-direction:column; gap:.7rem;
+  }
+  .floating-contact-btn{
+    width:54px; height:54px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:1.4rem;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+    transition:.25s ease;
+  }
+  .floating-contact-btn:hover{transform:scale(1.08);}
+  .btn-call{background:var(--brand-navy);}
+  .btn-call:hover{background:var(--brand-teal); color:#fff;}
+  .btn-wa{background:var(--brand-teal);}
+  .btn-wa:hover{background:var(--brand-navy); color:#fff;}
+</style>
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="topbar">
+  <div class="container d-flex justify-content-between align-items-center flex-wrap">
+    <div class="d-flex gap-3">
+      <a href="tel:+923000000000"><i class="bi bi-telephone-fill me-1"></i> +92 300 0000000</a>
+      <a href="mailto:info@lifecarenursing.pk" class="d-none d-sm-inline"><i class="bi bi-envelope-fill me-1"></i> info@lifecarenursing.pk</a>
+    </div>
+    <div class="d-flex gap-3">
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>
+      <a href="#"><i class="bi bi-youtube"></i></a>
+      <a href="#"><i class="bi bi-tiktok"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-care sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="assets/logo.png" alt="LifeCare Nursing & Medical Services" class="brand-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#services" data-bs-toggle="dropdown">Our Services</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="doctor-consultation.html">Doctor Consultation</a></li>
+            <li><a class="dropdown-item" href="home-nursing-care.html">Home Nursing Care</a></li>
+            <li><a class="dropdown-item" href="diagnostic-services.html">Diagnostic Services</a></li>
+            <li><a class="dropdown-item" href="elderly-senior-care.html">Elderly / Senior Care</a></li>
+            <li><a class="dropdown-item" href="physiotherapy.html">Physiotherapy</a></li>
+            <li><a class="dropdown-item" href="medical-equipment.html">Medical Equipment</a></li>
+            <li><a class="dropdown-item" href="portable-xray-ecg.html">Portable X-Ray & ECG</a></li>
+            <li><a class="dropdown-item" href="respiratory-speech-therapy.html">Respiratory & Speech Therapy</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a href="#contact" class="btn-care">Get an Appointment</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO (3-slide carousel) ================= -->
+<header class="hero-carousel" id="home">
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="hero-slide slide-1">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-7 hero-slide-text">
+                <div class="eyebrow mb-3">Welcome to LifeCare Nursing</div>
+                <h1 class="mb-3">Trusted Home Nursing Care</h1>
+                <p class="lead-text mb-4">Since 2015, we've been providing compassionate, reliable, and professional healthcare services across the city. Whether you need in-home nursing, elderly care, or medical support, we are here for you 24/7.</p>
+                <div class="d-flex gap-3 flex-wrap">
+                  <a href="#services" class="btn-care">Our Services</a>
+                  <a href="#contact" class="btn-outline-care">Get an Appointment</a>
+                </div>
+                <div class="float-card"><i class="bi bi-patch-check-fill"></i> PHC Registered Provider</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="hero-slide slide-2">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-7 hero-slide-text">
+                <div class="eyebrow mb-3">Compassionate Elderly Care</div>
+                <h1 class="mb-3">Personalized Care, Right at Home</h1>
+                <p class="lead-text mb-4">Our qualified nurses visit your loved ones at home for routine check-ups, medication management, and daily care — bringing hospital-quality attention into a familiar, comfortable setting.</p>
+                <div class="d-flex gap-3 flex-wrap">
+                  <a href="#services" class="btn-care">Our Services</a>
+                  <a href="#contact" class="btn-outline-care">Get an Appointment</a>
+                </div>
+                <div class="float-card"><i class="bi bi-patch-check-fill"></i> PHC Registered Provider</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero-dots">
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= STATS COUNTER STRIP (POST HERO) ================= -->
+<section class="stats-strip-section">
+  <div class="container">
+    <div class="row row-cols-2 row-cols-md-4 g-4">
+      <div class="col">
+        <div class="stat-card-box">
+          <div class="stat-num">5+</div>
+          <div class="stat-lbl">National Awards</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="stat-card-box">
+          <div class="stat-num">20+</div>
+          <div class="stat-lbl">Expert Doctors</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="stat-card-box">
+          <div class="stat-num">10k+</div>
+          <div class="stat-lbl">Satisfied Patients</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="stat-card-box">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT / WHO WE ARE (MATCHING LAYOUT) ================= -->
+<section class="who-we-are-section" id="about">
+  <div class="who-we-are-backdrop"></div>
+  <div class="container who-we-are-container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="about-media-block">
+          <div class="about-image-holder" data-bs-toggle="modal" data-bs-target="#videoModal">
+            <img src="assets/who-we-are.jpg" alt="Nurse providing home healthcare to elderly patient">
+            <div class="about-image-play-overlay">
+              <div class="play-btn-circle"><i class="bi bi-play-fill"></i></div>
+            </div>
+          </div>
+          <div class="play-video-side-label" data-bs-toggle="modal" data-bs-target="#videoModal">
+            <i class="bi bi-play-circle-fill"></i> Play Video
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="eyebrow-teal-tag mb-2">
+          <i class="bi bi-stethoscope"></i> ABOUT US
+        </div>
+        <h2 class="who-we-are-heading-text">Who We Are</h2>
+        <p class="who-we-are-paragraph mb-4">
+          <strong>LifeCare Nursing & Medical Services (Pvt.) Limited</strong> is a <strong>PHC-registered</strong> home healthcare company serving patients and families since <strong>2015</strong>. We provide professional <strong>Nursing Care at Home</strong>, <strong>elderly care</strong>, <strong>home physiotherapy</strong>, <strong>doctor home visits</strong>, and <strong>medical support</strong> through qualified healthcare professionals.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFFICE LOCATION, FACILITIES & VISION MISSION SECTION ================= -->
+<section class="facilities-vision-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      
+      <!-- Left Column: Overlapping Dual Image Card with Video Trigger -->
+      <div class="col-lg-6">
+        <div class="facilities-image-container">
+          <div class="facilities-bg-shape"></div>
+          
+          <!-- Main Photo (Male Nurse BP Check) -->
+          <div class="facilities-main-photo-card">
+            <img src="assets/bp-check.jpg" alt="Male nurse checking patient blood pressure at home">
+          </div>
+
+          <!-- Overlapping Bottom-Left Floating Thumbnail Card -->
+          <div class="facilities-floating-video-card" data-bs-toggle="modal" data-bs-target="#videoModal">
+            <img src="assets/bed-care.jpg" alt="Nurse caring for bedridden elderly patient">
+            <div class="floating-play-btn">
+              <i class="bi bi-play-fill"></i>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Location Info, Contact Strip & Vision/Mission Card -->
+      <div class="col-lg-6">
+        
+        <!-- Office Location Bullet Text -->
+        <div class="location-bullet-box mb-4">
+          <ul class="location-bullet-list">
+            <li>
+              Our <strong>Head Office</strong> is located in <strong>Model Town, Lahore</strong>, with a <strong>Branch Office</strong> in <strong>DHA EME, Lahore</strong>. We also operate a <strong>40-bedded Nursing & Old Age Home</strong>, offering 24/7 nursing care, medical supervision, rehabilitation, and compassionate support for older adults and long-term care patients.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact CTA Row -->
+        <div class="contact-cta-row d-flex align-items-center gap-4 flex-wrap mb-4">
+          <a href="#contact" class="btn-care-cyan">Contact Us</a>
+          <div class="phone-display-block d-flex align-items-center gap-3">
+            <a href="tel:+923113333424" class="phone-icon-circle">
+              <i class="bi bi-telephone-fill"></i>
+            </a>
+            <div class="phone-numbers-text">
+              <div>03249956129</div>
+              
+            </div>
+          </div>
+        </div>
+
+        <!-- Our Vision & Our Mission Box -->
+        <div class="vision-mission-box">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <h4 class="vm-title">Our Vision</h4>
+              <p class="vm-text">
+                Our vision is to be one of Pakistan's most trusted providers of Home Health Care Services, recognized for clinical excellence, compassionate care, and a commitment to improving the health and well-being of our communities.
+              </p>
+            </div>
+            <div class="col-md-6">
+              <h4 class="vm-title">Our Mission</h4>
+              <p class="vm-text">
+                Our mission is to provide safe, compassionate, and high-quality <strong>Home Health Care Services</strong> that improve the health and well-being of our patients. We are committed to delivering personalized Nursing Care at Home, elderly care, rehabilitation, and medical support through qualified healthcare professionals.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOME CARE FACILITY SECTION ================= -->
+<section class="home-care-facility-section" id="facility">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      
+      <!-- Left Column: Photo Card with Top-Left Pulse Badge -->
+      <div class="col-lg-6">
+        <div class="facility-photo-wrapper">
+          <div class="facility-bg-curve"></div>
+          
+          <div class="facility-photo-card">
+            <img src="assets/home-care-facility.jpg" alt="Nurse measuring blood sugar level of elderly patient at home">
+            
+            <!-- Top-Left Turquoise Heart Badge -->
+            <div class="facility-badge-icon">
+              <i class="bi bi-heart-pulse-fill"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Heading, Paragraph, and Contact Button -->
+      <div class="col-lg-6">
+        <div class="eyebrow-teal-tag mb-2">
+          <i class="bi bi-stethoscope"></i> HOME CARE FACILITY
+        </div>
+        <h2 class="facility-heading-text mb-3">Elderly/Senior Care at Home</h2>
+        <div class="facility-heading-divider mb-4"></div>
+        
+        <p class="facility-lead-paragraph mb-4">
+          Our <strong>Elder Care Services</strong> and <strong>Senior Care Services at Home</strong> provide compassionate support for older adults in the comfort of their own homes. Our trained caregivers assist with personal hygiene, bathing, dressing, <strong>Diet & Nutrition</strong>, medication reminders, mobility support, companionship, dementia care, and other daily activities, helping seniors live safely, comfortably, and independently while improving their quality of life.
+        </p>
+
+       
+
+ <div class="contact-cta-row d-flex align-items-center gap-4 flex-wrap mb-4">
+          <a href="#contact" class="btn-care-cyan">Contact Us</a>
+          <div class="phone-display-block d-flex align-items-center gap-3">
+            <a href="tel:+923113333424" class="phone-icon-circle">
+              <i class="bi bi-telephone-fill"></i>
+            </a>
+            <div class="phone-numbers-text">
+              <div>03249956129</div>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES (UPDATED WITH MATCHING COLOR SCHEME & HIGHLIGHT CARD) ================= -->
+<section class="services-matching-section" id="services">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="eyebrow-teal-tag justify-content-center mb-2">
+        <i class="bi bi-stethoscope"></i> SERVICES
+      </div>
+      <h2 class="services-main-title">Our Services</h2>
+    </div>
+
+    <div class="row g-4">
+      
+      <!-- Card 1: Doctor Consultation -->
+      <div class="col-md-6 col-lg-3">
+        <div class="service-box-card">
+          <div class="service-icon-badge"><i class="bi bi-person-badge"></i></div>
+          <h5>Doctor Consultation</h5>
+          <p>Professional doctors available for in-home and online visits, offering trusted medical guidance anytime you need.</p>
+        </div>
+      </div>
+
+      <!-- Card 2: Home Nursing Care (FEATURED HIGHLIGHT CARD) -->
+      <div class="col-md-6 col-lg-3">
+        <div class="service-box-card featured-highlight-card">
+          <div class="service-icon-badge featured-badge"><i class="bi bi-person-heart"></i></div>
+          <h5 class="text-white">Home Nursing Care</h5>
+          <p class="text-white-80">Skilled nurses provide personalised home care, from post-surgery support to chronic illness management with compassion.</p>
+        </div>
+      </div>
+
+      <!-- Card 3: Elderly / Senior Care -->
+      <div class="col-md-6 col-lg-3">
+        <div class="service-box-card">
+          <div class="service-icon-badge"><i class="bi bi-person-wheelchair"></i></div>
+          <h5>Elderly / Senior Care</h5>
+          <p>Dedicated caregivers and elderly home facilities ensure safe, respectful, and comfortable care for your loved ones.</p>
+        </div>
+      </div>
+
+      <!-- Card 4: Physiotherapy -->
+      <div class="col-md-6 col-lg-3">
+        <div class="service-box-card">
+          <div class="service-icon-badge"><i class="bi bi-activity"></i></div>
+          <h5>Physiotherapy</h5>
+          <p>Certified physiotherapists deliver recovery sessions at home, improving strength, mobility, and overall physical health.</p>
+        </div>
+      </div>
+
+      <!-- Card 5: Portable X-Ray & ECG -->
+      <div class="col-md-6 col-lg-3">
+        <div class="service-box-card">
+          <div class="service-icon-badge"><i class="bi bi-x-diamond"></i></div>
+          <h5>Portable X-Ray & ECG</h5>
+          <p>On-site X-ray and ECG testing at your home with advanced portable equipment for quick, accurate, and convenient medical results.</p>
+        </div>
+      </div>
+
+      <!-- Card 6: Respiratory & Speech Therapy -->
+      <div class="col-md-6 col-lg-3">
+        <div class="service-box-card">
+          <div class="service-icon-badge"><i class="bi bi-lungs"></i></div>
+          <h5>Respiratory & Speech Therapy</h5>
+          <p>Special therapies designed to improve breathing and speech, enhancing quality of life.</p>
+        </div>
+      </div>
+
+      <!-- Card 7: Medical Equipment -->
+      <div class="col-md-6 col-lg-3">
+        <div class="service-box-card">
+          <div class="service-icon-badge"><i class="bi bi-credit-card-2-front"></i></div>
+          <h5>Medical Equipment</h5>
+          <p>Rent or purchase hospital beds, oxygen cylinders, and mobility aids delivered at home for safe and reliable care.</p>
+        </div>
+      </div>
+
+      <!-- Card 8: Diagnostic Services -->
+      <div class="col-md-6 col-lg-3">
+        <div class="service-box-card">
+          <div class="service-icon-badge"><i class="bi bi-heart-pulse"></i></div>
+          <h5>Diagnostic Services</h5>
+          <p>Comprehensive lab tests and health screenings at your doorstep, ensuring timely, accurate, and convenient results.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="appointments-strip-card">
+      <div class="d-flex align-items-center gap-3">
+        <div class="appointments-clock-badge">
+          <i class="bi bi-clock-history"></i>
+        </div>
+        <div>
+          <h4 class="mb-1" style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: #ffffff;">Open for Appointments</h4>
+          <p class="mb-0" style="color: rgba(255, 255, 255, 0.9); font-size: 0.95rem;">We're available 24/7 to assist you.</p>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-3 flex-wrap">
+        <a href="#contact" class="btn-banner-white">Make an Appointment</a>
+        <a href="#services" class="btn-banner-navy">All Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY CHOOSE US (MATCHING REFERENCE LAYOUT) ================= -->
+<section class="why-choose-us-section" id="why-choose-us">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="eyebrow-teal-tag justify-content-center mb-2">
+        <i class="bi bi-stethoscope"></i> WHY CHOOSE US
+      </div>
+      <h2 class="why-main-title">We Provide Quality Care That Treats Everyone Like Family</h2>
+    </div>
+
+    <div class="row align-items-center g-4">
+      
+      <!-- Left Column: 3 Features (Right Aligned on Desktop) -->
+      <div class="col-lg-4 col-md-4">
+        
+        <!-- Feature 1: 24/7 Availability -->
+        <div class="why-feature-item item-right-aligned">
+          <div>
+            <h5>24/7 Availability</h5>
+            <p>Always here when you need us.</p>
+          </div>
+          <div class="why-icon-badge">
+            <i class="bi bi-clock-history"></i>
+          </div>
+        </div>
+
+        <!-- Feature 2: Affordable Care -->
+        <div class="why-feature-item item-right-aligned">
+          <div>
+            <h5>Affordable Care</h5>
+            <p>Quality services at cost-effective rates.</p>
+          </div>
+          <div class="why-icon-badge">
+            <i class="bi bi-person-plus-fill"></i>
+          </div>
+        </div>
+
+        <!-- Feature 3: Trusted Since 2015 -->
+        <div class="why-feature-item item-right-aligned">
+          <div>
+            <h5>Trusted Since 2015</h5>
+            <p>Delivering Professional Home Healthcare Services.</p>
+          </div>
+          <div class="why-icon-badge">
+            <i class="bi bi-handshake-fill"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Center Column: Pill Shape Nurse Supporting Patient Image -->
+      <div class="col-lg-4 col-md-4 text-center my-3 my-lg-0">
+        <div class="why-center-image-card">
+          <img src="assets/why-choose-us.jpg" alt="Nurse helping elderly patient walk with stick">
+        </div>
+      </div>
+
+      <!-- Right Column: 3 Features (Left Aligned) -->
+      <div class="col-lg-4 col-md-4">
+        
+        <!-- Feature 4: Qualified Staff -->
+        <div class="why-feature-item item-left-aligned">
+          <div class="why-icon-badge">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <div>
+            <h5>Qualified Staff</h5>
+            <p>Registered nurses, skilled caregivers, and licensed doctors.</p>
+          </div>
+        </div>
+
+        <!-- Feature 5: Old-Age Home -->
+        <div class="why-feature-item item-left-aligned">
+          <div class="why-icon-badge">
+            <i class="bi bi-house-door-fill"></i>
+          </div>
+          <div>
+            <h5>Old-Age Home</h5>
+            <p>40-Bedded Nursing & Old Age Home Providing Compassionate Senior Care.</p>
+          </div>
+        </div>
+
+        <!-- Feature 6: Personalised Plans -->
+        <div class="why-feature-item item-left-aligned">
+          <div class="why-icon-badge">
+            <i class="bi bi-person-gear"></i>
+          </div>
+          <div>
+            <h5>Personalised Plans</h5>
+            <p>Care tailored to your unique needs.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARTNERS ================= -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="eyebrow justify-content-center mb-3">Network</div>
+      <h2>Our Trusted Partners & Collaborations</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="partners-table">
+          <div class="col-head"><i class="bi bi-hospital me-2"></i>Healthcare & Academic Partners</div>
+          <ul>
+            <li><i class="bi bi-check-circle-fill"></i> Partner Diagnostic Labs</li>
+            <li><i class="bi bi-check-circle-fill"></i> Local Medical Universities</li>
+            <li><i class="bi bi-check-circle-fill"></i> Partner Pharmacies</li>
+            <li><i class="bi bi-check-circle-fill"></i> Physiotherapy Clinics</li>
+            <li><i class="bi bi-check-circle-fill"></i> Affiliated Hospitals</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="partners-table">
+          <div class="col-head"><i class="bi bi-building me-2"></i>Community & Residential Partners</div>
+          <ul>
+            <li><i class="bi bi-check-circle-fill"></i> Housing Societies</li>
+            <li><i class="bi bi-check-circle-fill"></i> Residential Communities</li>
+            <li><i class="bi bi-check-circle-fill"></i> Corporate Wellness Partners</li>
+            <li><i class="bi bi-check-circle-fill"></i> Community Health Initiatives</li>
+            <li><i class="bi bi-check-circle-fill"></i> Local NGOs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section>
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="eyebrow justify-content-center mb-3">Our Team</div>
+      <h2>Meet Our Expert Medical Professionals</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
+          <div class="info"><h5>Dr. A. Rahman</h5><p>Consultant Physician</p></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
+          <div class="info"><h5>Dr. S. Faisal</h5><p>Physical Therapist</p></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
+          <div class="info"><h5>Ayesha Naz</h5><p>Staff Nurse</p></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
+          <div class="info"><h5>Bilal Ahmed</h5><p>Male Nurse</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testi-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="eyebrow justify-content-center mb-3">Testimonials</div>
+      <h2 style="color:#fff;">What Our Patients Say About Us</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="testi-card">
+          <i class="bi bi-quote quote"></i>
+          <p>"LifeCare provided exceptional care for my mother after surgery. The nurses were skilled and kind &mdash; we felt like family."</p>
+          <div class="who">Ayesha M. <span>Home Nursing Client</span></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="testi-card">
+          <i class="bi bi-quote quote"></i>
+          <p>"Their physiotherapy team helped my father regain mobility at home. Professional, punctual, and genuinely caring."</p>
+          <div class="who">Imran Z. <span>Physiotherapy Client</span></div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="testi-card">
+          <i class="bi bi-quote quote"></i>
+          <p>"Booking a doctor's home visit was so easy, and the diagnostic team came the same day. Highly recommended."</p>
+          <div class="who">Sana K. <span>Diagnostic Services Client</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BLOG ================= -->
+<section class="bg-alt" id="blog">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="eyebrow justify-content-center mb-3">Blog</div>
+      <h2>Latest Blog Posts</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="blog-card">
+          <div class="blog-photo"><img src="assets/ChatGPT Image Aug 25, 2026, 05_59_14 PM.png" alt="Home nurse assisting elderly patient"></div>
+          <div class="info">
+            <div class="blog-date">18 Aug 2026</div>
+            <h5>How Skilled Home Nursing Improves Recovery at Home</h5>
+            <a href="#" class="more">Learn more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="blog-card">
+          <div class="blog-photo"><img src="assets/bp-check.jpg" alt="Nurse checking blood pressure at home"></div>
+          <div class="info">
+            <div class="blog-date">05 Aug 2026</div>
+            <h5>Professional Home Nursing Care | Quality Healthcare Services</h5>
+            <a href="#" class="more">Learn more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="blog-card">
+          <div class="blog-photo"><img src="assets/bed-care.jpg" alt="Nurse caring for bedridden elderly patient"></div>
+          <div class="info">
+            <div class="blog-date">26 Feb 2026</div>
+            <h5>5 Signs Your Loved One Needs In-Home Nursing Support</h5>
+            <a href="#" class="more">Learn more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section>
+  <div class="container">
+    <div class="newsletter">
+      <h3>Subscribe to Our Newsletter</h3>
+      <p style="color:#5A4C2E;">Get expert health tips, service updates, and exclusive offers directly in your inbox.</p>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="Enter your email" required>
+        <button class="btn-care" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="contact">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <img src="assets/logo.png" alt="LifeCare Nursing & Medical Services" class="footer-logo mb-3">
+        <p>Dedicated to Care, Committed to Your Well-Being. We provide nursing care, elderly care, physiotherapy, diagnostics and more with compassion and professionalism.</p>
+        <div class="mt-3">
+          <a href="#" class="social-dot"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Our Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-6">
+        <h5>Our Services</h5>
+        <ul>
+          <li><a href="doctor-consultation.html">Doctor Consultation</a></li>
+          <li><a href="home-nursing-care.html">Home Nursing Care</a></li>
+          <li><a href="elderly-senior-care.html">Elderly / Senior Care</a></li>
+          <li><a href="physiotherapy.html">Physiotherapy</a></li>
+          <li><a href="diagnostic-services.html">Diagnostic Services</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h5>Get in Touch</h5>
+        <ul>
+          <li><i class="bi bi-telephone-fill me-2"></i>03249956129</li>
+          <li><i class="bi bi-geo-alt-fill me-2"></i>Near Zee Garden Main Shekhupura / Lahore Road Faislabad </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Copyright &copy; 2026 LifeCare Nursing & Medical Services. All Rights Reserved.</div>
+      <div><a href="#">Terms & Service</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOATING CONTACT BUTTONS (PHONE & WHATSAPP) ================= -->
+<div class="floating-contact-stack">
+  <a href="tel:+923000000000" class="floating-contact-btn btn-call" title="Call Us Now">
+    <i class="bi bi-telephone-fill"></i>
+  </a>
+  <a href="https://wa.me/923249956129" target="_blank" class="floating-contact-btn btn-wa" title="WhatsApp Us">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+</div>
+
+<!-- ================= VIDEO MODAL ================= -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-dark border-0">
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4 text-center">
+        <div class="ratio ratio-16x9 rounded overflow-hidden">
+          <iframe src="https://www.youtube-nocookie.com/embed/XUTrBRmubH4?autoplay=0" title="Home Nursing Care Video" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
