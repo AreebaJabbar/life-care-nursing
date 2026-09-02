@@ -215,14 +215,14 @@
   }
   .footer-bottom a{color:#5C6A66;}
 
-  /* ---------- Floating contact buttons ---------- */
-  .floating-contact-stack{position:fixed; right:22px; bottom:22px; z-index:999; display:flex; flex-direction:column; gap:.7rem;}
-  .floating-contact-btn{
-    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-    color:#fff; font-size:1.3rem; box-shadow:0 10px 25px rgba(0,0,0,.2);
-  }
-  .btn-call{background:var(--brand-navy);}
-  .btn-wa{background:var(--brand-teal);}
+  .floating-contact-stack{position:fixed; right:22px; bottom:22px; z-index:999; display:flex; flex-direction:column; align-items:flex-end; gap:.7rem;}
+  .floating-contact-btn{display:inline-flex; align-items:center; justify-content:center; color:#fff; box-shadow:0 8px 20px rgba(0,0,0,.25); transition:.25s ease; text-decoration:none;}
+  .floating-contact-btn:hover{transform:scale(1.06); color:#fff;}
+  .btn-call{width:50px; height:50px; border-radius:50%; font-size:1.3rem; background:var(--brand-navy);}
+  .btn-call:hover{background:var(--brand-teal); color:#fff;}
+  .btn-wa{background:#25D366; color:#fff; padding:.7rem 1.25rem; border-radius:50px; font-weight:700; font-size:.9rem; gap:.5rem; box-shadow:0 8px 22px rgba(37,211,102,.45);}
+  .btn-wa:hover{background:#1EBE57; color:#fff;}
+  .btn-wa i{font-size:1.25rem;}
 
   @media(max-width:991px){
     .sidebar-box, .appointment-box, .contact-box{margin-bottom:1.8rem;}
@@ -451,8 +451,8 @@
   <a href="tel:+923008053198" class="floating-contact-btn btn-call" title="Call Us Now">
     <i class="bi bi-telephone-fill"></i>
   </a>
-  <a href="https://wa.me/923008053198" target="_blank" class="floating-contact-btn btn-wa" title="WhatsApp Us">
-    <i class="bi bi-whatsapp"></i>
+  <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="floating-contact-btn btn-wa" title="Get Appointment on WhatsApp">
+    <i class="bi bi-whatsapp"></i> <span>Get Appointment</span>
   </a>
 </div>
 

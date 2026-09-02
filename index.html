@@ -638,12 +638,12 @@
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
   }
   .social-dot{
-    width:36px;height:36px; border-radius:50%;
-    border:1px solid rgba(255,255,255,.25);
-    display:inline-flex; align-items:center; justify-content:center;
-    margin-right:.5rem;
+    width:34px; height:34px; border-radius:50%; background:var(--teal-500); color:#fff;
+    display:inline-flex; align-items:center; justify-content:center; margin-right:.5rem;
   }
-  .social-dot:hover{background:var(--amber-500); border-color:var(--amber-500);}
+  .social-dot i{color:#fff;}
+  .social-dot:hover{background:var(--brand-navy); color:#fff;}
+  .social-dot:hover i{color:#fff;}
 
   .whatsapp-fab{
     position:fixed; bottom:22px; right:22px; z-index:999;
@@ -835,20 +835,23 @@
 
   .floating-contact-stack{
     position:fixed; right:22px; bottom:22px; z-index:999;
-    display:flex; flex-direction:column; gap:.7rem;
+    display:flex; flex-direction:column; align-items:flex-end; gap:.7rem;
   }
   .floating-contact-btn{
-    width:54px; height:54px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    color:#fff; font-size:1.4rem;
-    box-shadow:0 8px 20px rgba(0,0,0,.25);
-    transition:.25s ease;
+    display:inline-flex; align-items:center; justify-content:center;
+    color:#fff; box-shadow:0 8px 20px rgba(0,0,0,.25);
+    transition:.25s ease; text-decoration:none;
   }
-  .floating-contact-btn:hover{transform:scale(1.08);}
-  .btn-call{background:var(--brand-navy);}
+  .floating-contact-btn:hover{transform:scale(1.06); color:#fff;}
+  .btn-call{width:50px; height:50px; border-radius:50%; font-size:1.3rem; background:var(--brand-navy);}
   .btn-call:hover{background:var(--brand-teal); color:#fff;}
-  .btn-wa{background:var(--brand-teal);}
-  .btn-wa:hover{background:var(--brand-navy); color:#fff;}
+  .btn-wa{
+    background:#25D366; color:#fff; padding:.7rem 1.25rem; border-radius:50px;
+    font-weight:700; font-size:.9rem; gap:.5rem;
+    box-shadow:0 8px 22px rgba(37,211,102,.45);
+  }
+  .btn-wa:hover{background:#1EBE57; color:#fff;}
+  .btn-wa i{font-size:1.25rem;}
 </style>
 </head>
 <body>
@@ -916,7 +919,7 @@
               <div class="col-lg-7 hero-slide-text">
                 <div class="eyebrow mb-3">Welcome to LifeCare Nursing</div>
                 <h1 class="mb-3">Trusted Home Nursing Care</h1>
-                <p class="lead-text mb-4">Since 2015, we've been providing compassionate, reliable, and professional healthcare services across the city. Whether you need in-home nursing, elderly care, or medical support, we are here for you 24/7.</p>
+                <p class="lead-text mb-4">Since 2025, we've been providing compassionate, reliable, and professional healthcare services across the city. Whether you need in-home nursing, elderly care, or medical support, we are here for you 24/7.</p>
                 <div class="d-flex gap-3 flex-wrap">
                   <a href="#services" class="btn-care">Our Services</a>
                   <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-outline-care">Get an Appointment</a>
@@ -1013,7 +1016,7 @@
         </div>
         <h2 class="who-we-are-heading-text">Who We Are</h2>
         <p class="who-we-are-paragraph mb-4">
-          <strong>LifeCare Nursing & Medical Services (Pvt.) Limited</strong> is a <strong>PHC-registered</strong> home healthcare company serving patients and families since <strong>2015</strong>. We provide professional <strong>Nursing Care at Home</strong>, <strong>elderly care</strong>, <strong>home physiotherapy</strong>, <strong>doctor home visits</strong>, and <strong>medical support</strong> through qualified healthcare professionals.
+          <strong>LifeCare Nursing & Medical Services (Pvt.) Limited</strong> is a <strong>PHC-registered</strong> home healthcare company serving patients and families since <strong>2025</strong>. We provide professional <strong>Nursing Care at Home</strong>, <strong>elderly care</strong>, <strong>home physiotherapy</strong>, <strong>doctor home visits</strong>, and <strong>medical support</strong> through qualified healthcare professionals.
         </p>
       </div>
     </div>
@@ -1291,10 +1294,10 @@
           </div>
         </div>
 
-        <!-- Feature 3: Trusted Since 2015 -->
+        <!-- Feature 3: Trusted Since 2025 -->
         <div class="why-feature-item item-right-aligned">
           <div>
-            <h5>Trusted Since 2015</h5>
+            <h5>Trusted Since 2025</h5>
             <p>Delivering Professional Home Healthcare Services.</p>
           </div>
           <div class="why-icon-badge">
@@ -1567,8 +1570,8 @@
   <a href="tel:+923008053198" class="floating-contact-btn btn-call" title="Call Us Now">
     <i class="bi bi-telephone-fill"></i>
   </a>
-  <a href="https://wa.me/923008053198" target="_blank" class="floating-contact-btn btn-wa" title="WhatsApp Us">
-    <i class="bi bi-whatsapp"></i>
+  <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="floating-contact-btn btn-wa" title="Get Appointment on WhatsApp">
+    <i class="bi bi-whatsapp"></i> <span>Get Appointment</span>
   </a>
 </div>
 
