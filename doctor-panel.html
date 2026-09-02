@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home Nursing Care — LifeCare Nursing & Medical Services</title>
+<title>Doctor Panel — LifeCare Nursing & Medical Services</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@
   .eyebrow::before{content:""; width:26px; height:2px; background:var(--amber-500); display:inline-block;}
 
   .btn-care{
-   background: var(--brand-teal);
+    background: var(--brand-teal);
     color:#fff;
     border:none;
     padding:1rem 1.9rem;
@@ -74,6 +74,7 @@
   .brand-logo{height:52px;}
   .navbar-care .nav-link{color:var(--teal-900); font-weight:600; font-size:.92rem; margin:0 .7rem;}
   .navbar-care .nav-link:hover{color:var(--teal-700);}
+  .navbar-care .nav-link.active{color:var(--brand-teal); font-weight:700;}
 
   /* ---------- Page header banner ---------- */
   .page-header{
@@ -103,95 +104,44 @@
   .page-header .breadcrumb-care i{font-size:.7rem; color:var(--amber-500);}
   .page-header .eyebrow{color:var(--teal-700);}
   .page-header .eyebrow::before{background:var(--amber-500);}
-  @media(max-width:767px){
-    .page-header-photo{width:100%; opacity:.18;}
-    .page-header-badge{display:none;}
-  }
 
-  /* ---------- Sidebar ---------- */
-  .sidebar-box{background:#fff; border-radius:12px; box-shadow:0 12px 40px rgba(14,59,54,.08); overflow:hidden; margin-bottom:1.8rem;}
-  .sidebar-box .sidebar-heading{
-    background:var(--teal-900); color:#fff; padding:1.1rem 1.4rem; font-weight:700;
-    font-family:'Fraunces',serif; font-size:1.15rem;
+  /* ---------- Doctor Panel Cards ---------- */
+  .panel-card{
+    background:#fff; border-radius:14px; overflow:hidden;
+    box-shadow:0 12px 35px rgba(14,59,54,.08); transition:.35s ease;
+    height:100%; display:flex; flex-direction:column; border:1px solid #E8F0EE;
   }
-  .service-list{list-style:none; margin:0; padding:.6rem 0;}
-  .service-list li a{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:.85rem 1.4rem; color:#2B3230; font-weight:600; font-size:.93rem;
-    border-bottom:1px solid #EFF3F1; transition:.2s ease;
+  .panel-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 22px 48px rgba(14,59,54,.16);
+    border-color:var(--brand-teal);
   }
-  .service-list li:last-child a{border-bottom:none;}
-  .service-list li a:hover{background:#F2FAF8; color:var(--teal-700); padding-left:1.7rem;}
-  .service-list li a.active{background:var(--teal-500); color:#fff;}
-  .service-list li a.active:hover{padding-left:1.4rem; background:var(--teal-500); color:#fff;}
-  .service-list li a i{font-size:.8rem;}
-
-  .appointment-box{
-    background:linear-gradient(150deg,var(--teal-700),var(--teal-900));
-    color:#fff; border-radius:12px; padding:2rem 1.6rem; text-align:center;
-    box-shadow:0 12px 40px rgba(14,59,54,.18); margin-bottom:1.8rem;
+  .panel-card-img-holder{
+    position:relative; width:100%; height:260px; overflow:hidden; background:#EAF3F1;
   }
-  .appointment-box h4{color:#fff; margin-bottom:.6rem; font-size:1.2rem;}
-  .appointment-box p{color:rgba(255,255,255,.85); font-size:.9rem; margin-bottom:1.2rem;}
-  .appointment-box .badge-time{
-    display:inline-block; background:rgba(255,255,255,.15); color:var(--amber-100);
-    padding:.35rem .9rem; border-radius:20px; font-size:.78rem; font-weight:700; margin-bottom:1rem;
+  .panel-card-img-holder img{
+    width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease;
   }
-  .appointment-box .btn-care{width:100%; justify-content:center; background:var(--brand-teal); color:#fff;}
-  .appointment-box .btn-care:hover{background:var(--brand-navy); color:#fff;}
-
-  .contact-box{background:#fff; border-radius:12px; box-shadow:0 12px 40px rgba(14,59,54,.08); padding:1.8rem 1.5rem;}
-  .contact-box .cbox-item{display:flex; gap:.85rem; align-items:flex-start; margin-bottom:1.1rem;}
-  .contact-box .cbox-item:last-child{margin-bottom:0;}
-  .contact-box .cbox-item i{
-    width:38px; height:38px; border-radius:50%; background:var(--amber-100); color:var(--teal-700);
-    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem;
+  .panel-card:hover .panel-card-img-holder img{transform:scale(1.06);}
+  .panel-card-badge{
+    position:absolute; bottom:12px; left:12px; background:var(--brand-navy); color:#fff;
+    font-size:.75rem; font-weight:700; padding:.35rem .85rem; border-radius:20px;
+    letter-spacing:.03em; text-transform:uppercase; box-shadow:0 4px 12px rgba(0,0,0,.2);
   }
-  .contact-box .cbox-item .lbl{font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; color:#8A9490; font-weight:700;}
-  .contact-box .cbox-item .val{font-weight:700; color:var(--teal-900); font-size:.95rem;}
-
-  /* ---------- Main content ---------- */
-  .content-section{padding:4.5rem 0;}
-  .content-photo{border-radius:12px; overflow:hidden; box-shadow:0 25px 55px rgba(14,59,54,.18); margin-bottom:2rem;}
-  .content-photo img{width:100%; height:auto; display:block;}
-  .content-lead{font-size:1.05rem; line-height:1.8; color:#4C5754;}
-  .content-lead strong{color:var(--teal-900);}
-
-  .feature-list{list-style:none; margin:1.8rem 0; padding:0;}
-  .feature-list li{
-    display:flex; align-items:flex-start; gap:.8rem; padding:.7rem 0;
-    font-weight:600; color:#2B3230; font-size:.98rem;
+  .panel-card-body{
+    padding:1.6rem; flex:1; display:flex; flex-direction:column; justify-content:space-between;
   }
-  .feature-list li i{
-    width:26px; height:26px; border-radius:50%; background:var(--teal-500); color:#fff;
-    display:flex; align-items:center; justify-content:center; font-size:.75rem; flex-shrink:0; margin-top:.15rem;
+  .panel-card-name{
+    font-family:var(--font-display); font-size:1.25rem; font-weight:700; color:var(--teal-900); margin-bottom:.3rem;
   }
-
-  .sub-heading{color:var(--teal-900); font-size:1.6rem; margin:2.2rem 0 1rem;}
-
-  /* ---------- Newsletter ---------- */
-  .newsletter-section{background:var(--teal-500); padding:0; color:#fff; position:relative; overflow:hidden;}
-  .newsletter-inner{padding:3.2rem 0;}
-  .newsletter-section h2{color:#fff; font-size:1.9rem; margin-bottom:.6rem;}
-  .newsletter-section p{color:rgba(255,255,255,.88); max-width:480px;}
-  .newsletter-photo{
-    position:absolute; right:6%; bottom:0; height:100%; width:280px;
-    display:flex; align-items:flex-end; justify-content:center;
+  .panel-card-role{
+    color:var(--brand-teal); font-weight:700; font-size:.85rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.8rem;
   }
-  .newsletter-photo img{
-    height:92%; width:auto; max-width:100%; object-fit:cover; object-position:top center;
-    border-radius:10px 10px 0 0;
+  .panel-card-desc{
+    font-size:.92rem; color:#52605C; line-height:1.65; margin-bottom:1.2rem;
   }
-  @media(max-width:991px){
-    .newsletter-photo{display:none;}
-  }
-  .newsletter-form{display:flex; gap:.6rem; max-width:460px; margin-top:1.2rem;}
-  .newsletter-form input{
-    flex:1; border:none; border-radius:6px; padding:.9rem 1.1rem; font-size:.9rem;
-  }
-  .newsletter-form button{
-    background:var(--amber-500); border:none; color:var(--teal-900); font-weight:700;
-    padding:.9rem 1.5rem; border-radius:6px; text-transform:uppercase; font-size:.82rem;
+  .panel-card-btn{
+    width:100%; justify-content:center; padding:.75rem 1rem; font-size:.82rem; border-radius:6px;
   }
 
   /* ---------- Footer ---------- */
@@ -215,6 +165,7 @@
   }
   .footer-bottom a{color:#5C6A66;}
 
+  /* Floating WhatsApp Pill */
   .floating-contact-stack{position:fixed; right:22px; bottom:22px; z-index:999; display:flex; flex-direction:column; align-items:flex-end; gap:.7rem;}
   .floating-contact-btn{display:inline-flex; align-items:center; justify-content:center; color:#fff; box-shadow:0 8px 20px rgba(0,0,0,.25); transition:.25s ease; text-decoration:none;}
   .floating-contact-btn:hover{transform:scale(1.06); color:#fff;}
@@ -223,10 +174,6 @@
   .btn-wa{background:#25D366; color:#fff; padding:.7rem 1.25rem; border-radius:50px; font-weight:700; font-size:.9rem; gap:.5rem; box-shadow:0 8px 22px rgba(37,211,102,.45);}
   .btn-wa:hover{background:#1EBE57; color:#fff;}
   .btn-wa i{font-size:1.25rem;}
-
-  @media(max-width:991px){
-    .sidebar-box, .appointment-box, .contact-box{margin-bottom:1.8rem;}
-  }
 </style>
 </head>
 <body>
@@ -263,18 +210,18 @@
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Our Services</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="doctor-consultation.html">Doctor Consultation</a></li>
-            <li><a class="dropdown-item active" href="home-nursing-care.html">Home Nursing Care</a></li>
-            <li><a class="dropdown-item" href="./diagnostic-services.html">Diagnostic Services</a></li>
+            <li><a class="dropdown-item" href="home-nursing-care.html">Home Nursing Care</a></li>
+            <li><a class="dropdown-item" href="diagnostic-services.html">Diagnostic Services</a></li>
             <li><a class="dropdown-item" href="elderly-senior-care.html">Elderly / Senior Care</a></li>
-            <li><a class="dropdown-item" href="./physiotherapy.html">Physiotherapy</a></li>
-            <li><a class="dropdown-item" href="./medical-equipment.html">Medical Equipment</a></li>
-            <li><a class="dropdown-item" href="./portable-xray-ecg.html">Portable X-Ray & ECG</a></li>
-            <li><a class="dropdown-item" href="./respiratory-speech-therapy.html">Respiratory & Speech Therapy</a></li>
+            <li><a class="dropdown-item" href="physiotherapy.html">Physiotherapy</a></li>
+            <li><a class="dropdown-item" href="medical-equipment.html">Medical Equipment</a></li>
+            <li><a class="dropdown-item" href="portable-xray-ecg.html">Portable X-Ray & ECG</a></li>
+            <li><a class="dropdown-item" href="respiratory-speech-therapy.html">Respiratory & Speech Therapy</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link" href="index.html#blog">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="index.html#about">About Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="doctor-panel.html">Doctor Panel</a></li>
+        <li class="nav-item"><a class="nav-link active" href="doctor-panel.html">Doctor Panel</a></li>
         <li class="nav-item"><a class="nav-link" href="staff-panel.html">Staff Panel</a></li>
         <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a></li>
         <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-care">Get an Appointment</a></li>
@@ -286,116 +233,107 @@
 <!-- ================= PAGE HEADER ================= -->
 <section class="page-header">
   <div class="page-header-photo">
-    <img src="assets/bed-care.jpg" alt="Nurse providing nursing care to patient at home">
+    <img src="assets/doctor_1.jpg" alt="Doctor Panel">
   </div>
-  <div class="page-header-badge"><i class="bi bi-bandaid-fill"></i></div>
+  <div class="page-header-badge"><i class="bi bi-person-fill-add"></i></div>
   <div class="container page-header-inner">
-    <div class="eyebrow mb-3">Our Services</div>
-    <h1>Home Nursing Care</h1>
-    <div class="breadcrumb-care"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> Home Nursing Care</div>
+    <div class="eyebrow mb-3">Medical Consultants</div>
+    <h1>Doctor Panel</h1>
+    <div class="breadcrumb-care"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> Doctor Panel</div>
   </div>
 </section>
 
-<!-- ================= MAIN CONTENT ================= -->
-<section class="content-section">
-  <div class="container">
-    <div class="row g-5">
-
-      <!-- Sidebar -->
-      <div class="col-lg-4 order-lg-2">
-        <div class="sidebar-box">
-          <div class="sidebar-heading">Our Services</div>
-          <ul class="service-list">
-            <li><a class="dropdown-item" href="doctor-consultation.html">Doctor Consultation</a></li>
-            <li><a class="dropdown-item" href="home-nursing-care.html">Home Nursing Care</a></li>
-            <li><a class="dropdown-item" href="diagnostic-services.html">Diagnostic Services</a></li>
-            <li><a class="dropdown-item" href="elderly-senior-care.html">Elderly / Senior Care</a></li>
-            <li><a class="dropdown-item" href="physiotherapy.html">Physiotherapy</a></li>
-            <li><a class="dropdown-item" href="medical-equipment.html">Medical Equipment</a></li>
-            <li><a class="dropdown-item" href="portable-xray-ecg.html">Portable X-Ray & ECG</a></li>
-            <li><a class="dropdown-item" href="respiratory-speech-therapy.html">Respiratory & Speech Therapy</a></li>
-          </ul>
-        </div>
-
-        <div class="appointment-box">
-          <div class="badge-time"><i class="bi bi-clock-fill me-1"></i> Available 24/7</div>
-          <h4>Get an Appointment</h4>
-          <p>We're available around the clock to assist you and your family.</p>
-          <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-care">Book an Appointment</a>
-        </div>
-
-        <div class="contact-box">
-          <div class="cbox-item">
-            <i class="bi bi-telephone-fill"></i>
-            <div>
-              <div class="lbl">Call Us</div>
-              <div class="val">0300-8053198</div>
-            </div>
-          </div>
-          <div class="cbox-item">
-            <i class="bi bi-envelope-fill"></i>
-            <div>
-              <div class="lbl">Email Us</div>
-              <div class="val">lifecarenursing5@gmail.com</div>
-            </div>
-          </div>
-          <div class="cbox-item">
-            <i class="bi bi-geo-alt-fill"></i>
-            <div>
-              <div class="lbl">Visit Us</div>
-              <div class="val">Near Zee Garden, Main Shekhupura / Lahore Road, Faisalabad</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Main text -->
-      <div class="col-lg-8 order-lg-1">
-        <div class="content-photo">
-          <img src="assets/bed-care.jpg" alt="Home nursing care">
-        </div>
-
-        <h2 class="sub-heading">Skilled Nursing at Your Doorstep</h2>
-
-        <ul class="feature-list">
-          <li><i class="bi bi-check-lg"></i> Experienced registered nurses</li>
-          <li><i class="bi bi-check-lg"></i> Post-surgery & chronic illness support</li>
-          <li><i class="bi bi-check-lg"></i> 24/7 care availability</li>
-          <li><i class="bi bi-check-lg"></i> Personalised nursing plans</li>
-          <li><i class="bi bi-check-lg"></i> Professional and compassionate approach</li>
-        </ul>
-
-        <p class="content-lead">
-          Our <strong>home nursing care</strong> ensures patients receive the same level of professional medical support they would get at a hospital, but in the familiar and comforting environment of their own home. From administering injections and IV drips to managing wound care, post-surgery recovery, and chronic illness, our highly trained nurses are available to assist patients with all aspects of medical care.
-        </p>
-
-        <h3 class="sub-heading">Compassionate & Reliable Support</h3>
-        <p class="content-lead">
-          What makes our service stand out is not only the clinical expertise but also the compassion and dedication of our nursing staff. We know that recovery requires more than just treatment  it requires emotional support, companionship, and personalised attention. Our nurses work closely with patients and families to make sure care plans are followed effectively and with empathy.
-        </p>
-
-        <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-care mt-3">Book a Nurse</a>
-      </div>
-
+<!-- ================= MAIN DOCTOR PANEL GRID ================= -->
+<section class="py-5" style="background:#FAF8F3;">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <h2 class="display-6 font-weight-bold" style="color: var(--teal-900); font-family: var(--font-display);">Meet Our Medical Specialists</h2>
+      <p class="text-muted mx-auto" style="max-width: 650px; font-size: 1rem;">
+        Qualified, PHC-registered medical consultants and specialist physicians available for home visits, telemedicine, and health supervision.
+      </p>
     </div>
-  </div>
-</section>
 
-<!-- ================= NEWSLETTER ================= -->
-<section class="newsletter-section">
-  <div class="newsletter-photo">
-    <img src="assets/why-choose-us.jpg" alt="LifeCare nurse">
-  </div>
-  <div class="container newsletter-inner">
-    <div class="row">
-      <div class="col-lg-7">
-        <h2>Subscribe Our Newsletter</h2>
-        <p>Subscribe now to receive expert health tips, service updates, and exclusive offers directly in your inbox.</p>
-        <form class="newsletter-form">
-          <input type="email" placeholder="Email" required>
-          <button type="submit">Subscribe</button>
-        </form>
+    <div class="row g-4">
+      <!-- Doctor 1 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="panel-card">
+          <div class="panel-card-img-holder">
+            <img src="assets/doctor_1.jpg" alt="Dr. Arthur Pendleton">
+            <span class="panel-card-badge">Internal Medicine</span>
+          </div>
+          <div class="panel-card-body">
+            <div>
+              <div class="panel-card-name">Dr. Arthur Pendleton</div>
+              <div class="panel-card-role">Senior Medical Consultant</div>
+              <p class="panel-card-desc">15+ years experience in internal medicine, chronic illness management, and elderly healthcare consultations.</p>
+            </div>
+            <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20consult%20Dr.%20Arthur%20Pendleton" target="_blank" class="btn-care panel-card-btn">
+              <i class="bi bi-calendar-check me-1"></i> Book Consultation
+            </a>
+          </div>
+        </div>
       </div>
+
+      <!-- Doctor 2 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="panel-card">
+          <div class="panel-card-img-holder">
+            <img src="assets/doctor_2.jpg" alt="Dr. Sarah Jenkins">
+            <span class="panel-card-badge">Home Care Specialist</span>
+          </div>
+          <div class="panel-card-body">
+            <div>
+              <div class="panel-card-name">Dr. Sarah Jenkins</div>
+              <div class="panel-card-role">Specialist Physician</div>
+              <p class="panel-card-desc">Expert in post-operative recovery, routine health check-ups, and personalized treatment plans at home.</p>
+            </div>
+            <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20consult%20Dr.%20Sarah%20Jenkins" target="_blank" class="btn-care panel-card-btn">
+              <i class="bi bi-calendar-check me-1"></i> Book Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Doctor 3 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="panel-card">
+          <div class="panel-card-img-holder">
+            <img src="assets/bp-check.jpg" alt="Dr. Hamza Tariq">
+            <span class="panel-card-badge">Cardiologist</span>
+          </div>
+          <div class="panel-card-body">
+            <div>
+              <div class="panel-card-name">Dr. Hamza Tariq</div>
+              <div class="panel-card-role">Consultant Cardiologist</div>
+              <p class="panel-card-desc">Specialized in cardiac rehabilitation, ECG analysis, and home-based hypertension & heart care.</p>
+            </div>
+            <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20consult%20Dr.%20Hamza%20Tariq" target="_blank" class="btn-care panel-card-btn">
+              <i class="bi bi-calendar-check me-1"></i> Book Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Doctor 4 -->
+      <div class="col-md-6 col-lg-3">
+        <div class="panel-card">
+          <div class="panel-card-img-holder">
+            <img src="assets/home-care-facility.jpg" alt="Dr. Ayesha Malik">
+            <span class="panel-card-badge">Rehab Specialist</span>
+          </div>
+          <div class="panel-card-body">
+            <div>
+              <div class="panel-card-name">Dr. Ayesha Malik</div>
+              <div class="panel-card-role">Physiotherapy Lead</div>
+              <p class="panel-card-desc">Leading physical rehabilitation consultant for stroke recovery, joint mobility, and pain relief therapy.</p>
+            </div>
+            <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20consult%20Dr.%20Ayesha%20Malik" target="_blank" class="btn-care panel-card-btn">
+              <i class="bi bi-calendar-check me-1"></i> Book Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -419,8 +357,9 @@
         <ul>
           <li><a href="index.html#home"><i class="bi bi-chevron-right"></i> Home</a></li>
           <li><a href="index.html#services"><i class="bi bi-chevron-right"></i> Our Services</a></li>
+          <li><a href="doctor-panel.html"><i class="bi bi-chevron-right"></i> Doctor Panel</a></li>
+          <li><a href="staff-panel.html"><i class="bi bi-chevron-right"></i> Staff Panel</a></li>
           <li><a href="index.html#about"><i class="bi bi-chevron-right"></i> About Us</a></li>
-          <li><a href="index.html#contact"><i class="bi bi-chevron-right"></i> Contact Us</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-6">
@@ -430,7 +369,7 @@
           <li><a href="home-nursing-care.html"><i class="bi bi-chevron-right"></i> Home Nursing Care</a></li>
           <li><a href="elderly-senior-care.html"><i class="bi bi-chevron-right"></i> Elderly / Senior Care</a></li>
           <li><a href="physiotherapy.html"><i class="bi bi-chevron-right"></i> Physiotherapy</a></li>
-          <li><a href="./diagnostic-services.html"><i class="bi bi-chevron-right"></i> Diagnostic Services</a></li>
+          <li><a href="diagnostic-services.html"><i class="bi bi-chevron-right"></i> Diagnostic Services</a></li>
         </ul>
       </div>
       <div class="col-lg-3">
@@ -495,9 +434,9 @@
             <div class="col-md-6">
               <label for="contactService" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Select Service</label>
               <select class="form-select form-select-lg" id="contactService" style="font-size: 0.95rem; border-radius: 6px;">
-                <option value="Home Nursing Care" selected>Home Nursing Care</option>
-                <option value="General Inquiry">General Inquiry</option>
+                <option value="Doctor Panel Inquiry" selected>Doctor Panel Inquiry</option>
                 <option value="Doctor Consultation">Doctor Consultation</option>
+                <option value="Home Nursing Care">Home Nursing Care</option>
                 <option value="Elderly / Senior Care">Elderly / Senior Care</option>
                 <option value="Physiotherapy">Physiotherapy</option>
                 <option value="Medical Equipment">Medical Equipment</option>
