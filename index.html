@@ -1447,34 +1447,41 @@
       <div class="eyebrow justify-content-center mb-3">MEET THE TEAM</div>
       <h2>The People Behind Our Care</h2>
     </div>
-    <div class="row g-4">
-      <div class="col-6 col-lg-3">
-        <div class="team-card">
-          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
-          <div class="info"><h5>Dr. A. Rahman</h5><p>Consultant Physician</p></div>
-        </div>
-      </div>
-      <div class="col-6 col-lg-3">
-        <div class="team-card">
-          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
-          <div class="info"><h5>Dr. S. Faisal</h5><p>Physical Therapist</p></div>
-        </div>
-      </div>
-      <div class="col-6 col-lg-3">
-        <div class="team-card">
-          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
-          <div class="info"><h5>Ayesha Naz</h5><p>Staff Nurse</p></div>
-        </div>
-      </div>
-      <div class="col-6 col-lg-3">
-        <div class="team-card">
-          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
-          <div class="info"><h5>Bilal Ahmed</h5><p>Male Nurse</p></div>
-        </div>
-      </div>
+    <div class="row g-4" id="indexTeamContainer">
+      <!-- Dynamic Team Cards fetched from admin backend -->
     </div>
   </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('api/get_cards.php?type=team')
+    .then(res => res.json())
+    .then(res => {
+      const container = document.getElementById('indexTeamContainer');
+      if (res.success && res.data && res.data.length > 0) {
+        let html = '';
+        res.data.forEach(tm => {
+          html += `
+            <div class="col-6 col-lg-3">
+              <div class="team-card h-100">
+                <div class="team-photo overflow-hidden position-relative" style="height:220px; background:#eaf3f1;">
+                  <img src="${tm.image}" alt="${tm.name}" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="info p-3">
+                  <h5 class="m-0 font-weight-bold">${tm.name}</h5>
+                  <p class="m-0 text-muted" style="font-size:0.85rem;">${tm.role}</p>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+      }
+    })
+    .catch(err => console.log('Team load error:', err));
+});
+</script>
 
 <!-- ================= TESTIMONIALS ================= -->
 <section class="testi-section">
@@ -1707,21 +1714,43 @@ Tell us what kind of care you need and leave your contact details below. Our tea
 <script>
 function handleContactSubmit(e) {
   e.preventDefault();
+  const alertBox = document.getElementById('contactFormAlert');
   const name = document.getElementById('contactName').value;
   const phone = document.getElementById('contactPhone').value;
   const email = document.getElementById('contactEmail').value;
   const service = document.getElementById('contactService').value;
   const message = document.getElementById('contactMessage').value;
 
-  const subject = encodeURIComponent(`New Contact Us Message from ${name} (${service})`);
-  const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`);
+  const formData = new FormData();
+  formData.append('name', name);
+  formData.append('phone', phone);
+  formData.append('email', email);
+  formData.append('service', service);
+  formData.append('message', message);
 
-  window.location.href = `mailto:lifecarenursing5@gmail.com?subject=${subject}&body=${body}`;
-
-  const alertBox = document.getElementById('contactFormAlert');
-  if (alertBox) {
-    alertBox.classList.remove('d-none');
-  }
+  fetch('send_email.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (alertBox) {
+      alertBox.className = 'alert ' + (data.success ? 'alert-success' : 'alert-danger') + ' mb-4';
+      alertBox.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i> ' + data.message;
+      alertBox.classList.remove('d-none');
+    }
+    if (data.success) {
+      document.getElementById('contactForm').reset();
+    }
+  })
+  .catch(err => {
+    const subject = encodeURIComponent(`New Contact Us Message from ${name} (${service})`);
+    const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`);
+    window.location.href = `mailto:lifecarenursing5@gmail.com?subject=${subject}&body=${body}`;
+    if (alertBox) {
+      alertBox.classList.remove('d-none');
+    }
+  });
 }
 </script>
 

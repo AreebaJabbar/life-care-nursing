@@ -1,0 +1,22 @@
+[
+    {
+        "id": 2,
+        "name": "Zainab Bibi",
+        "role": "Nursing Superintendent",
+        "badge": "Staff Lead",
+        "image": "assets\/staff_2.jpg",
+        "description": "Head of nursing services, staff assignment, and emergency home care deployments.",
+        "whatsapp": "923008053198",
+        "created_at": "2026-09-03 04:37:50"
+    },
+    {
+        "id": 1,
+        "name": "Dr. Haris Abbasi",
+        "role": "Medical Director",
+        "badge": "Management",
+        "image": "assets\/doctor_1.jpg",
+        "description": "Oversees clinical operations, patient care quality, and doctor panel coordination.",
+        "whatsapp": "923008053198",
+        "created_at": "2026-09-03 04:37:50"
+    }
+]
