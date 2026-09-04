@@ -13,7 +13,6 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
     $doctors = array_filter($doctors, function($d) use ($deleteId) {
         return (int)$d['id'] !== $deleteId;
     });
-    // Re-index array
     $doctors = array_values($doctors);
     saveData($type, $doctors);
     header('Location: doctors.php?msg=deleted');
@@ -22,17 +21,27 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
 
 // Handle Add / Edit POST Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id          = isset($_POST['id']) ? (int)$_POST['id'] : 0;
-    $name        = trim($_POST['name'] ?? '');
-    $role        = trim($_POST['role'] ?? '');
-    $badge       = trim($_POST['badge'] ?? '');
-    $description = trim($_POST['description'] ?? '');
-    $whatsapp    = trim($_POST['whatsapp'] ?? '923008053198');
+    $id               = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+    $name             = trim($_POST['name'] ?? '');
+    $speciality       = trim($_POST['speciality'] ?? 'General Physician');
+    $role             = trim($_POST['role'] ?? '');
+    $qualifications   = trim($_POST['qualifications'] ?? '');
+    $badge            = trim($_POST['badge'] ?? 'PMC Verified');
+    $experience       = trim($_POST['experience'] ?? '10 Years');
+    $waitTime         = trim($_POST['waitTime'] ?? 'Under 15 Mins');
+    $satisfaction     = trim($_POST['satisfaction'] ?? '97%');
+    $hospitalName     = trim($_POST['hospitalName'] ?? '');
+    $hospitalFee      = trim($_POST['hospitalFee'] ?? '1500');
+    $hospitalSchedule = trim($_POST['hospitalSchedule'] ?? '');
+    $videoFee         = trim($_POST['videoFee'] ?? '1000');
+    $videoSchedule    = trim($_POST['videoSchedule'] ?? '');
+    $description      = trim($_POST['description'] ?? '');
+    $aboutBio         = trim($_POST['aboutBio'] ?? '');
+    $whatsapp         = trim($_POST['whatsapp'] ?? '923008053198');
 
-    if (empty($name) || empty($role) || empty($badge)) {
-        $error = 'Doctor Name, Role, and Specialty Badge are required.';
+    if (empty($name) || empty($speciality)) {
+        $error = 'Doctor Name and Speciality are required.';
     } else {
-        // Upload image if provided
         $imagePath = null;
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $uploaded = uploadImage($_FILES['image']);
@@ -42,16 +51,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($id > 0) {
-            // Edit existing
             foreach ($doctors as &$doc) {
                 if ((int)$doc['id'] === $id) {
-                    $doc['name']        = $name;
-                    $doc['role']        = $role;
-                    $doc['badge']       = $badge;
-                    $doc['description'] = $description;
-                    $doc['whatsapp']    = $whatsapp;
+                    $doc['name']             = $name;
+                    $doc['speciality']       = $speciality;
+                    $doc['role']             = $role ?: $speciality;
+                    $doc['qualifications']   = $qualifications;
+                    $doc['badge']            = $badge;
+                    $doc['experience']       = $experience;
+                    $doc['waitTime']         = $waitTime;
+                    $doc['satisfaction']     = $satisfaction;
+                    $doc['hospitalName']     = $hospitalName;
+                    $doc['hospitalFee']      = $hospitalFee;
+                    $doc['hospitalSchedule'] = $hospitalSchedule;
+                    $doc['videoFee']         = $videoFee;
+                    $doc['videoSchedule']    = $videoSchedule;
+                    $doc['description']      = $description;
+                    $doc['aboutBio']         = $aboutBio;
+                    $doc['whatsapp']         = $whatsapp;
                     if ($imagePath) {
-                        $doc['image']   = $imagePath;
+                        $doc['image']        = $imagePath;
                     }
                     break;
                 }
@@ -60,16 +79,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: doctors.php?msg=updated');
             exit;
         } else {
-            // Add new doctor card
             $newId = !empty($doctors) ? max(array_column($doctors, 'id')) + 1 : 1;
             $newDoctor = [
-                'id'          => $newId,
-                'name'        => $name,
-                'role'        => $role,
-                'badge'       => $badge,
-                'image'       => $imagePath ?: 'assets/doctor_1.jpg',
-                'description' => $description,
-                'whatsapp'    => $whatsapp
+                'id'               => $newId,
+                'name'             => $name,
+                'speciality'       => $speciality,
+                'role'             => $role ?: $speciality,
+                'qualifications'   => $qualifications ?: 'MBBS, FCPS',
+                'badge'            => $badge ?: 'PMC Verified',
+                'pmcVerified'      => true,
+                'waitTime'         => $waitTime,
+                'experience'       => $experience,
+                'satisfaction'     => $satisfaction,
+                'hospitalName'     => $hospitalName ?: 'LifeCare Clinical Center',
+                'hospitalFee'      => $hospitalFee,
+                'hospitalSchedule' => $hospitalSchedule ?: 'Mon - Sat: 02:00 PM - 05:00 PM',
+                'videoFee'         => $videoFee,
+                'videoSchedule'    => $videoSchedule ?: 'Mon - Sun: 09:00 AM - 04:00 PM',
+                'image'            => $imagePath ?: 'assets/doctor_1.jpg',
+                'description'      => $description,
+                'aboutBio'         => $aboutBio,
+                'whatsapp'         => $whatsapp
             ];
             $doctors[] = $newDoctor;
             saveData($type, $doctors);
@@ -80,9 +110,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if (isset($_GET['msg'])) {
-    if ($_GET['msg'] === 'added') $msg = 'New Doctor Card uploaded and published successfully!';
-    if ($_GET['msg'] === 'updated') $msg = 'Doctor Card updated successfully!';
-    if ($_GET['msg'] === 'deleted') $msg = 'Doctor Card removed successfully!';
+    if ($_GET['msg'] === 'added') $msg = 'New Doctor Profile created successfully!';
+    if ($_GET['msg'] === 'updated') $msg = 'Doctor Profile updated successfully!';
+    if ($_GET['msg'] === 'deleted') $msg = 'Doctor Profile removed successfully!';
 }
 
 require_once __DIR__ . '/inc/header.php';
@@ -90,11 +120,11 @@ require_once __DIR__ . '/inc/header.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h2 class="m-0 text-dark">Doctor Panel Cards Management</h2>
-        <p class="text-muted m-0">Upload, edit, and manage doctor cards displayed on doctor-panel.php and website.</p>
+        <h2 class="m-0 text-dark">Doctor Panel Directory Management</h2>
+        <p class="text-muted m-0">Manage doctor profiles, specialities, qualifications, fees, schedules, and profile bios.</p>
     </div>
     <button type="button" class="btn-care" data-bs-toggle="modal" data-bs-target="#doctorModal" onclick="resetDoctorForm()">
-        <i class="bi bi-person-plus-fill me-1"></i> Upload New Doctor Card
+        <i class="bi bi-person-plus-fill me-1"></i> Add New Doctor Profile
     </button>
 </div>
 
@@ -112,115 +142,200 @@ require_once __DIR__ . '/inc/header.php';
     </div>
 <?php endif; ?>
 
-<!-- Doctors Horizontal Cards Grid -->
-<div class="row g-3">
-    <?php foreach ($doctors as $doc): ?>
-        <div class="col-12 col-xl-6">
-            <div class="card-custom p-3 h-100">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="position-relative flex-shrink-0" style="width: 140px; height: 140px; border-radius: 12px; overflow: hidden; background: #eaf3f1;">
-                        <img src="../<?= htmlspecialchars($doc['image']) ?>" alt="<?= htmlspecialchars($doc['name']) ?>" class="w-100 h-100" style="object-fit: cover;">
-                    </div>
-                    <div class="flex-grow-1 min-width-0">
-                        <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                            <span class="badge text-white px-2.5 py-1" style="background: var(--brand-navy); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase;">
-                                <?= htmlspecialchars($doc['badge']) ?>
-                            </span>
-                            <span class="text-muted" style="font-size: 0.75rem;">ID: #<?= $doc['id'] ?></span>
-                        </div>
-                        <h5 class="m-0 font-weight-bold text-dark text-truncate"><?= htmlspecialchars($doc['name']) ?></h5>
-                        <div class="font-weight-bold text-uppercase mb-1" style="color: var(--brand-teal); font-size: 0.78rem; letter-spacing: 0.03em;">
-                            <?= htmlspecialchars($doc['role']) ?>
-                        </div>
-                        <p class="text-secondary mb-2" style="font-size: 0.84rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                            <?= htmlspecialchars($doc['description']) ?>
-                        </p>
-                        <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-sm btn-outline-primary px-3" onclick='editDoctor(<?= json_encode($doc) ?>)'>
-                                <i class="bi bi-pencil-square me-1"></i> Edit
-                            </button>
-                            <a href="doctors.php?action=delete&id=<?= $doc['id'] ?>" class="btn btn-sm btn-outline-danger px-3" onclick="return confirm('Are you sure you want to delete this Doctor card?');">
-                                <i class="bi bi-trash-fill me-1"></i> Delete
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; ?>
+<div class="card-custom">
+    <div class="card-custom-header">
+        <h5 class="m-0 font-weight-bold text-dark"><i class="bi bi-person-badge-fill text-primary me-2"></i> Registered Doctors (<?= count($doctors) ?>)</h5>
+    </div>
+    <div class="table-responsive p-0">
+        <table class="table table-hover align-middle mb-0" style="font-size: 0.9rem;">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 70px;">Photo</th>
+                    <th>Doctor Name & Qualifications</th>
+                    <th>Speciality</th>
+                    <th>Hospital & Fees</th>
+                    <th>Experience</th>
+                    <th class="text-end" style="width: 120px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($doctors)): ?>
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">No doctor profiles found. Click "Add New Doctor Profile" to create one.</td>
+                    </tr>
+                <?php else: ?>
+                    <?php foreach ($doctors as $doc): ?>
+                        <tr>
+                            <td>
+                                <img src="../<?= htmlspecialchars($doc['image']) ?>" alt="Photo" class="thumb-preview" onerror="this.src='../assets/doctor_1.jpg'">
+                            </td>
+                            <td>
+                                <div class="font-weight-bold text-dark" style="font-size: 0.95rem;"><?= htmlspecialchars($doc['name']) ?></div>
+                                <div class="text-muted" style="font-size: 0.82rem;"><?= htmlspecialchars($doc['qualifications'] ?? $doc['badge'] ?? '') ?></div>
+                            </td>
+                            <td>
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1"><?= htmlspecialchars($doc['speciality'] ?? $doc['role'] ?? 'General') ?></span>
+                            </td>
+                            <td>
+                                <div class="fw-semibold text-secondary" style="font-size: 0.85rem;"><?= htmlspecialchars($doc['hospitalName'] ?? 'LifeCare Clinic') ?></div>
+                                <div class="text-success small fw-bold">Fee: Rs. <?= htmlspecialchars($doc['hospitalFee'] ?? '1500') ?></div>
+                            </td>
+                            <td>
+                                <span class="text-muted small"><?= htmlspecialchars($doc['experience'] ?? '10 Years') ?></span>
+                            </td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-outline-primary me-1" onclick="editDoctor(<?= htmlspecialchars(json_encode($doc)) ?>)" title="Edit">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                                <a href="doctors.php?action=delete&id=<?= $doc['id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this doctor?');" title="Delete">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<!-- Add / Edit Doctor Modal -->
-<div class="modal fade" id="doctorModal" tabindex="-1" aria-hidden="true">
+<!-- ADD / EDIT DOCTOR MODAL -->
+<div class="modal fade" id="doctorModal" tabindex="-1" aria-labelledby="doctorModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 shadow-lg" style="border-radius: 14px; overflow: hidden;">
-            <div class="modal-header text-white" style="background: var(--brand-navy);">
-                <h5 class="modal-title font-weight-bold" id="modalTitle"><i class="bi bi-person-badge-fill me-2"></i> Upload New Doctor Card</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        <div class="modal-content border-0" style="border-radius: 12px; overflow: hidden;">
+            <div class="modal-header text-white p-4" style="background: var(--teal-900);">
+                <h4 class="modal-title font-weight-bold m-0" id="doctorModalTitle">
+                    <i class="bi bi-person-plus-fill me-2" style="color: var(--amber-500);"></i> Add New Doctor Profile
+                </h4>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" enctype="multipart/form-data">
-                <div class="modal-body p-4">
-                    <input type="hidden" name="id" id="doc_id" value="0">
+            <div class="modal-body p-4" style="background: #FAF8F3;">
+                <form method="POST" enctype="multipart/form-data" id="doctorForm">
+                    <input type="hidden" name="id" id="docId" value="0">
                     
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">Doctor Full Name *</label>
-                            <input type="text" class="form-control" name="name" id="doc_name" placeholder="e.g. Dr. Arthur Pendleton" required>
+                            <label for="docName" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Doctor Full Name *</label>
+                            <input type="text" class="form-control" name="name" id="docName" placeholder="e.g. Dr. Abeera Ali" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">Role / Designation *</label>
-                            <input type="text" class="form-control" name="role" id="doc_role" placeholder="e.g. Senior Medical Consultant" required>
+                            <label for="docSpeciality" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Speciality Category *</label>
+                            <select class="form-select" name="speciality" id="docSpeciality">
+                                <option value="Gynecologist">Gynecologist</option>
+                                <option value="Cardiologist">Cardiologist</option>
+                                <option value="Pediatrician">Pediatrician</option>
+                                <option value="Neurologist">Neurologist</option>
+                                <option value="Dermatologist">Dermatologist</option>
+                                <option value="General Physician">General Physician</option>
+                                <option value="Physiotherapist">Physiotherapist</option>
+                                <option value="Urologist">Urologist</option>
+                                <option value="Psychiatrist">Psychiatrist</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="docRole" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Designation / Title</label>
+                            <input type="text" class="form-control" name="role" id="docRole" placeholder="e.g. Gynecologist & Laparoscopic Surgeon">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">Specialty Badge *</label>
-                            <input type="text" class="form-control" name="badge" id="doc_badge" placeholder="e.g. Internal Medicine, Cardiology" required>
+                            <label for="docQualifications" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Degrees & Qualifications</label>
+                            <input type="text" class="form-control" name="qualifications" id="docQualifications" placeholder="e.g. MBBS, FCPS (Gyn & Obs)">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="docExperience" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Experience</label>
+                            <input type="text" class="form-control" name="experience" id="docExperience" placeholder="10 Years" value="10 Years">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="docWaitTime" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Wait Time</label>
+                            <input type="text" class="form-control" name="waitTime" id="docWaitTime" placeholder="Under 15 Mins" value="Under 15 Mins">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="docSatisfaction" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Satisfaction Rate</label>
+                            <input type="text" class="form-control" name="satisfaction" id="docSatisfaction" placeholder="97%" value="97%">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="docHospitalName" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Hospital / Clinic Name & Address</label>
+                            <input type="text" class="form-control" name="hospitalName" id="docHospitalName" placeholder="e.g. Anmol Hospital (Jhang Road, Faisalabad)">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="docHospitalFee" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Hospital Fee (Rs.)</label>
+                            <input type="text" class="form-control" name="hospitalFee" id="docHospitalFee" placeholder="1500" value="1500">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="docVideoFee" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Video Fee (Rs.)</label>
+                            <input type="text" class="form-control" name="videoFee" id="docVideoFee" placeholder="1000" value="1000">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="docHospitalSchedule" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Hospital Timings Schedule</label>
+                            <input type="text" class="form-control" name="hospitalSchedule" id="docHospitalSchedule" placeholder="Mon - Sat: 02:00 PM - 03:30 PM">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">WhatsApp Contact Number</label>
-                            <input type="text" class="form-control" name="whatsapp" id="doc_whatsapp" placeholder="923008053198">
+                            <label for="docVideoSchedule" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Video / Home Timings Schedule</label>
+                            <input type="text" class="form-control" name="videoSchedule" id="docVideoSchedule" placeholder="Mon - Sun: 09:00 AM - 04:00 PM">
                         </div>
+
+                        <div class="col-md-6">
+                            <label for="docImage" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Doctor Photo</label>
+                            <input type="file" class="form-control" name="image" id="docImage" accept="image/*">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="docWhatsapp" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">WhatsApp Number</label>
+                            <input type="text" class="form-control" name="whatsapp" id="docWhatsapp" placeholder="923008053198" value="923008053198">
+                        </div>
+
                         <div class="col-12">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">Upload Profile Photo (JPG, PNG, WEBP)</label>
-                            <input type="file" class="form-control" name="image" id="doc_image" accept="image/*">
-                            <div class="form-text text-muted" id="imageHelp">Select a new photo to replace existing image, or leave empty to keep current photo.</div>
+                            <label for="docDescription" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Short Description Excerpt</label>
+                            <textarea class="form-control" name="description" id="docDescription" rows="2" placeholder="Short 1-2 sentence overview of experience and services..."></textarea>
                         </div>
+
                         <div class="col-12">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">Profile Description / Biography</label>
-                            <textarea class="form-control" name="description" id="doc_description" rows="3" placeholder="Brief summary of consultations provided..."></textarea>
+                            <label for="docAboutBio" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Full Profile Biography & Services (HTML/Text)</label>
+                            <textarea class="form-control" name="aboutBio" id="docAboutBio" rows="4" placeholder="<p>Full doctor biography, medical background, services offered...</p>"></textarea>
+                        </div>
+
+                        <div class="col-12 mt-4 d-flex justify-content-end gap-2">
+                            <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn-care px-4" style="border: none; cursor: pointer;">
+                                <i class="bi bi-check-circle-fill me-1"></i> Save Doctor Profile
+                            </button>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn-care px-4"><i class="bi bi-cloud-upload-fill me-1"></i> Save & Publish Card</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
 function resetDoctorForm() {
-    document.getElementById('modalTitle').innerText = 'Upload New Doctor Card';
-    document.getElementById('doc_id').value = '0';
-    document.getElementById('doc_name').value = '';
-    document.getElementById('doc_role').value = '';
-    document.getElementById('doc_badge').value = '';
-    document.getElementById('doc_whatsapp').value = '923008053198';
-    document.getElementById('doc_description').value = '';
-    document.getElementById('doc_image').value = '';
+    document.getElementById('doctorModalTitle').innerHTML = '<i class="bi bi-person-plus-fill me-2" style="color: var(--amber-500);"></i> Add New Doctor Profile';
+    document.getElementById('docId').value = 0;
+    document.getElementById('doctorForm').reset();
 }
 
 function editDoctor(doc) {
-    document.getElementById('modalTitle').innerText = 'Edit Doctor Card';
-    document.getElementById('doc_id').value = doc.id;
-    document.getElementById('doc_name').value = doc.name;
-    document.getElementById('doc_role').value = doc.role;
-    document.getElementById('doc_badge').value = doc.badge;
-    document.getElementById('doc_whatsapp').value = doc.whatsapp || '923008053198';
-    document.getElementById('doc_description').value = doc.description;
-    
-    var modal = new bootstrap.Modal(document.getElementById('doctorModal'));
+    document.getElementById('doctorModalTitle').innerHTML = '<i class="bi bi-pencil-square me-2" style="color: var(--amber-500);"></i> Edit Doctor Profile';
+    document.getElementById('docId').value = doc.id;
+    document.getElementById('docName').value = doc.name || '';
+    document.getElementById('docSpeciality').value = doc.speciality || 'General Physician';
+    document.getElementById('docRole').value = doc.role || '';
+    document.getElementById('docQualifications').value = doc.qualifications || '';
+    document.getElementById('docExperience').value = doc.experience || '10 Years';
+    document.getElementById('docWaitTime').value = doc.waitTime || 'Under 15 Mins';
+    document.getElementById('docSatisfaction').value = doc.satisfaction || '97%';
+    document.getElementById('docHospitalName').value = doc.hospitalName || '';
+    document.getElementById('docHospitalFee').value = doc.hospitalFee || '1500';
+    document.getElementById('docVideoFee').value = doc.videoFee || '1000';
+    document.getElementById('docHospitalSchedule').value = doc.hospitalSchedule || '';
+    document.getElementById('docVideoSchedule').value = doc.videoSchedule || '';
+    document.getElementById('docWhatsapp').value = doc.whatsapp || '923008053198';
+    document.getElementById('docDescription').value = doc.description || '';
+    document.getElementById('docAboutBio').value = doc.aboutBio || '';
+
+    const modal = new bootstrap.Modal(document.getElementById('doctorModal'));
     modal.show();
 }
 </script>

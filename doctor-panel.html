@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doctor Panel — LifeCare Nursing & Medical Services</title>
+<title>Doctor Panel & Specialist Directory — LifeCare Medical Services</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,25 +17,47 @@
     --teal-500:#2E8C82;
     --amber-500:#D9A441;
     --amber-100:#F7E8C9;
+    --cream:#FAF8F3;
+    --ink:#1F2A28;
+    --line:#E4DFD3;
+    --font-display:'Fraunces', serif;
+    --font-body:'Manrope', sans-serif;
     --brand-navy:#03357A;
     --brand-teal:#029491;
   }
+
   *{box-sizing:border-box;}
-  body{font-family:'Manrope',sans-serif; color:#2B3230; margin:0;}
-  h1,h2,h3,h4,h5{font-family:'Fraunces',serif;}
-  a{text-decoration:none;}
-
-  .eyebrow{
-    text-transform:uppercase; letter-spacing:.12em; font-weight:700; font-size:.78rem;
-    display:inline-flex; align-items:center; gap:.6rem;
+  body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
   }
-  .eyebrow::before{content:""; width:26px; height:2px; background:var(--amber-500); display:inline-block;}
-
+  h1,h2,h3,h4,h5,.display-font{
+    font-family:var(--font-display);
+    font-weight:600;
+  }
+  .eyebrow{
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:.75rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--amber-500);
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:2px;background:var(--amber-500);display:inline-block;
+  }
+  a{text-decoration:none;}
   .btn-care{
     background: var(--brand-teal);
     color:#fff;
     border:none;
-    padding:1rem 1.9rem;
+    padding:0.85rem 1.6rem;
     border-radius:6px;
     font-weight:700;
     font-size:.85rem;
@@ -44,264 +66,577 @@
     transition:.25s ease;
     display:inline-flex;
     align-items:center;
+    justify-content:center;
     gap:.5rem;
   }
   .btn-care:hover{background:var(--brand-navy); color:#fff;}
-  .btn-outline-care{
-    border:none;
-    background:var(--brand-navy);
+  .btn-navy{
+    background: var(--brand-navy);
     color:#fff;
-    padding:1rem 1.9rem;
+    border:none;
+    padding:0.85rem 1.6rem;
     border-radius:6px;
     font-weight:700;
     font-size:.85rem;
     letter-spacing:.03em;
     text-transform:uppercase;
+    transition:.25s ease;
     display:inline-flex;
     align-items:center;
+    justify-content:center;
     gap:.5rem;
-    transition:.25s ease;
   }
-  .btn-outline-care:hover{background:var(--brand-teal); color:#fff;}
+  .btn-navy:hover{background:var(--teal-700); color:#fff;}
 
-  /* ---------- Top bar ---------- */
-  .topbar{background:var(--teal-900); color:#DCEAE7; font-size:.82rem; padding:.5rem 0;}
-  .topbar a{color:#DCEAE7;}
+  /* Top bar */
+  .topbar{
+    background:var(--teal-900);
+    color:#DCEAE7;
+    font-size:.82rem;
+    padding:.5rem 0;
+  }
+  .topbar a{color:#DCEAE7; opacity:.9;}
   .topbar a:hover{color:var(--amber-500);}
 
-  /* ---------- Navbar ---------- */
-  .navbar-care{background:#fff; padding:.9rem 0; box-shadow:0 2px 18px rgba(14,59,54,.08);}
-  .brand-logo{height:52px;}
-  .navbar-care .nav-link{color:var(--teal-900); font-weight:600; font-size:.92rem; margin:0 .7rem;}
-  .navbar-care .nav-link:hover{color:var(--teal-700);}
-  .navbar-care .nav-link.active{color:var(--brand-teal); font-weight:700;}
+  /* Nav */
+  .navbar-care{
+    background:#fff;
+    padding:1rem 0;
+    border-bottom:1px solid var(--line);
+  }
+  .navbar-care .navbar-brand{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.35rem;
+    color:var(--teal-900);
+  }
+  .brand-logo{height:64px; width:auto;}
+  @media(max-width:575px){ .brand-logo{height:50px;} }
+  .navbar-care .nav-link{
+    color:var(--ink);
+    font-weight:600;
+    font-size:.92rem;
+    margin:0 .7rem;
+  }
+  .navbar-care .nav-link:hover, .navbar-care .nav-link.active{color:var(--teal-700);}
 
-  /* ---------- Page header banner ---------- */
-  .page-header{
-    position:relative; background:#E3EEEC; padding:0; color:var(--teal-900); overflow:hidden;
-    min-height:340px; display:flex; align-items:center;
+  /* Page Hero */
+  .page-hero{
+    position:relative;
+    background:linear-gradient(120deg, var(--teal-900) 0%, var(--teal-700) 100%);
+    color:#fff;
+    overflow:hidden;
+    padding:3.5rem 0 4.5rem;
   }
-  .page-header-photo{
-    position:absolute; top:0; right:0; height:100%; width:58%;
-    -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 22%);
-    mask-image:linear-gradient(to right, transparent 0%, #000 22%);
+  .page-hero::after{
+    content:"";
+    position:absolute;
+    right:-120px; top:-120px;
+    width:420px;height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(217,164,65,.28), transparent 70%);
   }
-  .page-header-photo img{width:100%; height:100%; object-fit:cover; object-position:center 20%;}
-  .page-header-badge{
-    position:absolute; top:50%; left:calc(42% - 34px); transform:translateY(-50%);
-    width:68px; height:68px; border-radius:50%; background:#fff; z-index:3;
-    display:flex; align-items:center; justify-content:center; box-shadow:0 12px 30px rgba(14,59,54,.18);
-    color:var(--teal-700); font-size:1.5rem;
-  }
-  .page-header-inner{position:relative; z-index:2; padding:3.6rem 0;}
-  .page-header h1{font-size:clamp(2rem,3.6vw,2.8rem); margin-bottom:.9rem; color:var(--teal-900);}
-  .page-header .breadcrumb-care{
-    color:var(--teal-700); font-size:.85rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
-    display:flex; align-items:center; gap:.5rem;
-  }
-  .page-header .breadcrumb-care a{color:var(--teal-700);}
-  .page-header .breadcrumb-care a:hover{color:var(--amber-500);}
-  .page-header .breadcrumb-care i{font-size:.7rem; color:var(--amber-500);}
-  .page-header .eyebrow{color:var(--teal-700);}
-  .page-header .eyebrow::before{background:var(--amber-500);}
+  .page-hero .eyebrow{color:var(--amber-100);}
+  .page-hero .eyebrow::before{background:var(--amber-100);}
 
-  /* ---------- Doctor Panel Cards ---------- */
-  .panel-card{
-    background:#fff; border-radius:14px; overflow:hidden;
-    box-shadow:0 12px 35px rgba(14,59,54,.08); transition:.35s ease;
-    height:100%; display:flex; flex-direction:column; border:1px solid #E8F0EE;
+  /* Speciality Grid Section */
+  .speciality-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1.2rem 1rem;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    cursor:pointer;
+    transition:all .25s ease;
+    height:100%;
   }
-  .panel-card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 22px 48px rgba(14,59,54,.16);
+  .speciality-card:hover, .speciality-card.active{
     border-color:var(--brand-teal);
+    background:rgba(2,148,145,0.04);
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(14,59,54,0.08);
   }
-  .panel-card-img-holder{
-    position:relative; width:100%; height:260px; overflow:hidden; background:#EAF3F1;
+  .speciality-icon{
+    width:48px;
+    height:48px;
+    border-radius:10px;
+    background:rgba(2,148,145,0.12);
+    color:var(--brand-teal);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.5rem;
+    flex-shrink:0;
   }
-  .panel-card-img-holder img{
-    width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease;
+  .speciality-card.active .speciality-icon{
+    background:var(--brand-teal);
+    color:#fff;
   }
-  .panel-card:hover .panel-card-img-holder img{transform:scale(1.06);}
-  .panel-card-badge{
-    position:absolute; bottom:12px; left:12px; background:var(--brand-navy); color:#fff;
-    font-size:.75rem; font-weight:700; padding:.35rem .85rem; border-radius:20px;
-    letter-spacing:.03em; text-transform:uppercase; box-shadow:0 4px 12px rgba(0,0,0,.2);
+  .speciality-title{
+    font-weight:700;
+    font-size:1rem;
+    color:var(--teal-900);
+    margin:0;
   }
-  .panel-card-body{
-    padding:1.6rem; flex:1; display:flex; flex-direction:column; justify-content:space-between;
-  }
-  .panel-card-name{
-    font-family:var(--font-display); font-size:1.25rem; font-weight:700; color:var(--teal-900); margin-bottom:.3rem;
-  }
-  .panel-card-role{
-    color:var(--brand-teal); font-weight:700; font-size:.85rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.8rem;
-  }
-  .panel-card-desc{
-    font-size:.92rem; color:#52605C; line-height:1.65; margin-bottom:1.2rem;
-  }
-  .panel-card-btn{
-    width:100%; justify-content:center; padding:.75rem 1rem; font-size:.82rem; border-radius:6px;
+  .speciality-sub{
+    font-size:0.78rem;
+    color:#6c757d;
+    margin:0;
   }
 
-  /* ---------- Footer ---------- */
-  footer{background:#E3EEEC; color:#3D4B48; padding:4rem 0 0;}
-  footer h5{color:var(--teal-900); font-size:1rem; margin-bottom:1.1rem; font-family:'Fraunces',serif;}
-  footer p{font-size:.9rem; line-height:1.7; color:#5C6A66;}
+  /* Doctor Listing Card (InstaCare Style) */
+  .doc-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:1.6rem;
+    box-shadow:0 6px 18px rgba(14,59,54,0.04);
+    margin-bottom:1.5rem;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .doc-card:hover{
+    box-shadow:0 12px 28px rgba(14,59,54,0.1);
+  }
+  .doc-avatar{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid var(--cream);
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  }
+  .doc-name{
+    font-family:var(--font-display);
+    font-size:1.35rem;
+    font-weight:700;
+    color:var(--teal-900);
+    margin:0 0 .2rem;
+  }
+  .doc-qualifications{
+    font-size:.9rem;
+    color:var(--teal-700);
+    font-weight:600;
+  }
+  .pmc-badge{
+    background:#E6F4EA;
+    color:#137333;
+    font-size:0.75rem;
+    font-weight:700;
+    padding:0.25rem 0.6rem;
+    border-radius:50px;
+    display:inline-flex;
+    align-items:center;
+    gap:0.3rem;
+  }
+  .doc-stats{
+    background:#F8FAF9;
+    border-radius:8px;
+    padding:0.6rem 1rem;
+    display:flex;
+    gap:1.5rem;
+    font-size:0.82rem;
+    color:#4a5553;
+    margin:0.8rem 0 1rem;
+  }
+  .doc-stats div span{
+    display:block;
+    font-weight:800;
+    color:var(--teal-900);
+    font-size:0.9rem;
+  }
+  .fee-box{
+    border:1px solid #E2EAE7;
+    border-radius:8px;
+    padding:0.75rem 1rem;
+    background:#fafcfb;
+    font-size:0.85rem;
+  }
+  .fee-box-title{
+    font-weight:700;
+    color:var(--teal-900);
+    font-size:0.85rem;
+  }
+  .fee-amount{
+    color:var(--brand-teal);
+    font-weight:800;
+    font-size:0.95rem;
+  }
+
+  /* Profile Modal (InstaCare Style) */
+  .modal-doc-avatar{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #fff;
+    box-shadow:0 6px 18px rgba(0,0,0,0.1);
+  }
+  .profile-schedule-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1.25rem;
+  }
+  .schedule-table{
+    font-size:0.85rem;
+  }
+  .schedule-table td{
+    padding:0.4rem 0;
+  }
+
+  /* Footer */
+  footer{
+    background:var(--teal-900);
+    color:#DCEAE7;
+    padding:4.5rem 0 2rem;
+    margin-top:5rem;
+    border-top:4px solid var(--amber-500);
+  }
+  footer h5{color:#fff; font-size:1.05rem; margin-bottom:1.2rem;}
   footer ul{list-style:none; padding:0; margin:0;}
-  footer ul li{margin-bottom:.6rem; font-size:.9rem; display:flex; align-items:center; gap:.5rem;}
-  footer ul li a{color:#3D4B48; display:flex; align-items:center; gap:.5rem;}
-  footer ul li a:hover{color:var(--teal-700);}
-  footer ul li i{color:var(--teal-500); font-size:.85rem;}
-  .footer-logo{height:50px; margin-bottom:1rem;}
-  .social-dot{
-    width:34px; height:34px; border-radius:50%; background:var(--teal-500); color:#fff;
-    display:inline-flex; align-items:center; justify-content:center; margin-right:.5rem;
-  }
-  .social-dot:hover{background:var(--brand-navy); color:#fff;}
+  footer ul li{margin-bottom:.7rem; font-size:.88rem;}
+  footer ul li a{color:#DCEAE7; transition:.2s ease;}
+  footer ul li a:hover{color:var(--amber-500);}
+  .footer-logo{max-height:55px; width:auto; filter:brightness(0) invert(1);}
   .footer-bottom{
-    border-top:1px solid rgba(14,59,54,.1); margin-top:2.5rem; padding:1.3rem 0;
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:.7rem; font-size:.82rem; color:#5C6A66;
+    border-top:1px solid rgba(255,255,255,.1);
+    padding-top:1.8rem; margin-top:3.5rem;
+    font-size:.82rem; color:#A4C4BE;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;
   }
-  .footer-bottom a{color:#5C6A66;}
+  .footer-bottom a{color:#A4C4BE;}
+  .footer-bottom a:hover{color:#fff;}
+  .social-dot{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.08);
+    color:#fff; margin-right:.4rem; transition:.2s ease;
+  }
+  .social-dot:hover{background:var(--amber-500); color:var(--teal-900);}
 
-  /* Floating WhatsApp Pill */
-  .floating-contact-stack{position:fixed; right:22px; bottom:22px; z-index:999; display:flex; flex-direction:column; align-items:flex-end; gap:.7rem;}
-  .floating-contact-btn{display:inline-flex; align-items:center; justify-content:center; color:#fff; box-shadow:0 8px 20px rgba(0,0,0,.25); transition:.25s ease; text-decoration:none;}
-  .floating-contact-btn:hover{transform:scale(1.06); color:#fff;}
-  .btn-call{width:50px; height:50px; border-radius:50%; font-size:1.3rem; background:var(--brand-navy);}
-  .btn-call:hover{background:var(--brand-teal); color:#fff;}
-  .btn-wa{background:#25D366; color:#fff; padding:.7rem 1.25rem; border-radius:50px; font-weight:700; font-size:.9rem; gap:.5rem; box-shadow:0 8px 22px rgba(37,211,102,.45);}
-  .btn-wa:hover{background:#1EBE57; color:#fff;}
-  .btn-wa i{font-size:1.25rem;}
+  /* Floating Contact Buttons */
+  .floating-contact-stack{
+    position:fixed; bottom:24px; right:24px; z-index:9999;
+    display:flex; flex-direction:column; gap:10px; align-items:flex-end;
+  }
+  .floating-contact-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    height:50px; border-radius:50px; color:#fff; font-weight:700;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25); text-decoration:none;
+    transition:all .3s ease; padding:0 18px; font-size:0.95rem;
+  }
+  .btn-wa{background-color:#25D366; gap:8px;}
+  .btn-wa:hover{background-color:#1EBE5D; color:#fff; transform:translateY(-2px);}
+  .btn-call{background-color:var(--brand-navy); width:50px; padding:0;}
+  .btn-call:hover{background-color:var(--teal-700); color:#fff; transform:translateY(-2px);}
 </style>
 </head>
 <body>
 
-<!-- ================= TOP BAR ================= -->
+<!-- TOP BAR -->
 <div class="topbar">
-  <div class="container d-flex justify-content-between align-items-center flex-wrap">
-    <div class="d-flex gap-3">
-      <a href="tel:+923008053198"><i class="bi bi-telephone-fill me-1"></i> 0300-8053198</a>
-      <a href="mailto:lifecarenursing5@gmail.com" class="d-none d-sm-inline"><i class="bi bi-envelope-fill me-1"></i> lifecarenursing5@gmail.com</a>
+  <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div>
+      <span class="me-3"><i class="bi bi-clock-fill me-1" style="color:var(--amber-500)"></i> 24/7 Doctor & Home Medical Services</span>
+      <span><i class="bi bi-geo-alt-fill me-1" style="color:var(--amber-500)"></i> Faisalabad, Punjab, Pakistan</span>
     </div>
-    <div class="d-flex gap-3">
-      <a href="#"><i class="bi bi-facebook"></i></a>
-      <a href="#"><i class="bi bi-instagram"></i></a>
-      <a href="#"><i class="bi bi-youtube"></i></a>
-      <a href="#"><i class="bi bi-tiktok"></i></a>
+    <div class="d-flex gap-3 align-items-center">
+      <a href="tel:+923008053198"><i class="bi bi-telephone-fill me-1"></i> 0300-8053198</a>
+      <a href="mailto:lifecarenursing5@gmail.com"><i class="bi bi-envelope-fill me-1"></i> Email Us</a>
     </div>
   </div>
 </div>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-care sticky-top">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <img src="assets/logo.png" alt="LifeCare Nursing & Medical Services" class="brand-logo">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <img src="assets/logo.png" alt="LifeCare Logo" class="brand-logo">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCare">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navMain">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+    <div class="collapse navbar-collapse" id="navCare">
+      <ul class="navbar-menu navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Our Services</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Our Services</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="doctor-consultation.html">Doctor Consultation</a></li>
             <li><a class="dropdown-item" href="home-nursing-care.html">Home Nursing Care</a></li>
-            <li><a class="dropdown-item" href="diagnostic-services.html">Diagnostic Services</a></li>
             <li><a class="dropdown-item" href="elderly-senior-care.html">Elderly / Senior Care</a></li>
             <li><a class="dropdown-item" href="physiotherapy.html">Physiotherapy</a></li>
-            <li><a class="dropdown-item" href="medical-equipment.html">Medical Equipment</a></li>
+            <li><a class="dropdown-item" href="diagnostic-services.html">Diagnostic Services</a></li>
             <li><a class="dropdown-item" href="portable-xray-ecg.html">Portable X-Ray & ECG</a></li>
             <li><a class="dropdown-item" href="respiratory-speech-therapy.html">Respiratory & Speech Therapy</a></li>
+            <li><a class="dropdown-item" href="medical-equipment.html">Medical Equipment</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="index.html#about">About Us</a></li>
         <li class="nav-item"><a class="nav-link active" href="doctor-panel.html">Doctor Panel</a></li>
         <li class="nav-item"><a class="nav-link" href="staff-panel.html">Staff Panel</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a></li>
-        <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-care">Get an Appointment</a></li>
       </ul>
+      <div class="ms-lg-3 mt-3 mt-lg-0">
+        <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-care">
+          <i class="bi bi-calendar-check me-1"></i> Get Appointment
+        </a>
+      </div>
     </div>
   </div>
 </nav>
 
-<!-- ================= PAGE HEADER ================= -->
-<section class="page-header">
-  <div class="page-header-photo">
-    <img src="assets/doctor_1.jpg" alt="Doctor Panel">
-  </div>
-  <div class="page-header-badge"><i class="bi bi-person-fill-add"></i></div>
-  <div class="container page-header-inner">
-    <div class="eyebrow mb-3">Our Doctors</div>
-    <h1>Doctor Panel</h1>
-    <div class="breadcrumb-care"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> Doctor Panel</div>
-  </div>
-</section>
+<!-- PAGE HERO & SEARCH -->
+<section class="page-hero">
+  <div class="container text-center">
+    <div class="eyebrow justify-content-center mb-3">FIND BEST DOCTORS IN FAISALABAD</div>
+    <h1 class="display-5 text-white mb-3 fw-bold">LifeCare Specialist Doctor Panel</h1>
+    <p class="lead mx-auto mb-4" style="max-width:720px; color:#DCEAE7; font-size:1.05rem;">
+      Search qualified PMC verified medical specialists, view hospital fees, check consultation timings, and book instant appointments.
+    </p>
 
-<!-- ================= MAIN DOCTOR PANEL GRID ================= -->
-<section class="py-5" style="background:#FAF8F3;">
-  <div class="container py-4">
-    <div class="text-center mb-5">
-      <h2 class="display-6 font-weight-bold" style="color: var(--teal-900); font-family: var(--font-display);">Meet Our Medical Specialists</h2>
-      <p class="text-muted mx-auto" style="max-width: 650px; font-size: 1rem;">
- Our doctors are available for home visits and online consultations. You can contact us to arrange a consultation based on your health needs.     </p>
-    </div>    <div class="row g-4" id="doctorsContainer">
-      <!-- Cards rendered dynamically via JS fallback -->
+    <!-- LIVE SEARCH BAR -->
+    <div class="max-w-2xl mx-auto" style="max-width:650px;">
+      <div class="input-group input-group-lg shadow-lg rounded-pill overflow-hidden bg-white p-1">
+        <span class="input-group-text bg-white border-0 ps-3 text-muted"><i class="bi bi-search fs-5"></i></span>
+        <input type="text" id="doctorSearchInput" class="form-control border-0 px-2" placeholder="Search doctor name, speciality (e.g. Gynecologist), qualification..." onkeyup="searchDoctors()" style="font-size:0.95rem;">
+        <button class="btn-care rounded-pill px-4" type="button" onclick="searchDoctors()">Search Doctor</button>
+      </div>
     </div>
   </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  fetch('api/get_cards.php?type=doctors')
-    .then(res => res.json())
-    .then(res => {
-      const container = document.getElementById('doctorsContainer');
-      if (res.success && res.data && res.data.length > 0) {
-        let html = '';
-        res.data.forEach(doc => {
-          const waNum = doc.whatsapp ? doc.whatsapp.replace(/[^0-9]/g, '') : '923008053198';
-          const waMsg = encodeURIComponent(`Hello, I would like to book an appointment with ${doc.name} (${doc.role} - ${doc.badge}).`);
-          html += `
-            <div class="col-md-6 col-lg-3">
-              <div class="panel-card">
-                <div class="panel-card-img-holder">
-                  <img src="${doc.image}" alt="${doc.name}">
-                  <span class="panel-card-badge">${doc.badge}</span>
-                </div>
-                <div class="panel-card-body">
-                  <div>
-                    <div class="panel-card-name">${doc.name}</div>
-                    <div class="panel-card-role">${doc.role}</div>
-                    <p class="panel-card-desc">${doc.description}</p>
-                  </div>
-                  <a href="https://wa.me/${waNum}?text=${waMsg}" target="_blank" class="btn-care panel-card-btn">
-                    <i class="bi bi-calendar-check me-1"></i> Book Consultation
-                  </a>
-                </div>
+<!-- SPECIALITY SELECTION GRID ("CHOOSE A SPECIALITY") -->
+<section class="py-5 bg-white border-bottom">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+      <div>
+        <h3 class="fw-bold mb-1" style="color:var(--teal-900);">Choose a Speciality</h3>
+        <p class="text-muted m-0" style="font-size:0.9rem;">Select a medical field to view verified specialist doctors</p>
+      </div>
+      <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" onclick="selectSpeciality('All')">
+        <i class="bi bi-grid-fill me-1"></i> View All Specialities
+      </button>
+    </div>
+
+    <!-- SPECIALITY GRID CARDS -->
+    <div class="row g-3" id="specialitiesGrid">
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card active" onclick="selectSpeciality('Gynecologist', this)">
+          <div class="speciality-icon"><i class="bi bi-gender-female"></i></div>
+          <div>
+            <h5 class="speciality-title">Gynecologist</h5>
+            <p class="speciality-sub">Women Health & Maternity</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Cardiologist', this)">
+          <div class="speciality-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+          <div>
+            <h5 class="speciality-title">Cardiologist</h5>
+            <p class="speciality-sub">Heart & Blood Pressure</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('General Physician', this)">
+          <div class="speciality-icon"><i class="bi bi-hospital-fill"></i></div>
+          <div>
+            <h5 class="speciality-title">General Physician</h5>
+            <p class="speciality-sub">Internal Medicine & Care</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Pediatrician', this)">
+          <div class="speciality-icon"><i class="bi bi-emoji-smile-fill"></i></div>
+          <div>
+            <h5 class="speciality-title">Pediatrician</h5>
+            <p class="speciality-sub">Child Health & Vaccine</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Neurologist', this)">
+          <div class="speciality-icon"><i class="bi bi-activity"></i></div>
+          <div>
+            <h5 class="speciality-title">Neurologist</h5>
+            <p class="speciality-sub">Brain, Spine & Nerves</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Physiotherapist', this)">
+          <div class="speciality-icon"><i class="bi bi-person-walking"></i></div>
+          <div>
+            <h5 class="speciality-title">Physiotherapist</h5>
+            <p class="speciality-sub">Rehab & Stroke Care</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Dermatologist', this)">
+          <div class="speciality-icon"><i class="bi bi-brightness-high-fill"></i></div>
+          <div>
+            <h5 class="speciality-title">Dermatologist</h5>
+            <p class="speciality-sub">Skin, Hair & Nails</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Urologist', this)">
+          <div class="speciality-icon"><i class="bi bi-droplet-fill"></i></div>
+          <div>
+            <h5 class="speciality-title">Urologist</h5>
+            <p class="speciality-sub">Kidney & Urinary Care</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTOR LISTING SECTION (INSTACARE STYLE) -->
+<section class="py-5" style="background:#FAF8F3;">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+      <div>
+        <h3 class="fw-bold m-0" id="listingCategoryTitle" style="color:var(--teal-900);">Best Doctors in Faisalabad</h3>
+        <p class="text-muted m-0" id="listingSubtitle" style="font-size:0.9rem;">Showing top verified PMC doctors available for clinic & home consultation</p>
+      </div>
+      <span class="badge bg-white text-teal border px-3 py-2 fw-bold" id="docCountBadge" style="color:var(--teal-700); font-size:0.88rem;">0 Doctors Available</span>
+    </div>
+
+    <!-- DOCTOR CARDS CONTAINER -->
+    <div id="doctorsGridContainer">
+      <div class="text-center py-5">
+        <div class="spinner-border text-teal" style="color:var(--teal-700);" role="status">
+          <span class="visually-hidden">Loading doctors...</span>
+        </div>
+        <p class="text-muted mt-2">Loading doctor panel...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILED DOCTOR PROFILE MODAL ("VIEW PROFILE") -->
+<div class="modal fade" id="docProfileModal" tabindex="-1" aria-labelledby="docProfileModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content border-0 style-modal" style="border-radius:14px; overflow:hidden;">
+      <div class="modal-header border-0 text-white p-4" style="background:var(--teal-900);">
+        <div class="d-flex align-items-center gap-3">
+          <span class="pmc-badge"><i class="bi bi-patch-check-fill"></i> PMC Verified Specialist</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4 p-md-5" style="background:var(--cream);">
+        <div class="row g-4">
+          
+          <!-- LEFT COLUMN: DOCTOR INFO & BIO -->
+          <div class="col-lg-7">
+            <div class="d-flex align-items-start gap-3 mb-4">
+              <img id="modalDocAvatar" src="" alt="Doctor" class="modal-doc-avatar">
+              <div>
+                <h2 id="modalDocName" class="fw-bold mb-1" style="color:var(--teal-900);">Dr. Abeera Ali</h2>
+                <div id="modalDocSpeciality" class="fw-bold text-teal mb-1" style="color:var(--brand-teal); font-size:1.05rem;">Gynecologist</div>
+                <div id="modalDocQualifications" class="text-muted fw-semibold" style="font-size:0.92rem;">MBBS, FCPS (Gyn & Obs)</div>
               </div>
             </div>
-          `;
-        });
-        container.innerHTML = html;
-      }
-    })
-    .catch(err => console.log('Dynamic load fallback:', err));
-});
-</script>n>
 
-<!-- ================= FOOTER ================= -->
+            <!-- STATS ROW -->
+            <div class="doc-stats mb-4">
+              <div>
+                <span>Wait Time</span>
+                <span id="modalDocWait">Under 15 Mins</span>
+              </div>
+              <div class="border-start ps-3">
+                <span>Experience</span>
+                <span id="modalDocExp">10 Years</span>
+              </div>
+              <div class="border-start ps-3">
+                <span>Satisfaction</span>
+                <span id="modalDocSat" style="color:#137333;">97%</span>
+              </div>
+            </div>
+
+            <!-- ABOUT & BIOGRAPHY -->
+            <div class="bg-white p-4 rounded-3 border mb-4">
+              <h5 class="fw-bold mb-3" style="color:var(--teal-900);"><i class="bi bi-person-lines-fill me-2 text-teal" style="color:var(--brand-teal);"></i> About Doctor</h5>
+              <div id="modalDocBio" style="font-size:0.95rem; line-height:1.7; color:#3a4643;">
+                <!-- HTML Bio loaded dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: HOSPITAL & CONSULTATION SCHEDULE CARDS -->
+          <div class="col-lg-5">
+            <!-- CLINIC / HOSPITAL CONSULTATION CARD -->
+            <div class="profile-schedule-card mb-4 shadow-sm" style="border-top:4px solid var(--brand-navy);">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h5 id="modalDocHospital" class="fw-bold m-0" style="color:var(--teal-900);">Hospital Clinic</h5>
+                  <span class="text-muted small">In-Person Consultation</span>
+                </div>
+                <div class="text-end">
+                  <div class="fee-amount" id="modalDocHospFee">Rs. 1500</div>
+                  <span class="text-muted" style="font-size:0.75rem;">Per Visit Fee</span>
+                </div>
+              </div>
+              <hr class="my-2">
+              <div class="schedule-table text-secondary mb-3">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <i class="bi bi-clock-fill text-amber" style="color:var(--amber-500);"></i>
+                  <span class="fw-bold text-dark">Schedule Timings:</span>
+                </div>
+                <div id="modalDocHospSched" class="ps-4 fw-semibold text-teal" style="color:var(--teal-700);">Monday - Saturday: 02:00 PM - 03:30 PM</div>
+              </div>
+              <a id="modalBookClinicBtn" href="#" target="_blank" class="btn-navy w-100 py-2">
+                <i class="bi bi-hospital me-1"></i> Book Hospital Visit
+              </a>
+            </div>
+
+            <!-- VIDEO / HOME CONSULTATION CARD -->
+            <div class="profile-schedule-card shadow-sm" style="border-top:4px solid var(--brand-teal);">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                  <h5 class="fw-bold m-0" style="color:var(--teal-900);"><i class="bi bi-camera-video-fill me-1 text-teal" style="color:var(--brand-teal);"></i> Video / Home Visit</h5>
+                  <span class="text-muted small">Online Video & Home Care</span>
+                </div>
+                <div class="text-end">
+                  <div class="fee-amount" id="modalDocVideoFee">Rs. 1000</div>
+                  <span class="text-muted" style="font-size:0.75rem;">Consultation Fee</span>
+                </div>
+              </div>
+              <hr class="my-2">
+              <div class="schedule-table text-secondary mb-3">
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <i class="bi bi-check-circle-fill text-success"></i>
+                  <span class="fw-bold text-dark">Online Availability:</span>
+                </div>
+                <div id="modalDocVideoSched" class="ps-4 fw-semibold text-teal" style="color:var(--teal-700);">Monday - Sunday: 09:00 AM - 04:00 PM</div>
+              </div>
+              <a id="modalBookVideoBtn" href="#" target="_blank" class="btn-care w-100 py-2">
+                <i class="bi bi-whatsapp me-1"></i> Book Video / Home Consultation
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="row g-4">
       <div class="col-lg-4">
-        <img src="assets/logo.png" alt="LifeCare Nursing & Medical Services" class="footer-logo">
-        <p>LifeCare provides nursing, elderly care, physiotherapy, diagnostic services and other healthcare support for patients at home.</p>
+        <img src="assets/logo.png" alt="LifeCare Nursing & Medical Services" class="footer-logo mb-3">
+        <p>LifeCare provides doctor consultations, nursing, elderly care, physiotherapy, diagnostic and medical equipment support at home.</p>
         <div class="mt-3">
           <a href="#" class="social-dot"><i class="bi bi-facebook"></i></a>
           <a href="#" class="social-dot"><i class="bi bi-instagram"></i></a>
@@ -312,21 +647,21 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="col-lg-2 col-6">
         <h5>Quick Links</h5>
         <ul>
-          <li><a href="index.html#home"><i class="bi bi-chevron-right"></i> Home</a></li>
-          <li><a href="index.html#services"><i class="bi bi-chevron-right"></i> Our Services</a></li>
-          <li><a href="doctor-panel.html"><i class="bi bi-chevron-right"></i> Doctor Panel</a></li>
-          <li><a href="staff-panel.html"><i class="bi bi-chevron-right"></i> Staff Panel</a></li>
-          <li><a href="index.html#about"><i class="bi bi-chevron-right"></i> About Us</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Our Services</a></li>
+          <li><a href="doctor-panel.html">Doctor Panel</a></li>
+          <li><a href="staff-panel.html">Staff Panel</a></li>
+          <li><a href="blog.html">Blog</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-6">
         <h5>Our Services</h5>
         <ul>
-          <li><a href="doctor-consultation.html"><i class="bi bi-chevron-right"></i> Doctor Consultation</a></li>
-          <li><a href="home-nursing-care.html"><i class="bi bi-chevron-right"></i> Home Nursing Care</a></li>
-          <li><a href="elderly-senior-care.html"><i class="bi bi-chevron-right"></i> Elderly / Senior Care</a></li>
-          <li><a href="physiotherapy.html"><i class="bi bi-chevron-right"></i> Physiotherapy</a></li>
-          <li><a href="diagnostic-services.html"><i class="bi bi-chevron-right"></i> Diagnostic Services</a></li>
+          <li><a href="doctor-consultation.html">Doctor Consultation</a></li>
+          <li><a href="home-nursing-care.html">Home Nursing Care</a></li>
+          <li><a href="elderly-senior-care.html">Elderly / Senior Care</a></li>
+          <li><a href="physiotherapy.html">Physiotherapy</a></li>
+          <li><a href="diagnostic-services.html">Diagnostic Services</a></li>
         </ul>
       </div>
       <div class="col-lg-3">
@@ -334,7 +669,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <ul>
           <li><a href="tel:+923008053198"><i class="bi bi-telephone-fill me-2"></i>0300-8053198</a></li>
           <li><a href="mailto:lifecarenursing5@gmail.com"><i class="bi bi-envelope-fill me-2"></i>lifecarenursing5@gmail.com</a></li>
-          <li><i class="bi bi-geo-alt-fill me-2"></i>Near Zee Garden Main Shekhupura / Lahore Road Faislabad</li>
+          <li><i class="bi bi-geo-alt-fill me-2"></i>Near Zee Garden Main Shekhupura / Lahore Road Faisalabad</li>
         </ul>
       </div>
     </div>
@@ -345,7 +680,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </footer>
 
-<!-- ================= FLOATING CONTACT BUTTONS ================= -->
+<!-- FLOATING CONTACT BUTTONS -->
 <div class="floating-contact-stack">
   <a href="tel:+923008053198" class="floating-contact-btn btn-call" title="Call Us Now">
     <i class="bi bi-telephone-fill"></i>
@@ -355,112 +690,250 @@ document.addEventListener('DOMContentLoaded', function() {
   </a>
 </div>
 
-<!-- ================= CONTACT US MODAL ================= -->
-<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content border-0 shadow-lg" style="border-radius: 12px; overflow: hidden;">
-      <div class="modal-header text-white" style="background: var(--brand-navy); padding: 1.25rem 1.75rem;">
-        <h5 class="modal-title d-flex align-items-center gap-2" id="contactModalLabel" style="font-family: var(--font-display); font-weight: 700; font-size: 1.25rem;">
-          <i class="bi bi-envelope-paper-fill text-warning"></i> Contact Us — Send a Message
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-4 p-md-5" style="background: #FAF8F3;">
-        <p class="text-muted mb-4" style="font-size: 0.95rem;">
-Tell us what you need help with and leave your contact details below. Our team will get in touch with you.        </p>
-
-        <div id="contactFormAlert" class="alert alert-success d-none mb-4" role="alert">
-          <i class="bi bi-check-circle-fill me-2"></i> 
-        </div>
-
-        <form id="contactForm" onsubmit="handleContactSubmit(event)">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label for="contactName" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);"> Name </label>
-              <input type="text" class="form-control form-control-lg" id="contactName" placeholder="e.g. Ali Khan" required style="font-size: 0.95rem; border-radius: 6px;">
-            </div>
-            <div class="col-md-6">
-              <label for="contactPhone" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Phone / WhatsApp </label>
-              <input type="tel" class="form-control form-control-lg" id="contactPhone" placeholder="0300-8053198" required style="font-size: 0.95rem; border-radius: 6px;">
-            </div>
-            <div class="col-md-6">
-              <label for="contactEmail" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Email </label>
-              <input type="email" class="form-control form-control-lg" id="contactEmail" placeholder="name@example.com" required style="font-size: 0.95rem; border-radius: 6px;">
-            </div>
-            <div class="col-md-6">
-              <label for="contactService" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Select Service</label>
-              <select class="form-select form-select-lg" id="contactService" style="font-size: 0.95rem; border-radius: 6px;">
-                <option value="Doctor Panel Inquiry" selected>Doctor Panel Inquiry</option>
-                <option value="Doctor Consultation">Doctor Consultation</option>
-                <option value="Home Nursing Care">Home Nursing Care</option>
-                <option value="Elderly / Senior Care">Elderly / Senior Care</option>
-                <option value="Physiotherapy">Physiotherapy</option>
-                <option value="Medical Equipment">Medical Equipment</option>
-                <option value="Diagnostic Services">Diagnostic Services</option>
-                <option value="Portable X-Ray & ECG">Portable X-Ray & ECG</option>
-                <option value="Respiratory & Speech Therapy">Respiratory & Speech Therapy</option>
-              </select>
-            </div>
-            <div class="col-12">
-              <label for="contactMessage" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Your Message *</label>
-              <textarea class="form-control" id="contactMessage" rows="4" placeholder="Please describe how we can assist you..." required style="font-size: 0.95rem; border-radius: 6px;"></textarea>
-            </div>
-            <div class="col-12 mt-4 d-flex justify-content-end gap-2">
-              <button type="button" class="btn btn-outline-secondary px-4 py-2" data-bs-dismiss="modal" style="font-weight: 600;">Cancel</button>
-              <button type="submit" class="btn-care px-4 py-2" style="border: none; cursor: pointer;">
-                <i class="bi bi-send-fill me-1"></i> Send Request
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-function handleContactSubmit(e) {
-  e.preventDefault();
-  const alertBox = document.getElementById('contactFormAlert');
-  const name = document.getElementById('contactName').value;
-  const phone = document.getElementById('contactPhone').value;
-  const email = document.getElementById('contactEmail').value;
-  const service = document.getElementById('contactService').value;
-  const message = document.getElementById('contactMessage').value;
+let allDoctors = [];
+let selectedSpeciality = 'Gynecologist'; // Default view
 
-  const formData = new FormData();
-  formData.append('name', name);
-  formData.append('phone', phone);
-  formData.append('email', email);
-  formData.append('service', service);
-  formData.append('message', message);
+document.addEventListener('DOMContentLoaded', function() {
+  fetchDoctors();
+});
 
-  fetch('send_email.php', {
-    method: 'POST',
-    body: formData
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (alertBox) {
-      alertBox.className = 'alert ' + (data.success ? 'alert-success' : 'alert-danger') + ' mb-4';
-      alertBox.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i> ' + data.message;
-      alertBox.classList.remove('d-none');
-    }
-    if (data.success) {
-      document.getElementById('contactForm').reset();
-    }
-  })
-  .catch(err => {
-    const subject = encodeURIComponent(`New Contact Us Message from ${name} (${service})`);
-    const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`);
-    window.location.href = `mailto:lifecarenursing5@gmail.com?subject=${subject}&body=${body}`;
-    if (alertBox) {
-      alertBox.classList.remove('d-none');
-    }
+function fetchDoctors() {
+  fetch('api/get_cards.php?type=doctors')
+    .then(res => res.json())
+    .then(res => {
+      if (res.success && res.data && res.data.length > 0) {
+        allDoctors = res.data;
+        initDoctorPanel();
+      } else {
+        fetchFallbackJson();
+      }
+    })
+    .catch(() => {
+      fetchFallbackJson();
+    });
+}
+
+function fetchFallbackJson() {
+  fetch('data/doctors.json')
+    .then(res => res.json())
+    .then(data => {
+      allDoctors = data;
+      initDoctorPanel();
+    })
+    .catch(() => {
+      document.getElementById('doctorsGridContainer').innerHTML = `
+        <div class="text-center py-5 text-muted">
+          <i class="bi bi-exclamation-circle text-danger display-4 mb-2"></i>
+          <h5>Unable to load doctor profiles at this moment.</h5>
+        </div>
+      `;
+    });
+}
+
+function initDoctorPanel() {
+  // Highlight default Gynecologist card or first match
+  filterDoctorsBySpeciality(selectedSpeciality);
+}
+
+function selectSpeciality(specialityName, cardElement) {
+  selectedSpeciality = specialityName;
+
+  // Highlight selected card
+  document.querySelectorAll('.speciality-card').forEach(card => {
+    card.classList.remove('active');
   });
+  if (cardElement) {
+    cardElement.classList.add('active');
+  } else {
+    // Find matching card by title
+    document.querySelectorAll('.speciality-card').forEach(card => {
+      const title = card.querySelector('.speciality-title').innerText.trim();
+      if (title.toLowerCase() === specialityName.toLowerCase() || (specialityName === 'All' && title === 'View All')) {
+        card.classList.add('active');
+      }
+    });
+  }
+
+  document.getElementById('doctorSearchInput').value = '';
+  filterDoctorsBySpeciality(specialityName);
+}
+
+function filterDoctorsBySpeciality(speciality) {
+  let filtered = allDoctors;
+  
+  if (speciality !== 'All') {
+    filtered = allDoctors.filter(d => {
+      const spec = d.speciality || d.role || '';
+      return spec.toLowerCase().includes(speciality.toLowerCase());
+    });
+  }
+
+  // Update Section Header Title
+  const titleElem = document.getElementById('listingCategoryTitle');
+  const badgeElem = document.getElementById('docCountBadge');
+  
+  if (speciality === 'All') {
+    titleElem.innerText = 'All Medical Specialists in Faisalabad';
+  } else {
+    titleElem.innerText = `Best ${speciality} in Faisalabad`;
+  }
+  badgeElem.innerText = `${filtered.length} Doctor${filtered.length === 1 ? '' : 's'} Available`;
+
+  renderDoctors(filtered);
+}
+
+function renderDoctors(doctors) {
+  const container = document.getElementById('doctorsGridContainer');
+  if (!doctors || doctors.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-5 text-muted bg-white rounded-3 border">
+        <i class="bi bi-person-x display-4 mb-2 text-secondary"></i>
+        <h5>No specialist doctors found matching your selection.</h5>
+        <button class="btn btn-outline-secondary btn-sm mt-2 rounded-pill px-3" onclick="selectSpeciality('All')">View All Doctors</button>
+      </div>
+    `;
+    return;
+  }
+
+  let html = '';
+  doctors.forEach(doc => {
+    const waNum = doc.whatsapp ? doc.whatsapp.replace(/[^0-9]/g, '') : '923008053198';
+    const waMsg = encodeURIComponent(`Hello LifeCare, I would like to book an appointment with ${doc.name} (${doc.speciality || doc.role}).`);
+    const docSpec = doc.speciality || doc.role || 'Specialist';
+    const docQual = doc.qualifications || doc.badge || 'MBBS';
+    const hospName = doc.hospitalName || 'LifeCare Medical Center';
+    const hospFee = doc.hospitalFee ? `Rs. ${doc.hospitalFee}` : 'Rs. 1500';
+    const videoFee = doc.videoFee ? `Rs. ${doc.videoFee}` : 'Rs. 1000';
+
+    html += `
+      <div class="doc-card">
+        <div class="row align-items-center g-4">
+          <div class="col-md-3 col-lg-2 text-center text-md-start">
+            <img src="${doc.image}" alt="${doc.name}" class="doc-avatar" onerror="this.src='assets/doctor_1.jpg'">
+          </div>
+          <div class="col-md-9 col-lg-6">
+            <div class="d-flex align-items-center gap-2 flex-wrap mb-1">
+              <h3 class="doc-name m-0">${doc.name}</h3>
+              <span class="pmc-badge"><i class="bi bi-patch-check-fill"></i> PMC Verified</span>
+            </div>
+            <div class="doc-qualifications mb-1">${docSpec} — ${docQual}</div>
+            <div class="text-muted small mb-2">${doc.description || ''}</div>
+            
+            <div class="doc-stats">
+              <div><span>${doc.waitTime || 'Under 15 Mins'}</span>Wait Time</div>
+              <div class="border-start ps-3"><span>${doc.experience || '10 Years'}</span>Experience</div>
+              <div class="border-start ps-3"><span style="color:#137333;">${doc.satisfaction || '97%'}</span>Satisfaction</div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 border-start-lg ps-lg-4">
+            <div class="d-flex flex-column gap-2 mb-3">
+              <div class="fee-box d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fee-box-title"><i class="bi bi-camera-video-fill me-1 text-teal" style="color:var(--brand-teal);"></i> Video Consultation</div>
+                  <div class="text-muted" style="font-size:0.75rem;">Available Today</div>
+                </div>
+                <div class="fee-amount">${videoFee}</div>
+              </div>
+              
+              <div class="fee-box d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fee-box-title"><i class="bi bi-hospital me-1 text-navy" style="color:var(--brand-navy);"></i> ${hospName}</div>
+                  <div class="text-muted" style="font-size:0.75rem;">In-Person Visit</div>
+                </div>
+                <div class="fee-amount">${hospFee}</div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-secondary w-50 font-weight-bold py-2" onclick="openDocProfileModal(${doc.id})" style="font-size:0.85rem;">
+                View Profile
+              </button>
+              <a href="https://wa.me/${waNum}?text=${waMsg}" target="_blank" class="btn-navy w-50 py-2">
+                Book Appointment
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+function searchDoctors() {
+  const searchVal = document.getElementById('doctorSearchInput').value.toLowerCase().trim();
+  if (!searchVal) {
+    filterDoctorsBySpeciality(selectedSpeciality);
+    return;
+  }
+
+  const matched = allDoctors.filter(d => {
+    const nameMatch  = d.name ? d.name.toLowerCase().includes(searchVal) : false;
+    const specMatch  = d.speciality ? d.speciality.toLowerCase().includes(searchVal) : false;
+    const roleMatch  = d.role ? d.role.toLowerCase().includes(searchVal) : false;
+    const qualMatch  = d.qualifications ? d.qualifications.toLowerCase().includes(searchVal) : false;
+    const hospMatch  = d.hospitalName ? d.hospitalName.toLowerCase().includes(searchVal) : false;
+    return nameMatch || specMatch || roleMatch || qualMatch || hospMatch;
+  });
+
+  if (matched.length > 0) {
+    const matchedSpecs = [...new Set(matched.map(d => d.speciality || d.role).filter(Boolean))];
+    if (matchedSpecs.length === 1) {
+      selectedSpeciality = matchedSpecs[0];
+      // Highlight matching speciality card
+      document.querySelectorAll('.speciality-card').forEach(card => {
+        const title = card.querySelector('.speciality-title').innerText.trim();
+        if (title.toLowerCase() === selectedSpeciality.toLowerCase()) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  document.getElementById('listingCategoryTitle').innerText = `Search Results for "${searchVal}"`;
+  document.getElementById('docCountBadge').innerText = `${matched.length} Doctor${matched.length === 1 ? '' : 's'} Found`;
+  renderDoctors(matched);
+}
+
+function openDocProfileModal(docId) {
+  const doc = allDoctors.find(d => d.id === docId);
+  if (!doc) return;
+
+  document.getElementById('modalDocAvatar').src = doc.image || 'assets/doctor_1.jpg';
+  document.getElementById('modalDocName').innerText = doc.name;
+  document.getElementById('modalDocSpeciality').innerText = doc.speciality || doc.role || 'Specialist';
+  document.getElementById('modalDocQualifications').innerText = doc.qualifications || doc.badge || 'MBBS';
+  document.getElementById('modalDocWait').innerText = doc.waitTime || 'Under 15 Mins';
+  document.getElementById('modalDocExp').innerText = doc.experience || '10 Years';
+  document.getElementById('modalDocSat').innerText = doc.satisfaction || '97%';
+  
+  document.getElementById('modalDocHospital').innerText = doc.hospitalName || 'LifeCare Clinical Center';
+  document.getElementById('modalDocHospFee').innerText = doc.hospitalFee ? `Rs. ${doc.hospitalFee}` : 'Rs. 1500';
+  document.getElementById('modalDocHospSched').innerText = doc.hospitalSchedule || 'Mon - Sat: 02:00 PM - 03:30 PM';
+
+  document.getElementById('modalDocVideoFee').innerText = doc.videoFee ? `Rs. ${doc.videoFee}` : 'Rs. 1000';
+  document.getElementById('modalDocVideoSched').innerText = doc.videoSchedule || 'Mon - Sun: 09:00 AM - 04:00 PM';
+
+  const defaultBio = `<p><strong>${doc.name}</strong> is a qualified ${doc.speciality || doc.role}. ${doc.description || ''}</p>`;
+  document.getElementById('modalDocBio').innerHTML = doc.aboutBio || defaultBio;
+
+  const waNum = doc.whatsapp ? doc.whatsapp.replace(/[^0-9]/g, '') : '923008053198';
+  const hospMsg = encodeURIComponent(`Hello LifeCare, I want to book a Hospital Visit with ${doc.name} (${doc.speciality || doc.role}).`);
+  const videoMsg = encodeURIComponent(`Hello LifeCare, I want to book a Video Consultation / Home Visit with ${doc.name} (${doc.speciality || doc.role}).`);
+
+  document.getElementById('modalBookClinicBtn').href = `https://wa.me/${waNum}?text=${hospMsg}`;
+  document.getElementById('modalBookVideoBtn').href = `https://wa.me/${waNum}?text=${videoMsg}`;
+
+  const profileModal = new bootstrap.Modal(document.getElementById('docProfileModal'));
+  profileModal.show();
 }
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

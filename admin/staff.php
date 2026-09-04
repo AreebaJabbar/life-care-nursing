@@ -24,12 +24,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id          = isset($_POST['id']) ? (int)$_POST['id'] : 0;
     $name        = trim($_POST['name'] ?? '');
     $role        = trim($_POST['role'] ?? '');
-    $badge       = trim($_POST['badge'] ?? '');
+    $city        = trim($_POST['city'] ?? 'Faisalabad');
+    $badge       = trim($_POST['badge'] ?? 'Registered Nurse');
+    $shift       = trim($_POST['shift'] ?? '12-Hour Shift');
+    $rate        = trim($_POST['rate'] ?? 'Rs. 2,200 / Day');
+    $skillsRaw   = trim($_POST['skills'] ?? '');
     $description = trim($_POST['description'] ?? '');
     $whatsapp    = trim($_POST['whatsapp'] ?? '923008053198');
 
-    if (empty($name) || empty($role) || empty($badge)) {
-        $error = 'Staff Name, Role, and Specialization Badge are required.';
+    $skillsArr = array_filter(array_map('trim', explode(',', $skillsRaw)));
+    if (empty($skillsArr)) {
+        $skillsArr = ['Patient Care', 'Vitals Tracking', 'Emergency Support'];
+    }
+
+    if (empty($name) || empty($role)) {
+        $error = 'Staff Name and Role are required.';
     } else {
         $imagePath = null;
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -44,7 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ((int)$stf['id'] === $id) {
                     $stf['name']        = $name;
                     $stf['role']        = $role;
+                    $stf['city']        = $city;
                     $stf['badge']       = $badge;
+                    $stf['shift']       = $shift;
+                    $stf['rate']        = $rate;
+                    $stf['skills']      = array_values($skillsArr);
                     $stf['description'] = $description;
                     $stf['whatsapp']    = $whatsapp;
                     if ($imagePath) {
@@ -62,7 +75,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'id'          => $newId,
                 'name'        => $name,
                 'role'        => $role,
+                'city'        => $city,
                 'badge'       => $badge,
+                'skills'      => array_values($skillsArr),
+                'shift'       => $shift,
+                'rate'        => $rate,
                 'image'       => $imagePath ?: 'assets/staff_1.jpg',
                 'description' => $description,
                 'whatsapp'    => $whatsapp
@@ -76,9 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if (isset($_GET['msg'])) {
-    if ($_GET['msg'] === 'added') $msg = 'New Nursing Staff Card uploaded and published successfully!';
-    if ($_GET['msg'] === 'updated') $msg = 'Staff Card updated successfully!';
-    if ($_GET['msg'] === 'deleted') $msg = 'Staff Card removed successfully!';
+    if ($_GET['msg'] === 'added') $msg = 'New Staff Profile created successfully!';
+    if ($_GET['msg'] === 'updated') $msg = 'Staff Profile updated successfully!';
+    if ($_GET['msg'] === 'deleted') $msg = 'Staff Profile removed successfully!';
 }
 
 require_once __DIR__ . '/inc/header.php';
@@ -86,11 +103,11 @@ require_once __DIR__ . '/inc/header.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h2 class="m-0 text-dark">Staff Panel Cards Management</h2>
-        <p class="text-muted m-0">Upload, edit, and manage nursing staff cards displayed on staff-panel.php and website.</p>
+        <h2 class="m-0 text-dark">Staff Panel Directory Management</h2>
+        <p class="text-muted m-0">Manage nursing staff profiles, city assignments, skills tags, shift availability, and service rates.</p>
     </div>
     <button type="button" class="btn-care" data-bs-toggle="modal" data-bs-target="#staffModal" onclick="resetStaffForm()">
-        <i class="bi bi-person-plus-fill me-1"></i> Upload New Staff Card
+        <i class="bi bi-person-plus-fill me-1"></i> Add New Staff Member
     </button>
 </div>
 
@@ -108,115 +125,180 @@ require_once __DIR__ . '/inc/header.php';
     </div>
 <?php endif; ?>
 
-<!-- Staff Horizontal Cards Grid -->
-<div class="row g-3">
-    <?php foreach ($staff as $stf): ?>
-        <div class="col-12 col-xl-6">
-            <div class="card-custom p-3 h-100">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="position-relative flex-shrink-0" style="width: 140px; height: 140px; border-radius: 12px; overflow: hidden; background: #eaf3f1;">
-                        <img src="../<?= htmlspecialchars($stf['image']) ?>" alt="<?= htmlspecialchars($stf['name']) ?>" class="w-100 h-100" style="object-fit: cover;">
-                    </div>
-                    <div class="flex-grow-1 min-width-0">
-                        <div class="d-flex align-items-center justify-content-between gap-2 mb-1">
-                            <span class="badge text-white px-2.5 py-1" style="background: var(--brand-navy); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase;">
-                                <?= htmlspecialchars($stf['badge']) ?>
-                            </span>
-                            <span class="text-muted" style="font-size: 0.75rem;">ID: #<?= $stf['id'] ?></span>
-                        </div>
-                        <h5 class="m-0 font-weight-bold text-dark text-truncate"><?= htmlspecialchars($stf['name']) ?></h5>
-                        <div class="font-weight-bold text-uppercase mb-1" style="color: var(--brand-teal); font-size: 0.78rem; letter-spacing: 0.03em;">
-                            <?= htmlspecialchars($stf['role']) ?>
-                        </div>
-                        <p class="text-secondary mb-2" style="font-size: 0.84rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                            <?= htmlspecialchars($stf['description']) ?>
-                        </p>
-                        <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-sm btn-outline-primary px-3" onclick='editStaff(<?= json_encode($stf) ?>)'>
-                                <i class="bi bi-pencil-square me-1"></i> Edit
-                            </button>
-                            <a href="staff.php?action=delete&id=<?= $stf['id'] ?>" class="btn btn-sm btn-outline-danger px-3" onclick="return confirm('Are you sure you want to delete this Staff card?');">
-                                <i class="bi bi-trash-fill me-1"></i> Delete
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; ?>
+<div class="card-custom">
+    <div class="card-custom-header">
+        <h5 class="m-0 font-weight-bold text-dark"><i class="bi bi-people-fill text-success me-2"></i> Registered Staff (<?= count($staff) ?>)</h5>
+    </div>
+    <div class="table-responsive p-0">
+        <table class="table table-hover align-middle mb-0" style="font-size: 0.9rem;">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 70px;">Photo</th>
+                    <th>Staff Name & Role</th>
+                    <th>City / Location</th>
+                    <th>Skills / Services</th>
+                    <th>Shift & Rate</th>
+                    <th class="text-end" style="width: 120px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($staff)): ?>
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">No staff profiles found. Click "Add New Staff Member" to create one.</td>
+                    </tr>
+                <?php else: ?>
+                    <?php foreach ($staff as $stf): ?>
+                        <tr>
+                            <td>
+                                <img src="../<?= htmlspecialchars($stf['image']) ?>" alt="Photo" class="thumb-preview" onerror="this.src='../assets/staff_1.jpg'">
+                            </td>
+                            <td>
+                                <div class="font-weight-bold text-dark" style="font-size: 0.95rem;"><?= htmlspecialchars($stf['name']) ?></div>
+                                <div class="text-muted" style="font-size: 0.82rem;"><?= htmlspecialchars($stf['role']) ?></div>
+                            </td>
+                            <td>
+                                <span class="badge bg-secondary-subtle text-dark border px-2 py-1"><i class="bi bi-geo-alt-fill me-1 text-danger"></i> <?= htmlspecialchars($stf['city'] ?? 'Faisalabad') ?></span>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-wrap gap-1" style="max-width: 250px;">
+                                    <?php 
+                                    $skillsList = is_array($stf['skills'] ?? null) ? $stf['skills'] : explode(',', $stf['skills'] ?? 'Patient Care');
+                                    foreach (array_slice($skillsList, 0, 3) as $sk): 
+                                    ?>
+                                        <span class="badge bg-light text-dark border" style="font-size: 0.72rem;"><?= htmlspecialchars(trim($sk)) ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="fw-semibold text-dark" style="font-size: 0.82rem;"><?= htmlspecialchars($stf['shift'] ?? '12-Hour') ?></div>
+                                <div class="text-teal small fw-bold" style="color:var(--brand-teal);"><?= htmlspecialchars($stf['rate'] ?? 'Rs. 2,200 / Day') ?></div>
+                            </td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-outline-primary me-1" onclick="editStaff(<?= htmlspecialchars(json_encode($stf)) ?>)" title="Edit">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                                <a href="staff.php?action=delete&id=<?= $stf['id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this staff profile?');" title="Delete">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<!-- Add / Edit Staff Modal -->
-<div class="modal fade" id="staffModal" tabindex="-1" aria-hidden="true">
+<!-- ADD / EDIT STAFF MODAL -->
+<div class="modal fade" id="staffModal" tabindex="-1" aria-labelledby="staffModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 shadow-lg" style="border-radius: 14px; overflow: hidden;">
-            <div class="modal-header text-white" style="background: var(--brand-navy);">
-                <h5 class="modal-title font-weight-bold" id="modalTitle"><i class="bi bi-people-fill me-2"></i> Upload New Staff Card</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        <div class="modal-content border-0" style="border-radius: 12px; overflow: hidden;">
+            <div class="modal-header text-white p-4" style="background: var(--teal-900);">
+                <h4 class="modal-title font-weight-bold m-0" id="staffModalTitle">
+                    <i class="bi bi-person-plus-fill me-2" style="color: var(--amber-500);"></i> Add New Staff Member
+                </h4>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" enctype="multipart/form-data">
-                <div class="modal-body p-4">
-                    <input type="hidden" name="id" id="stf_id" value="0">
+            <div class="modal-body p-4" style="background: #FAF8F3;">
+                <form method="POST" enctype="multipart/form-data" id="staffForm">
+                    <input type="hidden" name="id" id="stfId" value="0">
                     
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">Staff Member Name *</label>
-                            <input type="text" class="form-control" name="name" id="stf_name" placeholder="e.g. James N., Maria K." required>
+                            <label for="stfName" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Staff Full Name *</label>
+                            <input type="text" class="form-control" name="name" id="stfName" placeholder="e.g. Tasawar Razzaq" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">Role / Title *</label>
-                            <input type="text" class="form-control" name="role" id="stf_role" placeholder="e.g. Senior Registered Nurse, Caregiver" required>
+                            <label for="stfCity" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">City / Location *</label>
+                            <select class="form-select" name="city" id="stfCity">
+                                <option value="Faisalabad">Faisalabad</option>
+                                <option value="Lahore">Lahore</option>
+                                <option value="Islamabad">Islamabad</option>
+                                <option value="Rawalpindi">Rawalpindi</option>
+                                <option value="Multan">Multan</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="stfRole" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Role / Designation *</label>
+                            <input type="text" class="form-control" name="role" id="stfRole" placeholder="e.g. Healthcare Assistant / Patient Care" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">Specialty Badge *</label>
-                            <input type="text" class="form-control" name="badge" id="stf_badge" placeholder="e.g. ICU Nurse, Elderly Care, Attendant" required>
+                            <label for="stfBadge" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Category Badge</label>
+                            <input type="text" class="form-control" name="badge" id="stfBadge" placeholder="e.g. Patient Care / ICU Nurse" value="Registered Nurse">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="stfShift" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Shift Type</label>
+                            <input type="text" class="form-control" name="shift" id="stfShift" placeholder="e.g. 12-Hour Shift / 24-Hour Residential" value="12-Hour Shift">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">WhatsApp Contact Number</label>
-                            <input type="text" class="form-control" name="whatsapp" id="stf_whatsapp" placeholder="923008053198">
+                            <label for="stfRate" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Daily / Service Rate</label>
+                            <input type="text" class="form-control" name="rate" id="stfRate" placeholder="e.g. Rs. 2,200 / Day" value="Rs. 2,200 / Day">
                         </div>
+
                         <div class="col-12">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">Upload Staff Photo (JPG, PNG, WEBP)</label>
-                            <input type="file" class="form-control" name="image" id="stf_image" accept="image/*">
+                            <label for="stfSkills" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Skills & Services (Comma Separated)</label>
+                            <input type="text" class="form-control" name="skills" id="stfSkills" placeholder="e.g. Patient Care & Bedside Assistance, Operation Theatre Support, Vitals Tracking">
+                            <div class="form-text">Enter skill tags separated by commas.</div>
                         </div>
+
+                        <div class="col-md-6">
+                            <label for="stfImage" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Staff Photo</label>
+                            <input type="file" class="form-control" name="image" id="stfImage" accept="image/*">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="stfWhatsapp" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">WhatsApp Number</label>
+                            <input type="text" class="form-control" name="whatsapp" id="stfWhatsapp" placeholder="923008053198" value="923008053198">
+                        </div>
+
                         <div class="col-12">
-                            <label class="form-label font-weight-bold text-uppercase text-secondary" style="font-size: 0.78rem;">Staff Experience / Description</label>
-                            <textarea class="form-control" name="description" id="stf_description" rows="3" placeholder="Description of nursing skills, experience, ventilator/patient care capabilities..."></textarea>
+                            <label for="stfDescription" class="form-label font-weight-bold text-uppercase" style="font-size: 0.8rem; color: var(--teal-900);">Description & Biography</label>
+                            <textarea class="form-control" name="description" id="stfDescription" rows="3" placeholder="Overview of experience, specialty, and services..."></textarea>
+                        </div>
+
+                        <div class="col-12 mt-4 d-flex justify-content-end gap-2">
+                            <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn-care px-4" style="border: none; cursor: pointer;">
+                                <i class="bi bi-check-circle-fill me-1"></i> Save Staff Member
+                            </button>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn-care px-4"><i class="bi bi-cloud-upload-fill me-1"></i> Save & Publish Card</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
 function resetStaffForm() {
-    document.getElementById('modalTitle').innerText = 'Upload New Staff Card';
-    document.getElementById('stf_id').value = '0';
-    document.getElementById('stf_name').value = '';
-    document.getElementById('stf_role').value = '';
-    document.getElementById('stf_badge').value = '';
-    document.getElementById('stf_whatsapp').value = '923008053198';
-    document.getElementById('stf_description').value = '';
-    document.getElementById('stf_image').value = '';
+    document.getElementById('staffModalTitle').innerHTML = '<i class="bi bi-person-plus-fill me-2" style="color: var(--amber-500);"></i> Add New Staff Member';
+    document.getElementById('stfId').value = 0;
+    document.getElementById('staffForm').reset();
 }
 
 function editStaff(stf) {
-    document.getElementById('modalTitle').innerText = 'Edit Staff Card';
-    document.getElementById('stf_id').value = stf.id;
-    document.getElementById('stf_name').value = stf.name;
-    document.getElementById('stf_role').value = stf.role;
-    document.getElementById('stf_badge').value = stf.badge;
-    document.getElementById('stf_whatsapp').value = stf.whatsapp || '923008053198';
-    document.getElementById('stf_description').value = stf.description;
+    document.getElementById('staffModalTitle').innerHTML = '<i class="bi bi-pencil-square me-2" style="color: var(--amber-500);"></i> Edit Staff Profile';
+    document.getElementById('stfId').value = stf.id;
+    document.getElementById('stfName').value = stf.name || '';
+    document.getElementById('stfCity').value = stf.city || 'Faisalabad';
+    document.getElementById('stfRole').value = stf.role || '';
+    document.getElementById('stfBadge').value = stf.badge || 'Registered Nurse';
+    document.getElementById('stfShift').value = stf.shift || '12-Hour Shift';
+    document.getElementById('stfRate').value = stf.rate || 'Rs. 2,200 / Day';
     
-    var modal = new bootstrap.Modal(document.getElementById('staffModal'));
+    const skillsList = is_array(stf.skills) ? stf.skills.join(', ') : (stf.skills || '');
+    document.getElementById('stfSkills').value = skillsList;
+    
+    document.getElementById('stfWhatsapp').value = stf.whatsapp || '923008053198';
+    document.getElementById('stfDescription').value = stf.description || '';
+
+    const modal = new bootstrap.Modal(document.getElementById('staffModal'));
     modal.show();
+}
+
+function is_array(val) {
+    return Array.isArray(val);
 }
 </script>
 

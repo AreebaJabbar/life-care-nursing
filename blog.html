@@ -617,7 +617,7 @@ function fetchBlogs() {
     .then(res => {
       if (res.success && res.data && res.data.length > 0) {
         allBlogs = res.data;
-        renderBlogs(allBlogs);
+        initBlogSystem();
       } else {
         fetchFallbackJson();
       }
@@ -632,7 +632,7 @@ function fetchFallbackJson() {
     .then(res => res.json())
     .then(data => {
       allBlogs = data;
-      renderBlogs(allBlogs);
+      initBlogSystem();
     })
     .catch(err => {
       document.getElementById('blogGridContainer').innerHTML = `
@@ -644,13 +644,39 @@ function fetchFallbackJson() {
     });
 }
 
+function initBlogSystem() {
+  renderCategoryPills();
+  filterBlog(currentCategory);
+}
+
+function renderCategoryPills() {
+  const container = document.getElementById('categoryFilters');
+  if (!container) return;
+
+  const categories = ['All'];
+  allBlogs.forEach(b => {
+    if (b.category && !categories.includes(b.category)) {
+      categories.push(b.category);
+    }
+  });
+
+  let html = '';
+  categories.forEach(cat => {
+    const activeClass = (cat === currentCategory) ? 'active' : '';
+    const label = (cat === 'All') ? 'All Articles' : cat;
+    html += `<button class="cat-pill ${activeClass}" onclick="filterBlog('${cat}')">${label}</button>`;
+  });
+  container.innerHTML = html;
+}
+
 function renderBlogs(blogs) {
   const container = document.getElementById('blogGridContainer');
   if (!blogs || blogs.length === 0) {
     container.innerHTML = `
       <div class="col-12 text-center py-5 text-muted">
         <i class="bi bi-journal-x display-4 mb-2"></i>
-        <h5>No articles found matching your filter or search.</h5>
+        <h5>No articles found matching your search or category filter.</h5>
+        <button class="btn btn-outline-secondary btn-sm mt-3" onclick="resetFilters()"><i class="bi bi-arrow-counterclockwise me-1"></i> Reset Filters</button>
       </div>
     `;
     return;
@@ -658,7 +684,6 @@ function renderBlogs(blogs) {
 
   let html = '';
   blogs.forEach(post => {
-    const postJson = JSON.stringify(post).replace(/'/g, "&apos;").replace(/"/g, "&quot;");
     html += `
       <div class="col-md-6 col-lg-4">
         <div class="blog-card" onclick="openBlogModal(${post.id})">
@@ -668,7 +693,7 @@ function renderBlogs(blogs) {
           <div class="info">
             <div class="blog-meta">
               <span><i class="bi bi-calendar3 me-1"></i> ${post.date}</span>
-              <span class="blog-category-tag">${post.category || 'Health'}</span>
+              <span class="blog-category-tag" style="cursor:pointer;" title="Filter by ${post.category}" onclick="event.stopPropagation(); filterBlog('${post.category}')">${post.category || 'Health'}</span>
             </div>
             <h5>${post.title}</h5>
             <p class="excerpt">${post.excerpt || ''}</p>
@@ -684,29 +709,80 @@ function renderBlogs(blogs) {
   container.innerHTML = html;
 }
 
-function filterBlog(category) {
-  currentCategory = category;
+function updatePillActiveState(category) {
   document.querySelectorAll('.cat-pill').forEach(pill => {
-    if (pill.innerText.trim() === category || (category === 'All' && pill.innerText.includes('All'))) {
+    const pillText = pill.innerText.trim();
+    if (pillText === category || (category === 'All' && pillText.includes('All'))) {
       pill.classList.add('active');
     } else {
       pill.classList.remove('active');
     }
   });
+}
+
+function filterBlog(category) {
+  currentCategory = category;
+  updatePillActiveState(category);
 
   const searchVal = document.getElementById('blogSearchInput').value.toLowerCase().trim();
   let filtered = allBlogs;
+
+  // Filter by Category if not 'All'
   if (category !== 'All') {
     filtered = filtered.filter(b => b.category === category);
   }
+
+  // Search by Title, Excerpt, Category, Author, or Content
   if (searchVal) {
-    filtered = filtered.filter(b => b.title.toLowerCase().includes(searchVal) || (b.excerpt && b.excerpt.toLowerCase().includes(searchVal)));
+    filtered = filtered.filter(b => {
+      const titleMatch    = b.title ? b.title.toLowerCase().includes(searchVal) : false;
+      const excerptMatch  = b.excerpt ? b.excerpt.toLowerCase().includes(searchVal) : false;
+      const categoryMatch = b.category ? b.category.toLowerCase().includes(searchVal) : false;
+      const authorMatch   = b.author ? b.author.toLowerCase().includes(searchVal) : false;
+      const contentMatch  = b.content ? b.content.toLowerCase().includes(searchVal) : false;
+      return titleMatch || excerptMatch || categoryMatch || authorMatch || contentMatch;
+    });
   }
+
   renderBlogs(filtered);
 }
 
 function searchBlogs() {
-  filterBlog(currentCategory);
+  const searchVal = document.getElementById('blogSearchInput').value.toLowerCase().trim();
+  
+  if (!searchVal) {
+    filterBlog(currentCategory);
+    return;
+  }
+
+  // Search across all blogs
+  const matched = allBlogs.filter(b => {
+    const titleMatch    = b.title ? b.title.toLowerCase().includes(searchVal) : false;
+    const excerptMatch  = b.excerpt ? b.excerpt.toLowerCase().includes(searchVal) : false;
+    const categoryMatch = b.category ? b.category.toLowerCase().includes(searchVal) : false;
+    const authorMatch   = b.author ? b.author.toLowerCase().includes(searchVal) : false;
+    const contentMatch  = b.content ? b.content.toLowerCase().includes(searchVal) : false;
+    return titleMatch || excerptMatch || categoryMatch || authorMatch || contentMatch;
+  });
+
+  if (matched.length > 0) {
+    const categories = [...new Set(matched.map(b => b.category).filter(Boolean))];
+    if (categories.length === 1) {
+      currentCategory = categories[0];
+    } else {
+      currentCategory = 'All';
+    }
+  } else {
+    currentCategory = 'All';
+  }
+
+  updatePillActiveState(currentCategory);
+  renderBlogs(matched);
+}
+
+function resetFilters() {
+  document.getElementById('blogSearchInput').value = '';
+  filterBlog('All');
 }
 
 function openBlogModal(blogId) {
