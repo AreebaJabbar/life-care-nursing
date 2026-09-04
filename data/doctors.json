@@ -1,32 +1,12 @@
 [
     {
-        "id": 5,
-        "name": "Areeba Jabbar",
-        "role": "Senior",
-        "badge": "Cardiology",
-        "image": "uploads\/1788433900_WhatsApp_Image_2026-07-18_at_4.59.04_AM.jpeg",
-        "description": "destail",
-        "whatsapp": "923008053198",
-        "created_at": "2026-09-03 04:26:35"
-    },
-    {
-        "id": 2,
-        "name": "Dr. Sarah Jenkins",
-        "role": "Medical Consultant",
-        "badge": "Home Care",
-        "image": "assets\/doctor_2.jpg",
-        "description": "Provides consultations for routine check-ups, recovery after surgery and health concerns that can be managed at home.",
-        "whatsapp": "923008053198",
-        "created_at": "2026-09-03 04:26:35"
-    },
-    {
         "id": 1,
-        "name": "Dr. Arthur Pendleton",
-        "role": "Senior Medical Consultant",
-        "badge": "Internal Medicine",
-        "image": "assets\/doctor_1.jpg",
-        "description": "Provides consultations for general health concerns, ongoing medical conditions and health needs of older adults.",
+        "name": "Dr Zahid Choudary",
+        "role": "Managing Director",
+        "badge": "BSc\/ MBBS\/ MD",
+        "image": "uploads\/1788518452_WhatsApp_Image_2026-09-04_at_12.11.51_AM.jpeg",
+        "description": "Dr. Zahid specializes in General Medicine, focusing on the diagnosis, treatment, and prevention of a wide range of medical conditions. He provides comprehensive patient care and helps manage both acute illnesses and long-term health conditions.",
         "whatsapp": "923008053198",
-        "created_at": "2026-09-03 04:26:35"
+        "created_at": "2026-09-04 03:09:17"
     }
 ]

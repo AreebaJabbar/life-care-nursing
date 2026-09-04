@@ -1,28 +1,26 @@
 <?php
-/**
- * LifeCare Nursing & Medical Services - Cards API
- * Returns JSON data for Doctors, Staff, and Team cards
- */
-
+header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
-require_once __DIR__ . '/../config.php';
 
-$type = isset($_GET['type']) ? strtolower(trim($_GET['type'])) : 'all';
+$type = isset($_GET['type']) ? preg_replace('/[^a-zA-Z0-9_-]/', '', $_GET['type']) : '';
+$valid_types = ['blogs', 'doctors', 'staff', 'team'];
 
-if ($type === 'all') {
-    echo json_encode([
-        'doctors' => getData('doctors'),
-        'staff'   => getData('staff'),
-        'team'    => getData('team')
-    ], JSON_UNESCAPED_UNICODE);
-} elseif (in_array($type, ['doctors', 'staff', 'team'])) {
-    echo json_encode([
-        'success' => true,
-        'data' => getData($type)
-    ], JSON_UNESCAPED_UNICODE);
-} else {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Invalid type specified. Allowed: doctors, staff, team, all'
-    ]);
+if (in_array($type, $valid_types)) {
+    $filePath = __DIR__ . '/../data/' . $type . '.json';
+    if (file_exists($filePath)) {
+        $jsonContent = file_get_contents($filePath);
+        $data = json_decode($jsonContent, true);
+        echo json_encode([
+            'success' => true,
+            'type' => $type,
+            'data' => $data ? $data : []
+        ]);
+        exit;
+    }
 }
+
+echo json_encode([
+    'success' => false,
+    'message' => 'Invalid endpoint or file not found'
+]);
+exit;

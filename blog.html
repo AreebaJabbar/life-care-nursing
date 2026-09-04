@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog & Health Articles — LifeCare Nursing & Medical Services</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<style>
+  :root{
+    --teal-900:#0E3B36;
+    --teal-700:#1B6B63;
+    --teal-500:#2E8C82;
+    --amber-500:#D9A441;
+    --amber-100:#F7E8C9;
+    --cream:#FAF8F3;
+    --ink:#1F2A28;
+    --line:#E4DFD3;
+    --font-display:'Fraunces', serif;
+    --font-body:'Manrope', sans-serif;
+    --brand-navy:#03357A;
+    --brand-teal:#029491;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.display-font{
+    font-family:var(--font-display);
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:.75rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--amber-500);
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:2px;background:var(--amber-500);display:inline-block;
+  }
+  a{text-decoration:none;}
+  .btn-care{
+    background: var(--brand-teal);
+    color:#fff;
+    border:none;
+    padding:0.85rem 1.6rem;
+    border-radius:6px;
+    font-weight:700;
+    font-size:.85rem;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    transition:.25s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+  }
+  .btn-care:hover{background:var(--brand-navy); color:#fff;}
+  .btn-outline-care{
+    border:none;
+    background:var(--brand-navy);
+    color:#fff;
+    padding:0.85rem 1.6rem;
+    border-radius:6px;
+    font-weight:700;
+    font-size:.85rem;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    transition:.25s ease;
+  }
+  .btn-outline-care:hover{background:var(--brand-teal); color:#fff;}
+
+  /* Top bar */
+  .topbar{
+    background:var(--teal-900);
+    color:#DCEAE7;
+    font-size:.82rem;
+    padding:.5rem 0;
+  }
+  .topbar a{color:#DCEAE7; opacity:.9;}
+  .topbar a:hover{color:var(--amber-500);}
+
+  /* Nav */
+  .navbar-care{
+    background:#fff;
+    padding:1rem 0;
+    border-bottom:1px solid var(--line);
+  }
+  .navbar-care .navbar-brand{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.35rem;
+    color:var(--teal-900);
+  }
+  .navbar-care .navbar-brand span{color:var(--amber-500);}
+  .brand-logo{height:64px; width:auto;}
+  @media(max-width:575px){ .brand-logo{height:50px;} }
+  .navbar-care .nav-link{
+    color:var(--ink);
+    font-weight:600;
+    font-size:.92rem;
+    margin:0 .7rem;
+  }
+  .navbar-care .nav-link:hover, .navbar-care .nav-link.active{color:var(--teal-700);}
+  .dropdown-menu{border-radius:2px; border-color:var(--line);}
+
+  /* Hero */
+  .page-hero{
+    position:relative;
+    background:linear-gradient(120deg, var(--teal-900) 0%, var(--teal-700) 100%);
+    color:#fff;
+    overflow:hidden;
+    padding:4.5rem 0 5rem;
+  }
+  .page-hero::after{
+    content:"";
+    position:absolute;
+    right:-120px; top:-120px;
+    width:420px;height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(217,164,65,.28), transparent 70%);
+  }
+  .page-hero .eyebrow{color:var(--amber-100);}
+  .page-hero .eyebrow::before{background:var(--amber-100);}
+
+  /* Filter & Search Bar */
+  .blog-controls{
+    background:#fff;
+    border-radius:8px;
+    padding:1.25rem 1.5rem;
+    box-shadow:0 8px 24px rgba(14,59,54,0.06);
+    border:1px solid var(--line);
+    margin-top:-2.5rem;
+    position:relative;
+    z-index:10;
+  }
+  .cat-pill{
+    background:var(--cream);
+    color:var(--teal-900);
+    border:1px solid var(--line);
+    padding:.45rem 1.1rem;
+    border-radius:50px;
+    font-size:.85rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .cat-pill:hover, .cat-pill.active{
+    background:var(--teal-700);
+    color:#fff;
+    border-color:var(--teal-700);
+  }
+
+  /* Blog Cards */
+  .blog-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .blog-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(14,59,54,0.1);
+  }
+  .blog-photo{
+    height:210px;
+    background:linear-gradient(160deg,#EFEAD9,#DCEFEA);
+    position:relative;
+    overflow:hidden;
+  }
+  .blog-photo img{width:100%; height:100%; object-fit:cover; object-position:top center; transition:transform .4s ease;}
+  .blog-card:hover .blog-photo img{transform:scale(1.05);}
+  .blog-card .info{
+    padding:1.4rem;
+    display:flex;
+    flex-direction:column;
+    flex-grow:1;
+  }
+  .blog-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    font-size:.78rem;
+    color:var(--amber-500);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:.6rem;
+  }
+  .blog-category-tag{
+    background:rgba(217,164,65,0.15);
+    color:var(--teal-900);
+    padding:.2rem .6rem;
+    border-radius:4px;
+    font-size:.72rem;
+    font-weight:700;
+  }
+  .blog-card h5{
+    font-size:1.15rem;
+    margin:.4rem 0 .7rem;
+    color:var(--teal-900);
+    line-height:1.4;
+    font-weight:700;
+  }
+  .blog-card p.excerpt{
+    font-size:.9rem;
+    color:#5C6865;
+    line-height:1.55;
+    margin-bottom:1.2rem;
+    flex-grow:1;
+  }
+  .blog-card .author-info{
+    font-size:.8rem;
+    color:var(--teal-700);
+    font-weight:600;
+    border-top:1px solid var(--cream);
+    padding-top:.8rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .blog-card a.read-btn{
+    font-size:.84rem;
+    font-weight:700;
+    color:var(--teal-700);
+    display:inline-flex;
+    align-items:center;
+    gap:.3rem;
+  }
+  .blog-card a.read-btn:hover{color:var(--brand-navy);}
+
+  /* Single Article Modal */
+  .modal-blog-img{
+    width:100%;
+    max-height:380px;
+    object-fit:cover;
+    border-radius:8px;
+  }
+  .modal-blog-body{
+    font-size:1rem;
+    line-height:1.75;
+    color:#2d3b38;
+  }
+  .modal-blog-body h4{
+    color:var(--teal-900);
+    margin-top:1.5rem;
+    margin-bottom:0.75rem;
+  }
+
+  /* Newsletter */
+  .newsletter{
+    background:var(--amber-100);
+    border-radius:6px;
+    padding:3rem;
+    text-align:center;
+  }
+  .newsletter h3{color:var(--teal-900);}
+  .newsletter-form{
+    max-width:480px; margin:1.5rem auto 0;
+    display:flex; gap:.6rem;
+  }
+  .newsletter-form input{
+    flex:1; border:1px solid var(--line); border-radius:4px; padding:.75rem 1rem; font-size:.9rem;
+  }
+
+  /* Footer */
+  footer{
+    background:var(--teal-900);
+    color:#DCEAE7;
+    padding:4.5rem 0 2rem;
+    margin-top:5rem;
+    border-top:4px solid var(--amber-500);
+  }
+  footer h5{color:#fff; font-size:1.05rem; margin-bottom:1.2rem;}
+  footer ul{list-style:none; padding:0; margin:0;}
+  footer ul li{margin-bottom:.7rem; font-size:.88rem;}
+  footer ul li a{color:#DCEAE7; transition:.2s ease;}
+  footer ul li a:hover{color:var(--amber-500);}
+  .footer-logo{max-height:55px; width:auto; filter:brightness(0) invert(1);}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);
+    padding-top:1.8rem; margin-top:3.5rem;
+    font-size:.82rem; color:#A4C4BE;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;
+  }
+  .footer-bottom a{color:#A4C4BE;}
+  .footer-bottom a:hover{color:#fff;}
+  .social-dot{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.08);
+    color:#fff; margin-right:.4rem; transition:.2s ease;
+  }
+  .social-dot:hover{background:var(--amber-500); color:var(--teal-900);}
+
+  /* Floating Buttons */
+  .floating-contact-stack{
+    position:fixed; bottom:24px; right:24px; z-index:9999;
+    display:flex; flex-direction:column; gap:10px; align-items:flex-end;
+  }
+  .floating-contact-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    height:50px; border-radius:50px; color:#fff; font-weight:700;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25); text-decoration:none;
+    transition:all .3s ease; padding:0 18px; font-size:0.95rem;
+  }
+  .btn-wa{background-color:#25D366; gap:8px;}
+  .btn-wa:hover{background-color:#1EBE5D; color:#fff; transform:translateY(-2px);}
+  .btn-call{background-color:var(--brand-navy); width:50px; padding:0;}
+  .btn-call:hover{background-color:var(--teal-700); color:#fff; transform:translateY(-2px);}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div>
+      <span class="me-3"><i class="bi bi-clock-fill me-1" style="color:var(--amber-500)"></i> 24/7 Home Nursing & Emergency Support</span>
+      <span><i class="bi bi-geo-alt-fill me-1" style="color:var(--amber-500)"></i> Faisalabad, Punjab, Pakistan</span>
+    </div>
+    <div class="d-flex gap-3 align-items-center">
+      <a href="tel:+923008053198"><i class="bi bi-telephone-fill me-1"></i> 0300-8053198</a>
+      <a href="mailto:lifecarenursing5@gmail.com"><i class="bi bi-envelope-fill me-1"></i> Email Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-care sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <img src="assets/logo.png" alt="LifeCare Logo" class="brand-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCare">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navCare">
+      <ul class="navbar-menu navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Our Services</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="doctor-consultation.html">Doctor Consultation</a></li>
+            <li><a class="dropdown-item" href="home-nursing-care.html">Home Nursing Care</a></li>
+            <li><a class="dropdown-item" href="elderly-senior-care.html">Elderly / Senior Care</a></li>
+            <li><a class="dropdown-item" href="physiotherapy.html">Physiotherapy</a></li>
+            <li><a class="dropdown-item" href="diagnostic-services.html">Diagnostic Services</a></li>
+            <li><a class="dropdown-item" href="portable-xray-ecg.html">Portable X-Ray & ECG</a></li>
+            <li><a class="dropdown-item" href="respiratory-speech-therapy.html">Respiratory & Speech Therapy</a></li>
+            <li><a class="dropdown-item" href="medical-equipment.html">Medical Equipment</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="doctor-panel.html">Doctor Panel</a></li>
+        <li class="nav-item"><a class="nav-link" href="staff-panel.html">Staff Panel</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#about">About Us</a></li>
+        <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a></li>
+      </ul>
+      <div class="ms-lg-3 mt-3 mt-lg-0">
+        <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-care">
+          <i class="bi bi-calendar-check me-1"></i> Get Appointment
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="page-hero">
+  <div class="container text-center">
+    <div class="eyebrow justify-content-center mb-3">HEALTH & MEDICAL INSIGHTS</div>
+    <h1 class="display-5 text-white mb-3 fw-bold">LifeCare Health & Nursing Blog</h1>
+    <p class="lead mx-auto" style="max-width:700px; color:#DCEAE7; font-size:1.1rem;">
+      Professional advice, home recovery guides, elderly care tips, and wellness articles written by our clinical experts.
+    </p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section class="py-5">
+  <div class="container">
+
+    <!-- SEARCH AND FILTER CONTROLS -->
+    <div class="blog-controls mb-5">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-7">
+          <div class="d-flex flex-wrap gap-2" id="categoryFilters">
+            <button class="cat-pill active" onclick="filterBlog('All')">All Articles</button>
+            <button class="cat-pill" onclick="filterBlog('Home Nursing')">Home Nursing</button>
+            <button class="cat-pill" onclick="filterBlog('Elderly Care')">Elderly Care</button>
+            <button class="cat-pill" onclick="filterBlog('Health Tips')">Health Tips</button>
+            <button class="cat-pill" onclick="filterBlog('Medical Support')">Medical Support</button>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0" style="border-color:var(--line);"><i class="bi bi-search text-muted"></i></span>
+            <input type="text" id="blogSearchInput" class="form-control border-start-0" placeholder="Search blog articles..." onkeyup="searchBlogs()" style="border-color:var(--line); font-size:0.92rem;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOG CARDS CONTAINER -->
+    <div class="row g-4" id="blogGridContainer">
+      <div class="col-12 text-center py-5">
+        <div class="spinner-border text-teal" style="color:var(--teal-700);" role="status">
+          <span class="visually-hidden">Loading articles...</span>
+        </div>
+        <p class="text-muted mt-2">Loading blog posts...</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NEWSLETTER SECTION -->
+<section class="py-4">
+  <div class="container">
+    <div class="newsletter">
+      <div class="eyebrow justify-content-center mb-2">SUBSCRIBE TODAY</div>
+      <h3>Stay Updated With LifeCare Articles</h3>
+      <p style="color:#5A4C2E;" class="mb-4">Get health advice, elderly care updates, and home nursing tips directly to your inbox.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="email" placeholder="Enter your email address" required>
+        <button class="btn-care" type="submit">Subscribe</button>
+      </form>
+      <div id="newsletterAlert" class="alert alert-success d-none mt-3 max-w-md mx-auto mb-0" role="alert"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <img src="assets/logo.png" alt="LifeCare Nursing & Medical Services" class="footer-logo mb-3">
+        <p>LifeCare provides nursing, elderly care, physiotherapy, diagnostic and healthcare services for patients who need support at home.</p>
+        <div class="mt-3">
+          <a href="#" class="social-dot"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Our Services</a></li>
+          <li><a href="doctor-panel.html">Doctor Panel</a></li>
+          <li><a href="staff-panel.html">Staff Panel</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-6">
+        <h5>Our Services</h5>
+        <ul>
+          <li><a href="doctor-consultation.html">Doctor Consultation</a></li>
+          <li><a href="home-nursing-care.html">Home Nursing Care</a></li>
+          <li><a href="elderly-senior-care.html">Elderly / Senior Care</a></li>
+          <li><a href="physiotherapy.html">Physiotherapy</a></li>
+          <li><a href="diagnostic-services.html">Diagnostic Services</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h5>Get in Touch</h5>
+        <ul>
+          <li><a href="tel:+923008053198"><i class="bi bi-telephone-fill me-2"></i>0300-8053198</a></li>
+          <li><a href="mailto:lifecarenursing5@gmail.com"><i class="bi bi-envelope-fill me-2"></i>lifecarenursing5@gmail.com</a></li>
+          <li><i class="bi bi-geo-alt-fill me-2"></i>Near Zee Garden Main Shekhupura / Lahore Road Faisalabad</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Copyright &copy; 2026 LifeCare Nursing & Medical Services. All Rights Reserved.</div>
+      <div><a href="#">Terms & Service</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CONTACT BUTTONS -->
+<div class="floating-contact-stack">
+  <a href="tel:+923008053198" class="floating-contact-btn btn-call" title="Call Us Now">
+    <i class="bi bi-telephone-fill"></i>
+  </a>
+  <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="floating-contact-btn btn-wa" title="Get Appointment on WhatsApp">
+    <i class="bi bi-whatsapp"></i> <span>Get Appointment</span>
+  </a>
+</div>
+
+<!-- SINGLE BLOG DETAIL MODAL -->
+<div class="modal fade" id="blogModal" tabindex="-1" aria-labelledby="blogModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0" style="border-radius:12px; overflow:hidden;">
+      <div class="modal-header border-0 pb-0" style="background:var(--cream);">
+        <span id="modalBlogCategory" class="blog-category-tag">Category</span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4 p-md-5" style="background:var(--cream);">
+        <h2 id="modalBlogTitle" class="fw-bold mb-3" style="color:var(--teal-900);">Blog Title</h2>
+        <div class="d-flex align-items-center gap-3 text-muted mb-4 pb-3 border-bottom" style="font-size:0.88rem;">
+          <div><i class="bi bi-person-fill text-teal me-1" style="color:var(--teal-700);"></i> <span id="modalBlogAuthor">Author</span></div>
+          <div><i class="bi bi-calendar3 me-1" style="color:var(--amber-500);"></i> <span id="modalBlogDate">Date</span></div>
+        </div>
+        <img id="modalBlogImage" src="" alt="Blog Cover" class="modal-blog-img mb-4 d-none">
+        <div id="modalBlogContent" class="modal-blog-body">
+          <!-- Article Content -->
+        </div>
+      </div>
+      <div class="modal-footer border-0 p-3 justify-content-between" style="background:#f1ece1;">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        <a id="modalBlogWaBtn" href="https://wa.me/923008053198" target="_blank" class="btn-care">
+          <i class="bi bi-whatsapp me-1"></i> Consult Medical Team
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0" style="border-radius: 12px; overflow: hidden;">
+      <div class="modal-header text-white p-4" style="background: var(--teal-900);">
+        <h4 class="modal-title font-weight-bold m-0" id="contactModalLabel">
+          <i class="bi bi-envelope-paper-fill me-2" style="color: var(--amber-500);"></i> Get in Touch / Book Service
+        </h4>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4 p-md-5" style="background: #FAF8F3;">
+        <p class="text-muted mb-4" style="font-size: 0.95rem;">
+          Tell us what kind of care you need and leave your contact details below. Our team will get in touch with you.
+        </p>
+
+        <div id="contactFormAlert" class="alert alert-success d-none mb-4" role="alert">
+          <i class="bi bi-check-circle-fill me-2"></i> Thank you! Your message has been sent. We will get back to you shortly.
+        </div>
+
+        <form id="contactForm" onsubmit="handleContactSubmit(event)">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="contactName" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Name *</label>
+              <input type="text" class="form-control form-control-lg" id="contactName" placeholder="e.g. Ali Khan" required style="font-size: 0.95rem; border-radius: 6px;">
+            </div>
+            <div class="col-md-6">
+              <label for="contactPhone" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Phone / WhatsApp</label>
+              <input type="tel" class="form-control form-control-lg" id="contactPhone" placeholder="0300-8053198" required style="font-size: 0.95rem; border-radius: 6px;">
+            </div>
+            <div class="col-md-6">
+              <label for="contactEmail" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Email</label>
+              <input type="email" class="form-control form-control-lg" id="contactEmail" placeholder="name@example.com" required style="font-size: 0.95rem; border-radius: 6px;">
+            </div>
+            <div class="col-md-6">
+              <label for="contactService" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">What Service Do You Need?</label>
+              <select class="form-select form-select-lg" id="contactService" style="font-size: 0.95rem; border-radius: 6px;">
+                <option value="General Inquiry" selected>General Inquiry</option>
+                <option value="Doctor Consultation">Doctor Consultation</option>
+                <option value="Home Nursing Care">Home Nursing Care</option>
+                <option value="Elderly / Senior Care">Elderly / Senior Care</option>
+                <option value="Physiotherapy">Physiotherapy</option>
+                <option value="Medical Equipment">Medical Equipment</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="contactMessage" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">How Can We Help?</label>
+              <textarea class="form-control" id="contactMessage" rows="4" placeholder="Tell us what you need help with..." required style="font-size: 0.95rem; border-radius: 6px;"></textarea>
+            </div>
+            <div class="col-12 mt-4 d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-outline-secondary px-4 py-2" data-bs-dismiss="modal" style="font-weight: 600;">Cancel</button>
+              <button type="submit" class="btn-care px-4 py-2" style="border: none; cursor: pointer;">
+                <i class="bi bi-send-fill me-1"></i> Send Request
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+let allBlogs = [];
+let currentCategory = 'All';
+
+document.addEventListener('DOMContentLoaded', function() {
+  fetchBlogs();
+});
+
+function fetchBlogs() {
+  fetch('api/get_cards.php?type=blogs')
+    .then(res => res.json())
+    .then(res => {
+      if (res.success && res.data && res.data.length > 0) {
+        allBlogs = res.data;
+        renderBlogs(allBlogs);
+      } else {
+        fetchFallbackJson();
+      }
+    })
+    .catch(() => {
+      fetchFallbackJson();
+    });
+}
+
+function fetchFallbackJson() {
+  fetch('data/blogs.json')
+    .then(res => res.json())
+    .then(data => {
+      allBlogs = data;
+      renderBlogs(allBlogs);
+    })
+    .catch(err => {
+      document.getElementById('blogGridContainer').innerHTML = `
+        <div class="col-12 text-center py-5 text-muted">
+          <i class="bi bi-exclamation-circle text-danger display-4 mb-3"></i>
+          <h5>Unable to load blog articles at this moment.</h5>
+        </div>
+      `;
+    });
+}
+
+function renderBlogs(blogs) {
+  const container = document.getElementById('blogGridContainer');
+  if (!blogs || blogs.length === 0) {
+    container.innerHTML = `
+      <div class="col-12 text-center py-5 text-muted">
+        <i class="bi bi-journal-x display-4 mb-2"></i>
+        <h5>No articles found matching your filter or search.</h5>
+      </div>
+    `;
+    return;
+  }
+
+  let html = '';
+  blogs.forEach(post => {
+    const postJson = JSON.stringify(post).replace(/'/g, "&apos;").replace(/"/g, "&quot;");
+    html += `
+      <div class="col-md-6 col-lg-4">
+        <div class="blog-card" onclick="openBlogModal(${post.id})">
+          <div class="blog-photo">
+            <img src="${post.image}" alt="${post.title}">
+          </div>
+          <div class="info">
+            <div class="blog-meta">
+              <span><i class="bi bi-calendar3 me-1"></i> ${post.date}</span>
+              <span class="blog-category-tag">${post.category || 'Health'}</span>
+            </div>
+            <h5>${post.title}</h5>
+            <p class="excerpt">${post.excerpt || ''}</p>
+            <div class="author-info">
+              <span><i class="bi bi-person-circle me-1"></i> ${post.author || 'LifeCare Team'}</span>
+              <a href="javascript:void(0)" class="read-btn">Read Article <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function filterBlog(category) {
+  currentCategory = category;
+  document.querySelectorAll('.cat-pill').forEach(pill => {
+    if (pill.innerText.trim() === category || (category === 'All' && pill.innerText.includes('All'))) {
+      pill.classList.add('active');
+    } else {
+      pill.classList.remove('active');
+    }
+  });
+
+  const searchVal = document.getElementById('blogSearchInput').value.toLowerCase().trim();
+  let filtered = allBlogs;
+  if (category !== 'All') {
+    filtered = filtered.filter(b => b.category === category);
+  }
+  if (searchVal) {
+    filtered = filtered.filter(b => b.title.toLowerCase().includes(searchVal) || (b.excerpt && b.excerpt.toLowerCase().includes(searchVal)));
+  }
+  renderBlogs(filtered);
+}
+
+function searchBlogs() {
+  filterBlog(currentCategory);
+}
+
+function openBlogModal(blogId) {
+  const post = allBlogs.find(b => b.id === blogId);
+  if (!post) return;
+
+  document.getElementById('modalBlogCategory').innerText = post.category || 'Health Care';
+  document.getElementById('modalBlogTitle').innerText = post.title;
+  document.getElementById('modalBlogAuthor').innerText = post.author || 'LifeCare Clinical Team';
+  document.getElementById('modalBlogDate').innerText = post.date;
+  
+  const imgElem = document.getElementById('modalBlogImage');
+  if (post.image) {
+    imgElem.src = post.image;
+    imgElem.classList.remove('d-none');
+  } else {
+    imgElem.classList.add('d-none');
+  }
+
+  document.getElementById('modalBlogContent').innerHTML = post.content || `<p>${post.excerpt}</p>`;
+  
+  const waMsg = encodeURIComponent(`Hello LifeCare, I read your article "${post.title}" and would like to consult with a specialist.`);
+  document.getElementById('modalBlogWaBtn').href = `https://wa.me/923008053198?text=${waMsg}`;
+
+  const blogModal = new bootstrap.Modal(document.getElementById('blogModal'));
+  blogModal.show();
+}
+
+function handleNewsletter(e) {
+  e.preventDefault();
+  const alertBox = document.getElementById('newsletterAlert');
+  alertBox.innerText = 'Thank you for subscribing to LifeCare Health & Nursing updates!';
+  alertBox.classList.remove('d-none');
+  e.target.reset();
+}
+
+function handleContactSubmit(e) {
+  e.preventDefault();
+  const alertBox = document.getElementById('contactFormAlert');
+  alertBox.classList.remove('d-none');
+  document.getElementById('contactForm').reset();
+}
+</script>
+</body>
+</html>

@@ -93,6 +93,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <li class="admin-menu-item <?= $currentPage === 'team.php' ? 'active' : '' ?>">
             <a href="team.php"><i class="bi bi-diagram-3-fill"></i> Our Team Cards</a>
         </li>
+        <li class="admin-menu-item <?= $currentPage === 'blogs.php' ? 'active' : '' ?>">
+            <a href="blogs.php"><i class="bi bi-journal-richtext"></i> Blog Posts & Articles</a>
+        </li>
         
         <li class="admin-menu-label mt-2">Quick Site Links</li>
         <li class="admin-menu-item">

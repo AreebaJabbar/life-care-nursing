@@ -4,24 +4,26 @@ require_once __DIR__ . '/inc/header.php';
 $doctors = getData('doctors');
 $staff   = getData('staff');
 $team    = getData('team');
+$blogs   = getData('blogs');
 $inquiries = getData('contact_messages');
 ?>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
     <div>
         <h2 class="m-0 text-dark">Welcome to Admin Dashboard</h2>
-        <p class="text-muted m-0">Manage doctor profiles, nursing staff cards, team profiles, and website contact inquiries.</p>
+        <p class="text-muted m-0">Manage doctor profiles, nursing staff cards, team profiles, blog articles, and contact inquiries.</p>
     </div>
-    <div>
+    <div class="d-flex gap-2">
         <a href="doctors.php" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg me-1"></i> Add Doctor</a>
         <a href="staff.php" class="btn btn-teal btn-sm text-white" style="background: var(--brand-teal);"><i class="bi bi-plus-lg me-1"></i> Add Staff</a>
-        <a href="team.php" class="btn btn-dark btn-sm"><i class="bi bi-plus-lg me-1"></i> Add Team Member</a>
+        <a href="team.php" class="btn btn-dark btn-sm"><i class="bi bi-plus-lg me-1"></i> Add Team</a>
+        <a href="blogs.php" class="btn btn-warning btn-sm text-dark font-weight-bold"><i class="bi bi-plus-lg me-1"></i> Add Blog</a>
     </div>
 </div>
 
 <!-- Stats Row -->
 <div class="row g-3 mb-4">
-    <div class="col-md-3">
+    <div class="col-md-6 col-lg">
         <div class="card-custom p-3 border-start border-4 border-primary">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
@@ -38,7 +40,7 @@ $inquiries = getData('contact_messages');
         </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-6 col-lg">
         <div class="card-custom p-3 border-start border-4 border-success">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
@@ -55,7 +57,7 @@ $inquiries = getData('contact_messages');
         </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-6 col-lg">
         <div class="card-custom p-3 border-start border-4 border-info">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
@@ -72,11 +74,28 @@ $inquiries = getData('contact_messages');
         </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-6 col-lg">
+        <div class="card-custom p-3 border-start border-4 border-teal" style="border-left-color: var(--brand-teal) !important;">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <span class="text-uppercase text-muted font-weight-bold" style="font-size: 0.75rem;">Blog Articles</span>
+                    <h3 class="m-0 font-weight-bold text-dark"><?= count($blogs) ?></h3>
+                </div>
+                <div class="p-3 rounded-circle fs-3" style="background: rgba(2,148,145,0.15); color: var(--brand-teal);">
+                    <i class="bi bi-journal-richtext"></i>
+                </div>
+            </div>
+            <div class="mt-3">
+                <a href="blogs.php" class="text-decoration-none font-weight-bold" style="color: var(--brand-teal); font-size: 0.85rem;">Manage Blogs <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg">
         <div class="card-custom p-3 border-start border-4 border-warning">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
-                    <span class="text-uppercase text-muted font-weight-bold" style="font-size: 0.75rem;">Contact Messages</span>
+                    <span class="text-uppercase text-muted font-weight-bold" style="font-size: 0.75rem;">Inquiries</span>
                     <h3 class="m-0 font-weight-bold text-dark"><?= count($inquiries) ?></h3>
                 </div>
                 <div class="bg-warning-subtle text-warning p-3 rounded-circle fs-3">
@@ -84,7 +103,7 @@ $inquiries = getData('contact_messages');
                 </div>
             </div>
             <div class="mt-3">
-                <span class="text-muted" style="font-size: 0.85rem;">Sent to: lifecarenursing5@gmail.com</span>
+                <span class="text-muted" style="font-size: 0.85rem;">Email Submissions</span>
             </div>
         </div>
     </div>

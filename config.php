@@ -66,7 +66,7 @@ function getData($type) {
     $db = getDBConnection();
     if ($db) {
         try {
-            $allowedTables = ['doctors', 'staff', 'team', 'contact_messages'];
+            $allowedTables = ['doctors', 'staff', 'team', 'blogs', 'contact_messages'];
             if (in_array($type, $allowedTables)) {
                 $stmt = $db->query("SELECT * FROM `{$type}` ORDER BY id DESC");
                 $data = $stmt->fetchAll();
@@ -95,13 +95,25 @@ function saveData($type, $data) {
     if ($db) {
         try {
             // If saving whole array to MySQL table
-            $allowedTables = ['doctors', 'staff', 'team', 'contact_messages'];
+            $allowedTables = ['doctors', 'staff', 'team', 'blogs', 'contact_messages'];
             if (in_array($type, $allowedTables)) {
                 $db->exec("TRUNCATE TABLE `{$type}`");
                 foreach ($data as $item) {
                     if ($type === 'contact_messages') {
                         $stmt = $db->prepare("INSERT INTO contact_messages (name, phone, email, service, message) VALUES (?, ?, ?, ?, ?)");
                         $stmt->execute([$item['name'] ?? '', $item['phone'] ?? '', $item['email'] ?? '', $item['service'] ?? '', $item['message'] ?? '']);
+                    } elseif ($type === 'blogs') {
+                        $stmt = $db->prepare("INSERT INTO blogs (id, title, category, date, author, image, excerpt, content) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                        $stmt->execute([
+                            $item['id'] ?? null,
+                            $item['title'] ?? '',
+                            $item['category'] ?? 'Health',
+                            $item['date'] ?? date('d M Y'),
+                            $item['author'] ?? 'LifeCare Team',
+                            $item['image'] ?? '',
+                            $item['excerpt'] ?? '',
+                            $item['content'] ?? ''
+                        ]);
                     } else {
                         $stmt = $db->prepare("INSERT INTO `{$type}` (id, name, role, badge, image, description, whatsapp) VALUES (?, ?, ?, ?, ?, ?, ?)");
                         $stmt->execute([

@@ -942,7 +942,7 @@
             <li><a class="dropdown-item" href="respiratory-speech-therapy.html">Respiratory & Speech Therapy</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
         <li class="nav-item"><a class="nav-link" href="doctor-panel.html">Doctor Panel</a></li>
         <li class="nav-item"><a class="nav-link" href="staff-panel.html">Staff Panel</a></li>
@@ -1523,40 +1523,64 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="eyebrow justify-content-center mb-3">HEALTH & CARE</div>
       <h2>Helpful Tips for Better Home Care</h2>
     </div>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="blog-card">
-          <div class="blog-photo"><img src="assets/ChatGPT Image Aug 25, 2026, 05_59_14 PM.png" alt="Home nurse assisting elderly patient"></div>
-          <div class="info">
-            <div class="blog-date">18 Aug 2026</div>
-            <h5>When Home Nursing Can Make Recovery Easier</h5>
-            <a href="#" class="more">Learn more <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="blog-card">
-          <div class="blog-photo"><img src="assets/bp-check.jpg" alt="Nurse checking blood pressure at home"></div>
-          <div class="info">
-            <div class="blog-date">05 Aug 2026</div>
-            <h5>What to Expect From Home Nursing Care</h5>
-            <a href="#" class="more">Learn more <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="blog-card">
-          <div class="blog-photo"><img src="assets/bed-care.jpg" alt="Nurse caring for bedridden elderly patient"></div>
-          <div class="info">
-            <div class="blog-date">26 Feb 2026</div>
-            <h5>5 Signs a Loved One May Need More Support at Home</h5>
-            <a href="#" class="more">Read More <i class="bi bi-arrow-right"></i></a>
-          </div>
+    <div class="row g-4" id="indexBlogContainer">
+      <!-- Dynamic Blog Cards fetched from admin backend -->
+      <div class="col-12 text-center py-4">
+        <div class="spinner-border text-teal" style="color:var(--teal-700);" role="status">
+          <span class="visually-hidden">Loading blogs...</span>
         </div>
       </div>
     </div>
+    <div class="text-center mt-5">
+      <a href="blog.html" class="btn-care">
+        <i class="bi bi-journal-text me-1"></i> View All Articles & Blogs
+      </a>
+    </div>
   </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function renderIndexBlogs(blogs) {
+    const container = document.getElementById('indexBlogContainer');
+    if (!container) return;
+    if (blogs && blogs.length > 0) {
+      const topBlogs = blogs.slice(0, 3);
+      let html = '';
+      topBlogs.forEach(post => {
+        html += `
+          <div class="col-md-4">
+            <div class="blog-card" onclick="window.location.href='blog.html'" style="cursor:pointer;">
+              <div class="blog-photo">
+                <img src="${post.image}" alt="${post.title}">
+              </div>
+              <div class="info">
+                <div class="blog-date">${post.date}</div>
+                <h5>${post.title}</h5>
+                <a href="blog.html" class="more">Read More <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+  }
+
+  fetch('api/get_cards.php?type=blogs')
+    .then(res => res.json())
+    .then(res => {
+      if (res.success && res.data && res.data.length > 0) {
+        renderIndexBlogs(res.data);
+      } else {
+        fetch('data/blogs.json').then(r => r.json()).then(data => renderIndexBlogs(data));
+      }
+    })
+    .catch(() => {
+      fetch('data/blogs.json').then(r => r.json()).then(data => renderIndexBlogs(data));
+    });
+});
+</script>
 
 <!-- ================= NEWSLETTER ================= -->
 <section>
