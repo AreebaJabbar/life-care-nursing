@@ -70,7 +70,16 @@ function getData($type) {
             if (in_array($type, $allowedTables)) {
                 $stmt = $db->query("SELECT * FROM `{$type}` ORDER BY id DESC");
                 $data = $stmt->fetchAll();
-                return $data;
+                if (!empty($data)) {
+                    foreach ($data as &$item) {
+                        if ($type === 'doctors') {
+                            if (empty($item['speciality'])) {
+                                $item['speciality'] = $item['role'] ?? 'General Physician';
+                            }
+                        }
+                    }
+                    return $data;
+                }
             }
         } catch (Exception $e) {
             // Fallback to JSON if table missing
@@ -84,7 +93,17 @@ function getData($type) {
     }
     $content = file_get_contents($filePath);
     $data = json_decode($content, true);
-    return is_array($data) ? $data : [];
+    if (is_array($data)) {
+        foreach ($data as &$item) {
+            if ($type === 'doctors') {
+                if (empty($item['speciality'])) {
+                    $item['speciality'] = $item['role'] ?? 'General Physician';
+                }
+            }
+        }
+        return $data;
+    }
+    return [];
 }
 
 /**
@@ -97,34 +116,112 @@ function saveData($type, $data) {
             // If saving whole array to MySQL table
             $allowedTables = ['doctors', 'staff', 'team', 'blogs', 'contact_messages'];
             if (in_array($type, $allowedTables)) {
-                $db->exec("TRUNCATE TABLE `{$type}`");
-                foreach ($data as $item) {
-                    if ($type === 'contact_messages') {
-                        $stmt = $db->prepare("INSERT INTO contact_messages (name, phone, email, service, message) VALUES (?, ?, ?, ?, ?)");
-                        $stmt->execute([$item['name'] ?? '', $item['phone'] ?? '', $item['email'] ?? '', $item['service'] ?? '', $item['message'] ?? '']);
-                    } elseif ($type === 'blogs') {
-                        $stmt = $db->prepare("INSERT INTO blogs (id, title, category, date, author, image, excerpt, content) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                        $stmt->execute([
-                            $item['id'] ?? null,
-                            $item['title'] ?? '',
-                            $item['category'] ?? 'Health',
-                            $item['date'] ?? date('d M Y'),
-                            $item['author'] ?? 'LifeCare Team',
-                            $item['image'] ?? '',
-                            $item['excerpt'] ?? '',
-                            $item['content'] ?? ''
-                        ]);
-                    } else {
-                        $stmt = $db->prepare("INSERT INTO `{$type}` (id, name, role, badge, image, description, whatsapp) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                if ($type === 'doctors') {
+                    $db->exec("CREATE TABLE IF NOT EXISTS `doctors` (
+                        `id` INT AUTO_INCREMENT PRIMARY KEY,
+                        `name` VARCHAR(255) NOT NULL,
+                        `speciality` VARCHAR(255) NULL,
+                        `role` VARCHAR(255) NULL,
+                        `qualifications` VARCHAR(255) NULL,
+                        `badge` VARCHAR(255) NULL,
+                        `experience` VARCHAR(100) NULL,
+                        `waitTime` VARCHAR(100) NULL,
+                        `satisfaction` VARCHAR(100) NULL,
+                        `hospitalName` VARCHAR(255) NULL,
+                        `hospitalFee` VARCHAR(100) NULL,
+                        `hospitalSchedule` VARCHAR(255) NULL,
+                        `videoFee` VARCHAR(100) NULL,
+                        `videoSchedule` VARCHAR(255) NULL,
+                        `image` VARCHAR(255) NULL,
+                        `description` TEXT NULL,
+                        `aboutBio` TEXT NULL,
+                        `whatsapp` VARCHAR(50) NULL
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+                    $existingCols = [];
+                    $colQuery = $db->query("SHOW COLUMNS FROM `doctors`");
+                    if ($colQuery) {
+                        foreach ($colQuery->fetchAll() as $c) {
+                            $existingCols[] = $c['Field'];
+                        }
+                    }
+
+                    $colsToAdd = [
+                        'speciality' => 'VARCHAR(255) NULL',
+                        'qualifications' => 'VARCHAR(255) NULL',
+                        'experience' => 'VARCHAR(100) NULL',
+                        'waitTime' => 'VARCHAR(100) NULL',
+                        'satisfaction' => 'VARCHAR(100) NULL',
+                        'hospitalName' => 'VARCHAR(255) NULL',
+                        'hospitalFee' => 'VARCHAR(100) NULL',
+                        'hospitalSchedule' => 'VARCHAR(255) NULL',
+                        'videoFee' => 'VARCHAR(100) NULL',
+                        'videoSchedule' => 'VARCHAR(255) NULL',
+                        'aboutBio' => 'TEXT NULL'
+                    ];
+
+                    foreach ($colsToAdd as $colName => $colDef) {
+                        if (!in_array($colName, $existingCols)) {
+                            try {
+                                $db->exec("ALTER TABLE `doctors` ADD COLUMN `{$colName}` {$colDef}");
+                            } catch (Exception $e) {}
+                        }
+                    }
+
+                    $db->exec("TRUNCATE TABLE `doctors`");
+                    foreach ($data as $item) {
+                        $stmt = $db->prepare("INSERT INTO `doctors` (id, name, speciality, role, qualifications, badge, experience, waitTime, satisfaction, hospitalName, hospitalFee, hospitalSchedule, videoFee, videoSchedule, image, description, aboutBio, whatsapp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                         $stmt->execute([
                             $item['id'] ?? null,
                             $item['name'] ?? '',
-                            $item['role'] ?? '',
-                            $item['badge'] ?? '',
-                            $item['image'] ?? '',
+                            $item['speciality'] ?? ($item['role'] ?? ''),
+                            $item['role'] ?? ($item['speciality'] ?? ''),
+                            $item['qualifications'] ?? 'MBBS, FCPS',
+                            $item['badge'] ?? 'PMC Verified',
+                            $item['experience'] ?? '10 Years',
+                            $item['waitTime'] ?? 'Under 15 Mins',
+                            $item['satisfaction'] ?? '97%',
+                            $item['hospitalName'] ?? 'LifeCare Clinical Center',
+                            $item['hospitalFee'] ?? '1500',
+                            $item['hospitalSchedule'] ?? 'Mon - Sat: 02:00 PM - 05:00 PM',
+                            $item['videoFee'] ?? '1000',
+                            $item['videoSchedule'] ?? 'Mon - Sun: 09:00 AM - 04:00 PM',
+                            $item['image'] ?? 'assets/doctor_1.jpg',
                             $item['description'] ?? '',
+                            $item['aboutBio'] ?? '',
                             $item['whatsapp'] ?? '923008053198'
                         ]);
+                    }
+                } else {
+                    $db->exec("TRUNCATE TABLE `{$type}`");
+                    foreach ($data as $item) {
+                        if ($type === 'contact_messages') {
+                            $stmt = $db->prepare("INSERT INTO contact_messages (name, phone, email, service, message) VALUES (?, ?, ?, ?, ?)");
+                            $stmt->execute([$item['name'] ?? '', $item['phone'] ?? '', $item['email'] ?? '', $item['service'] ?? '', $item['message'] ?? '']);
+                        } elseif ($type === 'blogs') {
+                            $stmt = $db->prepare("INSERT INTO blogs (id, title, category, date, author, image, excerpt, content) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                            $stmt->execute([
+                                $item['id'] ?? null,
+                                $item['title'] ?? '',
+                                $item['category'] ?? 'Health',
+                                $item['date'] ?? date('d M Y'),
+                                $item['author'] ?? 'LifeCare Team',
+                                $item['image'] ?? '',
+                                $item['excerpt'] ?? '',
+                                $item['content'] ?? ''
+                            ]);
+                        } else {
+                            $stmt = $db->prepare("INSERT INTO `{$type}` (id, name, role, badge, image, description, whatsapp) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                            $stmt->execute([
+                                $item['id'] ?? null,
+                                $item['name'] ?? '',
+                                $item['role'] ?? '',
+                                $item['badge'] ?? '',
+                                $item['image'] ?? '',
+                                $item['description'] ?? '',
+                                $item['whatsapp'] ?? '923008053198'
+                            ]);
+                        }
                     }
                 }
             }

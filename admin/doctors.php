@@ -230,6 +230,10 @@ require_once __DIR__ . '/inc/header.php';
                                 <option value="Physiotherapist">Physiotherapist</option>
                                 <option value="Urologist">Urologist</option>
                                 <option value="Psychiatrist">Psychiatrist</option>
+                                <option value="Dentist">Dentist</option>
+                                <option value="ENT Specialist">ENT Specialist</option>
+                                <option value="Gastroenterologist">Gastroenterologist</option>
+                                <option value="Plastic Surgeon">Plastic Surgeon</option>
                             </select>
                         </div>
 

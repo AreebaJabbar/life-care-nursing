@@ -373,17 +373,17 @@
             <li><a class="dropdown-item" href="medical-equipment.html">Medical Equipment</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link active" href="doctor-panel.html">Doctor Panel</a></li>
-        <li class="nav-item"><a class="nav-link" href="staff-panel.html">Staff Panel</a></li>
         <li class="nav-item"><a class="nav-link" href="index.html#about">About Us</a></li>
         <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link active" href="doctor-panel.html">Doctor Panel</a></li>
+        <li class="nav-item"><a class="nav-link" href="staff-panel.html">Staff Panel</a></li>
         <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a></li>
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+          <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-care">
+            <i class="bi bi-calendar-check me-1"></i> Get Appointment
+          </a>
+        </li>
       </ul>
-      <div class="ms-lg-3 mt-3 mt-lg-0">
-        <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-care">
-          <i class="bi bi-calendar-check me-1"></i> Get Appointment
-        </a>
-      </div>
     </div>
   </div>
 </nav>
@@ -432,51 +432,17 @@
           </div>
         </div>
       </div>
+
       <div class="col-6 col-md-4 col-lg-3">
-        <div class="speciality-card" onclick="selectSpeciality('Cardiologist', this)">
-          <div class="speciality-icon"><i class="bi bi-heart-pulse-fill"></i></div>
-          <div>
-            <h5 class="speciality-title">Cardiologist</h5>
-            <p class="speciality-sub">Heart & Blood Pressure</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3">
-        <div class="speciality-card" onclick="selectSpeciality('General Physician', this)">
-          <div class="speciality-icon"><i class="bi bi-hospital-fill"></i></div>
-          <div>
-            <h5 class="speciality-title">General Physician</h5>
-            <p class="speciality-sub">Internal Medicine & Care</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3">
-        <div class="speciality-card" onclick="selectSpeciality('Pediatrician', this)">
+        <div class="speciality-card" onclick="selectSpeciality('Dentist', this)">
           <div class="speciality-icon"><i class="bi bi-emoji-smile-fill"></i></div>
           <div>
-            <h5 class="speciality-title">Pediatrician</h5>
-            <p class="speciality-sub">Child Health & Vaccine</p>
+            <h5 class="speciality-title">Dentist</h5>
+            <p class="speciality-sub">Dental Care & Oral Health</p>
           </div>
         </div>
       </div>
-      <div class="col-6 col-md-4 col-lg-3">
-        <div class="speciality-card" onclick="selectSpeciality('Neurologist', this)">
-          <div class="speciality-icon"><i class="bi bi-activity"></i></div>
-          <div>
-            <h5 class="speciality-title">Neurologist</h5>
-            <p class="speciality-sub">Brain, Spine & Nerves</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-md-4 col-lg-3">
-        <div class="speciality-card" onclick="selectSpeciality('Physiotherapist', this)">
-          <div class="speciality-icon"><i class="bi bi-person-walking"></i></div>
-          <div>
-            <h5 class="speciality-title">Physiotherapist</h5>
-            <p class="speciality-sub">Rehab & Stroke Care</p>
-          </div>
-        </div>
-      </div>
+
       <div class="col-6 col-md-4 col-lg-3">
         <div class="speciality-card" onclick="selectSpeciality('Dermatologist', this)">
           <div class="speciality-icon"><i class="bi bi-brightness-high-fill"></i></div>
@@ -486,12 +452,93 @@
           </div>
         </div>
       </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Cardiologist', this)">
+          <div class="speciality-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+          <div>
+            <h5 class="speciality-title">Cardiologist</h5>
+            <p class="speciality-sub">Heart & Blood Pressure</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Neurologist', this)">
+          <div class="speciality-icon"><i class="bi bi-activity"></i></div>
+          <div>
+            <h5 class="speciality-title">Neurologist</h5>
+            <p class="speciality-sub">Brain, Spine & Nerves</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('ENT Specialist', this)">
+          <div class="speciality-icon"><i class="bi bi-ear-fill"></i></div>
+          <div>
+            <h5 class="speciality-title">ENT Specialist</h5>
+            <p class="speciality-sub">Ear, Nose & Throat Care</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Pediatrician', this)">
+          <div class="speciality-icon"><i class="bi bi-emoji-smile-fill"></i></div>
+          <div>
+            <h5 class="speciality-title">Pediatrician</h5>
+            <p class="speciality-sub">Child Health & Vaccination</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Gastroenterologist', this)">
+          <div class="speciality-icon"><i class="bi bi-cup-hot-fill"></i></div>
+          <div>
+            <h5 class="speciality-title">Gastroenterologist</h5>
+            <p class="speciality-sub">Stomach & Digestive Health</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('General Physician', this)">
+          <div class="speciality-icon"><i class="bi bi-hospital-fill"></i></div>
+          <div>
+            <h5 class="speciality-title">General Physician</h5>
+            <p class="speciality-sub">Internal Medicine & Care</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Plastic Surgeon', this)">
+          <div class="speciality-icon"><i class="bi bi-person-hearts"></i></div>
+          <div>
+            <h5 class="speciality-title">Plastic Surgeon</h5>
+            <p class="speciality-sub">Reconstructive & Cosmetic Surgery</p>
+          </div>
+        </div>
+      </div>
+
       <div class="col-6 col-md-4 col-lg-3">
         <div class="speciality-card" onclick="selectSpeciality('Urologist', this)">
           <div class="speciality-icon"><i class="bi bi-droplet-fill"></i></div>
           <div>
             <h5 class="speciality-title">Urologist</h5>
             <p class="speciality-sub">Kidney & Urinary Care</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="speciality-card" onclick="selectSpeciality('Psychiatrist', this)">
+          <div class="speciality-icon"><i class="bi bi-headset"></i></div>
+          <div>
+            <h5 class="speciality-title">Psychiatrist</h5>
+            <p class="speciality-sub">Mental Health & Wellness</p>
           </div>
         </div>
       </div>
@@ -764,10 +811,66 @@ function selectSpeciality(specialityName, cardElement) {
 function filterDoctorsBySpeciality(speciality) {
   let filtered = allDoctors;
   
-  if (speciality !== 'All') {
+  if (speciality && speciality !== 'All') {
+    const target = speciality.toLowerCase().trim();
     filtered = allDoctors.filter(d => {
-      const spec = d.speciality || d.role || '';
-      return spec.toLowerCase().includes(speciality.toLowerCase());
+      const spec = (d.speciality || '').toLowerCase();
+      const role = (d.role || '').toLowerCase();
+      const desc = (d.description || '').toLowerCase();
+      const qual = (d.qualifications || '').toLowerCase();
+
+      // Direct match
+      if (spec.includes(target) || role.includes(target) || qual.includes(target)) {
+        return true;
+      }
+
+      // Smart Synonym / Related Term Mappings
+      if (target.includes('cardio') || target.includes('heart')) {
+        if (spec.includes('heart') || role.includes('heart') || desc.includes('heart') || spec.includes('cardio') || role.includes('cardio')) return true;
+      }
+      if (target.includes('neuro') || target.includes('brain') || target.includes('spine')) {
+        if (spec.includes('neuro') || role.includes('neuro') || spec.includes('brain') || role.includes('brain') || spec.includes('spine') || role.includes('spine')) return true;
+      }
+      if (target.includes('gyno') || target.includes('gyneco') || target.includes('women')) {
+        if (spec.includes('gyn') || role.includes('gyn') || spec.includes('women') || role.includes('women') || spec.includes('obs') || role.includes('obs')) return true;
+      }
+      if (target.includes('pedia') || target.includes('child')) {
+        if (spec.includes('pedia') || role.includes('pedia') || spec.includes('child') || role.includes('child') || spec.includes('baby') || role.includes('baby')) return true;
+      }
+      if (target.includes('derma') || target.includes('skin')) {
+        if (spec.includes('derma') || role.includes('derma') || spec.includes('skin') || role.includes('skin')) return true;
+      }
+      if (target.includes('physio') || target.includes('rehab')) {
+        if (spec.includes('physio') || role.includes('physio') || spec.includes('rehab') || role.includes('rehab')) return true;
+      }
+      if (target.includes('uro') || target.includes('kidney')) {
+        if (spec.includes('uro') || role.includes('uro') || spec.includes('kidney') || role.includes('kidney')) return true;
+      }
+      if (target.includes('general') || target.includes('physician') || target.includes('internal')) {
+        if (spec.includes('general') || role.includes('general') || spec.includes('physician') || role.includes('physician') || spec.includes('consultant') || role.includes('consultant') || spec.includes('director') || role.includes('director')) return true;
+      }
+
+      if (target.includes('dent') || target.includes('oral')) {
+        if (spec.includes('dent') || role.includes('dent') || spec.includes('oral') || role.includes('oral') || desc.includes('dental') || desc.includes('oral health')) return true;
+      }
+
+      if (target.includes('ent') || target.includes('ear') || target.includes('nose') || target.includes('throat')) {
+        if (spec.includes('ent') || role.includes('ent') || spec.includes('ear') || role.includes('ear') || spec.includes('nose') || role.includes('nose') || spec.includes('throat') || role.includes('throat')) return true;
+      }
+
+      if (target.includes('gastro') || target.includes('digest') || target.includes('stomach')) {
+        if (spec.includes('gastro') || role.includes('gastro') || spec.includes('digest') || role.includes('digest') || spec.includes('stomach') || role.includes('stomach')) return true;
+      }
+
+      if (target.includes('plastic') || target.includes('cosmetic') || target.includes('reconstruct')) {
+        if (spec.includes('plastic') || role.includes('plastic') || spec.includes('cosmetic') || role.includes('cosmetic') || spec.includes('reconstruct') || role.includes('reconstruct')) return true;
+      }
+
+      if (target.includes('psychiat') || target.includes('mental health') || target.includes('mental')) {
+        if (spec.includes('psychiat') || role.includes('psychiat') || spec.includes('mental') || role.includes('mental') || desc.includes('mental health')) return true;
+      }
+
+      return false;
     });
   }
 
@@ -775,7 +878,7 @@ function filterDoctorsBySpeciality(speciality) {
   const titleElem = document.getElementById('listingCategoryTitle');
   const badgeElem = document.getElementById('docCountBadge');
   
-  if (speciality === 'All') {
+  if (!speciality || speciality === 'All') {
     titleElem.innerText = 'All Medical Specialists in Faisalabad';
   } else {
     titleElem.innerText = `Best ${speciality} in Faisalabad`;
@@ -803,7 +906,7 @@ function renderDoctors(doctors) {
     const waNum = doc.whatsapp ? doc.whatsapp.replace(/[^0-9]/g, '') : '923008053198';
     const waMsg = encodeURIComponent(`Hello LifeCare, I would like to book an appointment with ${doc.name} (${doc.speciality || doc.role}).`);
     const docSpec = doc.speciality || doc.role || 'Specialist';
-    const docQual = doc.qualifications || doc.badge || 'MBBS';
+    const docQual = doc.qualifications || doc.badge || 'MBBS, FCPS';
     const hospName = doc.hospitalName || 'LifeCare Medical Center';
     const hospFee = doc.hospitalFee ? `Rs. ${doc.hospitalFee}` : 'Rs. 1500';
     const videoFee = doc.videoFee ? `Rs. ${doc.videoFee}` : 'Rs. 1000';
@@ -849,7 +952,7 @@ function renderDoctors(doctors) {
             </div>
 
             <div class="d-flex gap-2">
-              <button class="btn btn-outline-secondary w-50 font-weight-bold py-2" onclick="openDocProfileModal(${doc.id})" style="font-size:0.85rem;">
+              <button class="btn btn-outline-secondary w-50 font-weight-bold py-2" onclick="openDocProfileModal('${doc.id}')" style="font-size:0.85rem;">
                 View Profile
               </button>
               <a href="https://wa.me/${waNum}?text=${waMsg}" target="_blank" class="btn-navy w-50 py-2">
@@ -903,13 +1006,13 @@ function searchDoctors() {
 }
 
 function openDocProfileModal(docId) {
-  const doc = allDoctors.find(d => d.id === docId);
+  const doc = allDoctors.find(d => d.id == docId);
   if (!doc) return;
 
   document.getElementById('modalDocAvatar').src = doc.image || 'assets/doctor_1.jpg';
-  document.getElementById('modalDocName').innerText = doc.name;
+  document.getElementById('modalDocName').innerText = doc.name || 'Doctor Profile';
   document.getElementById('modalDocSpeciality').innerText = doc.speciality || doc.role || 'Specialist';
-  document.getElementById('modalDocQualifications').innerText = doc.qualifications || doc.badge || 'MBBS';
+  document.getElementById('modalDocQualifications').innerText = doc.qualifications || doc.badge || 'MBBS, FCPS';
   document.getElementById('modalDocWait').innerText = doc.waitTime || 'Under 15 Mins';
   document.getElementById('modalDocExp').innerText = doc.experience || '10 Years';
   document.getElementById('modalDocSat').innerText = doc.satisfaction || '97%';
@@ -922,7 +1025,7 @@ function openDocProfileModal(docId) {
   document.getElementById('modalDocVideoSched').innerText = doc.videoSchedule || 'Mon - Sun: 09:00 AM - 04:00 PM';
 
   const defaultBio = `<p><strong>${doc.name}</strong> is a qualified ${doc.speciality || doc.role}. ${doc.description || ''}</p>`;
-  document.getElementById('modalDocBio').innerHTML = doc.aboutBio || defaultBio;
+  document.getElementById('modalDocBio').innerHTML = doc.aboutBio || doc.description || defaultBio;
 
   const waNum = doc.whatsapp ? doc.whatsapp.replace(/[^0-9]/g, '') : '923008053198';
   const hospMsg = encodeURIComponent(`Hello LifeCare, I want to book a Hospital Visit with ${doc.name} (${doc.speciality || doc.role}).`);

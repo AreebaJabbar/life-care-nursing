@@ -1,12 +1,44 @@
 [
     {
+        "id": 4,
+        "name": "Dr. Ali Usman Javed",
+        "role": "Basic Medical Qualification",
+        "badge": "PMC Verified",
+        "image": "assets\/doctor_1.jpg",
+        "description": "He is a qualified medical doctor holding an MBBS degree from the University of Health Sciences (UHS), Lahore. He is permanently registered with the Pakistan Medical and Dental Council (PMDC) as a medical practitioner. His PMDC registration confirms his professional credentials and authorization to practice medicine in accordance with the applicable medical regulations.",
+        "whatsapp": "923008053198",
+        "created_at": "2026-09-08 01:56:01",
+        "speciality": "Dentist",
+        "qualifications": "MBBS",
+        "experience": "3 Years",
+        "waitTime": "Under 15 Mins",
+        "satisfaction": "97%",
+        "hospitalName": "LifeCare Clinical Center",
+        "hospitalFee": "1500",
+        "hospitalSchedule": "Mon - Sun: 09:00AM - 04:00PM",
+        "videoFee": "1000",
+        "videoSchedule": "Mon - Sun: 08:00PM - 11:00PM",
+        "aboutBio": ""
+    },
+    {
         "id": 1,
         "name": "Dr Zahid Choudary",
         "role": "Managing Director",
         "badge": "PMC Verified",
-        "image": "uploads\/1788523800_WhatsApp_Image_2026-09-04_at_12.11.51_AM.jpeg",
+        "image": "uploads\/1788592552_WhatsApp_Image_2026-09-04_at_12.11.51_AM.jpeg",
         "description": "Dr. Zahid specializes in General Medicine, focusing on the diagnosis, treatment, and prevention of a wide range of medical conditions. He provides comprehensive patient care and helps manage both acute illnesses and long-term health conditions.",
         "whatsapp": "923008053198",
-        "created_at": "2026-09-04 05:10:00"
+        "created_at": "2026-09-08 01:56:01",
+        "speciality": "Managing Director",
+        "qualifications": "MBBS, FCPS",
+        "experience": "10 Years",
+        "waitTime": "Under 15 Mins",
+        "satisfaction": "97%",
+        "hospitalName": "LifeCare Clinical Center",
+        "hospitalFee": "1500",
+        "hospitalSchedule": "Mon - Sat: 02:00 PM - 05:00 PM",
+        "videoFee": "1000",
+        "videoSchedule": "Mon - Sun: 09:00 AM - 04:00 PM",
+        "aboutBio": ""
     }
 ]
