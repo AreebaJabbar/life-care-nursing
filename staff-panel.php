@@ -181,7 +181,7 @@ $staff = getData('staff');
         <li class="nav-item"><a class="nav-link" href="doctor-panel.php">Doctor Panel</a></li>
         <li class="nav-item"><a class="nav-link active" href="staff-panel.php">Staff Panel</a></li>
         <li class="nav-item"><a class="nav-link" href="team.php">Our Team</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
         <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20request%20nursing%20staff" target="_blank" class="btn-care">Get Nursing Care</a></li>
       </ul>
     </div>

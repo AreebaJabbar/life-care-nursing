@@ -172,7 +172,7 @@ $team = getData('team');
         <li class="nav-item"><a class="nav-link" href="doctor-panel.php">Doctor Panel</a></li>
         <li class="nav-item"><a class="nav-link" href="staff-panel.php">Staff Panel</a></li>
         <li class="nav-item"><a class="nav-link active" href="team.php">Our Team</a></li>
-        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
         <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20get%20in%20touch" target="_blank" class="btn-care">Get in Touch</a></li>
       </ul>
     </div>
