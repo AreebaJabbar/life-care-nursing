@@ -1,31 +1,20 @@
 [
     {
-        "id": 1789034953,
+        "id": 1788941447,
         "name": "Areeba Jabbar",
         "phone": "03406091626",
         "email": "jabbarareeba5@gmail.com",
-        "service": "Portable X-Ray &#38; ECG",
-        "message": "hiiii",
-        "date": "2026-09-10 12:09:13"
+        "service": "Doctor Consultation",
+        "message": "Aaaaaaaaaaaaa",
+        "date": "2026-09-09 10:10:47"
     },
     {
-        "id": 2,
+        "id": 1788435373,
         "name": "Areeba Jabbar",
         "phone": "03406091626",
         "email": "jabbarareeba5@gmail.com",
         "service": "General Inquiry",
         "message": "hiiiii",
-        "created_at": "2026-09-10 02:53:33",
-        "status": "approved"
-    },
-    {
-        "id": 1,
-        "name": "Areeba Jabbar",
-        "phone": "03406091626",
-        "email": "jabbarareeba5@gmail.com",
-        "service": "Doctor Consultation",
-        "message": "Heloooo",
-        "created_at": "2026-09-10 02:53:33",
-        "status": "approved"
+        "date": "2026-09-03 13:36:13"
     }
 ]

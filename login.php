@@ -1,19 +1,9 @@
 <?php
 require_once __DIR__ . '/config.php';
 
-// If already logged in, redirect to respective dashboard
-if (isLoggedIn()) {
-    header('Location: admin/index.php');
-    exit;
-}
-if (isDoctorLoggedIn()) {
-    header('Location: doctor-dashboard.php');
-    exit;
-}
-if (isStaffLoggedIn()) {
-    header('Location: staff-dashboard.php');
-    exit;
-}
+// Note: login.php always shows the role selector screen, even if a
+// session is already active. The dashboard only opens after the user
+// explicitly selects a role and submits valid credentials below.
 
 $error = '';
 $selectedRole = isset($_GET['role']) && in_array($_GET['role'], ['admin', 'doctor', 'staff']) ? $_GET['role'] : 'doctor';
@@ -29,6 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($selectedRole === 'admin') {
             // ADMIN LOGIN VERIFICATION
             if ($username === ADMIN_USERNAME && ($password === 'admin123' || password_verify($password, ADMIN_PASSWORD_HASH))) {
+                // Clear any leftover Doctor/Staff session from this browser first
+                unset($_SESSION['doctor_id'], $_SESSION['doctor_name'], $_SESSION['staff_id'], $_SESSION['staff_name']);
                 $_SESSION['admin_logged_in'] = true;
                 $_SESSION['admin_username']  = $username;
                 header('Location: admin/index.php');
@@ -46,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } elseif ($status === 'disabled' || $status === 'rejected') {
                     $error = 'Your doctor account has been <strong>disabled or rejected</strong> by administration.';
                 } else {
+                    // Clear any leftover Admin/Staff session from this browser first
+                    unset($_SESSION['admin_logged_in'], $_SESSION['admin_username'], $_SESSION['staff_id'], $_SESSION['staff_name']);
                     $_SESSION['doctor_id']   = (int)$doctor['id'];
                     $_SESSION['doctor_name'] = $doctor['name'];
                     header('Location: doctor-dashboard.php');
@@ -64,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } elseif ($status === 'disabled' || $status === 'rejected') {
                     $error = 'Your staff account has been <strong>disabled or rejected</strong> by administration.';
                 } else {
+                    // Clear any leftover Admin/Doctor session from this browser first
+                    unset($_SESSION['admin_logged_in'], $_SESSION['admin_username'], $_SESSION['doctor_id'], $_SESSION['doctor_name']);
                     $_SESSION['staff_id']   = (int)$staff['id'];
                     $_SESSION['staff_name'] = $staff['name'];
                     header('Location: staff-dashboard.php');
