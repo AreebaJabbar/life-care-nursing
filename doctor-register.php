@@ -1,0 +1,196 @@
+<?php
+require_once __DIR__ . '/config.php';
+
+$error = '';
+$success = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name       = trim($_POST['name'] ?? '');
+    $username   = trim($_POST['username'] ?? '');
+    $password   = trim($_POST['password'] ?? '');
+    $speciality = trim($_POST['speciality'] ?? '');
+
+    if (empty($name) || empty($username) || empty($password) || empty($speciality)) {
+        $error = 'All fields (Name, Username/Email, Password, Speciality) are required.';
+    } elseif (getDoctorByUsername($username)) {
+        $error = 'This Username / Email is already registered. Please choose another or login.';
+    } else {
+        $doctors = getData('doctors');
+        $newId = !empty($doctors) ? max(array_column($doctors, 'id')) + 1 : 1;
+
+        $newDoctor = [
+            'id'               => $newId,
+            'name'             => $name,
+            'username'         => $username,
+            'password'         => password_hash($password, PASSWORD_DEFAULT),
+            'status'           => 'pending',
+            'speciality'       => $speciality,
+            'role'             => $speciality . ' Consultant',
+            'qualifications'   => 'MBBS, FCPS',
+            'badge'            => 'PMC Verified',
+            'experience'       => '5+ Years',
+            'waitTime'         => 'Under 15 Mins',
+            'satisfaction'     => '98%',
+            'hospitalName'     => 'LifeCare Clinical Center',
+            'hospitalFee'      => '1500',
+            'hospitalSchedule' => 'Mon - Sat: 02:00 PM - 05:00 PM',
+            'videoFee'         => '1000',
+            'videoSchedule'    => 'Mon - Sun: 09:00 AM - 04:00 PM',
+            'image'            => 'assets/doctor_1.jpg',
+            'description'      => 'Specialist doctor providing home consultations and clinical medical services.',
+            'aboutBio'         => 'Experienced in treating general and specialized clinical cases with dedicated patient care.',
+            'whatsapp'         => '923008053198'
+        ];
+
+        $doctors[] = $newDoctor;
+        saveData('doctors', $doctors);
+
+        $success = 'Account created successfully! Your registration is currently <strong>Pending Admin Approval</strong>. You can log in once an admin approves your profile.';
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctor Self-Registration — <?= SITE_NAME ?></title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+  :root {
+    --brand-navy: #03357A;
+    --brand-teal: #029491;
+    --teal-900: #0E3B36;
+    --teal-700: #1B6B63;
+    --bg-soft: #F4F8F7;
+  }
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg-soft);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+  .auth-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(3, 53, 122, 0.08);
+    width: 100%;
+    max-width: 520px;
+    padding: 2.5rem;
+    border: 1px solid #E2EDE9;
+  }
+  .auth-card h2 {
+    font-family: 'Fraunces', serif;
+    color: var(--teal-900);
+    font-weight: 700;
+  }
+  .auth-badge {
+    background: rgba(2, 148, 145, 0.1);
+    color: var(--brand-teal);
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  .btn-care {
+    background: var(--brand-teal);
+    color: #fff;
+    border: none;
+    padding: 0.85rem;
+    border-radius: 8px;
+    font-weight: 700;
+    width: 100%;
+    transition: 0.3s ease;
+  }
+  .btn-care:hover {
+    background: var(--brand-navy);
+    color: #fff;
+  }
+  .form-control, .form-select {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #D0E0DC;
+  }
+  .form-control:focus, .form-select:focus {
+    border-color: var(--brand-teal);
+    box-shadow: 0 0 0 3px rgba(2, 148, 145, 0.15);
+  }
+</style>
+</head>
+<body>
+
+<div class="auth-card">
+  <div class="text-center mb-4">
+    <span class="auth-badge"><i class="bi bi-person-plus-fill me-1"></i> Doctor Portal</span>
+    <h2>Doctor Self-Registration</h2>
+    <p class="text-muted small">Create your profile to offer medical consultations on LifeCare</p>
+  </div>
+
+  <?php if (!empty($error)): ?>
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+      <i class="bi bi-exclamation-triangle-fill me-2"></i>
+      <div><?= htmlspecialchars($error) ?></div>
+    </div>
+  <?php endif; ?>
+
+  <?php if (!empty($success)): ?>
+    <div class="alert alert-success" role="alert">
+      <i class="bi bi-check-circle-fill me-2"></i>
+      <?= $success ?>
+    </div>
+    <div class="text-center mt-3">
+      <a href="doctor-login.php" class="btn btn-care">Proceed to Doctor Login</a>
+    </div>
+  <?php else: ?>
+
+    <form method="POST" action="">
+      <div class="mb-3">
+        <label class="form-label font-weight-bold"><i class="bi bi-person me-1"></i> Full Name</label>
+        <input type="text" name="name" class="form-control" placeholder="e.g. Dr. Haris Abbasi" required value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label font-weight-bold"><i class="bi bi-envelope me-1"></i> Username or Email</label>
+        <input type="text" name="username" class="form-control" placeholder="e.g. drharis@lifecare.com" required value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label font-weight-bold"><i class="bi bi-lock me-1"></i> Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Create a strong password" required>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label font-weight-bold"><i class="bi bi-award me-1"></i> Speciality</label>
+        <select name="speciality" class="form-select" required>
+          <option value="">-- Select Speciality --</option>
+          <option value="General Physician">General Physician</option>
+          <option value="Internal Medicine">Internal Medicine</option>
+          <option value="Cardiology">Cardiology</option>
+          <option value="Physiotherapy">Physiotherapy</option>
+          <option value="Home Care Specialist">Home Care Specialist</option>
+          <option value="Pediatrics">Pediatrics</option>
+          <option value="Neurology">Neurology</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-care mb-3">Register Profile</button>
+    </form>
+
+    <div class="text-center mt-3 pt-3 border-top">
+      <span class="text-muted small">Already registered? </span>
+      <a href="doctor-login.php" class="fw-bold text-decoration-none" style="color: var(--brand-navy);">Login Here</a>
+    </div>
+
+  <?php endif; ?>
+</div>
+
+</body>
+</html>
