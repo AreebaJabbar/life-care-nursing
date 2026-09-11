@@ -65,12 +65,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     --brand-teal: #029491;
     --teal-900: #0E3B36;
     --teal-700: #1B6B63;
+    --teal-500: #2E8C82;
+    --amber-500: #D9A441;
     --bg-soft: #F4F8F7;
+    --font-display: 'Fraunces', serif;
   }
   body {
     font-family: 'Manrope', sans-serif;
     background: var(--bg-soft);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  .auth-wrapper {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -123,10 +132,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     border-color: var(--brand-teal);
     box-shadow: 0 0 0 3px rgba(2, 148, 145, 0.15);
   }
+
+  /* ---------- Footer (same as homepage) ---------- */
+  footer{
+    background:var(--teal-900);
+    color:#BFD6D2;
+    padding:4rem 0 1.5rem;
+    font-size:.9rem;
+  }
+  footer h5{color:#fff; font-size:1rem; margin-bottom:1.1rem;}
+  footer a{color:#BFD6D2; text-decoration:none;}
+  footer a:hover{color:var(--amber-500);}
+  footer ul{list-style:none; padding:0; margin:0;}
+  footer li{margin-bottom:.6rem;}
+  .footer-brand{font-family:var(--font-display); color:#fff; font-size:1.3rem; font-weight:700;}
+  .footer-logo{height:72px; width:auto; background:#fff; border-radius:8px; padding:.35rem .5rem;}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,.12);
+    margin-top:2.5rem; padding-top:1.5rem;
+    font-size:.8rem; color:#9FC2BC;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
+  }
+  .social-dot{
+    width:34px; height:34px; border-radius:50%; background:var(--teal-500); color:#fff;
+    display:inline-flex; align-items:center; justify-content:center; margin-right:.5rem;
+  }
+  .social-dot i{color:#fff;}
+  .social-dot:hover{background:var(--brand-navy); color:#fff;}
+  .social-dot:hover i{color:#fff;}
 </style>
 </head>
 <body>
 
+<div class="auth-wrapper">
 <div class="auth-card">
   <div class="text-center mb-4">
     <span class="auth-badge"><i class="bi bi-person-plus-fill me-1"></i> Doctor Portal</span>
@@ -171,13 +209,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label class="form-label font-weight-bold"><i class="bi bi-award me-1"></i> Speciality</label>
         <select name="speciality" class="form-select" required>
           <option value="">-- Select Speciality --</option>
-          <option value="General Physician">General Physician</option>
-          <option value="Internal Medicine">Internal Medicine</option>
-          <option value="Cardiology">Cardiology</option>
-          <option value="Physiotherapy">Physiotherapy</option>
-          <option value="Home Care Specialist">Home Care Specialist</option>
-          <option value="Pediatrics">Pediatrics</option>
-          <option value="Neurology">Neurology</option>
+          <option value="Gynecologist" <?= (($_POST['speciality'] ?? '') === 'Gynecologist') ? 'selected' : '' ?>>Gynecologist</option>
+          <option value="Dentist" <?= (($_POST['speciality'] ?? '') === 'Dentist') ? 'selected' : '' ?>>Dentist</option>
+          <option value="Dermatologist" <?= (($_POST['speciality'] ?? '') === 'Dermatologist') ? 'selected' : '' ?>>Dermatologist</option>
+          <option value="Cardiologist" <?= (($_POST['speciality'] ?? '') === 'Cardiologist') ? 'selected' : '' ?>>Cardiologist</option>
+          <option value="Neurologist" <?= (($_POST['speciality'] ?? '') === 'Neurologist') ? 'selected' : '' ?>>Neurologist</option>
+          <option value="ENT Specialist" <?= (($_POST['speciality'] ?? '') === 'ENT Specialist') ? 'selected' : '' ?>>ENT Specialist</option>
+          <option value="Pediatrician" <?= (($_POST['speciality'] ?? '') === 'Pediatrician') ? 'selected' : '' ?>>Pediatrician</option>
+          <option value="Gastroenterologist" <?= (($_POST['speciality'] ?? '') === 'Gastroenterologist') ? 'selected' : '' ?>>Gastroenterologist</option>
+          <option value="General Physician" <?= (($_POST['speciality'] ?? '') === 'General Physician') ? 'selected' : '' ?>>General Physician</option>
+          <option value="Plastic Surgeon" <?= (($_POST['speciality'] ?? '') === 'Plastic Surgeon') ? 'selected' : '' ?>>Plastic Surgeon</option>
+          <option value="Urologist" <?= (($_POST['speciality'] ?? '') === 'Urologist') ? 'selected' : '' ?>>Urologist</option>
+          <option value="Psychiatrist" <?= (($_POST['speciality'] ?? '') === 'Psychiatrist') ? 'selected' : '' ?>>Psychiatrist</option>
         </select>
       </div>
 
@@ -191,6 +234,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <?php endif; ?>
 </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer id="contact">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <img src="assets/logo.png" alt="LifeCare Nursing & Medical Services" class="footer-logo mb-3">
+        <p>LifeCare provides nursing, elderly care, physiotherapy, diagnostic and other healthcare services for patients who need support at home.</p>
+        <div class="mt-3">
+          <a href="#" class="social-dot"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#services">Our Services</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-6">
+        <h5>Our Services</h5>
+        <ul>
+          <li><a href="doctor-consultation.html">Doctor Consultation</a></li>
+          <li><a href="home-nursing-care.html">Home Nursing Care</a></li>
+          <li><a href="elderly-senior-care.html">Elderly / Senior Care</a></li>
+          <li><a href="physiotherapy.html">Physiotherapy</a></li>
+          <li><a href="diagnostic-services.html">Diagnostic Services</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h5>Get in Touch</h5>
+        <ul>
+          <li><a href="tel:+923008053198"><i class="bi bi-telephone-fill me-2"></i>0300-8053198</a></li>
+          <li><a href="mailto:lifecarenursing5@gmail.com"><i class="bi bi-envelope-fill me-2"></i>lifecarenursing5@gmail.com</a></li>
+          <li><i class="bi bi-geo-alt-fill me-2"></i>Near Zee Garden Main Shekhupura / Lahore Road Faislabad</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Copyright &copy; 2026 LifeCare Nursing & Medical Services. All Rights Reserved.</div>
+      <div><a href="#">Terms & Service</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

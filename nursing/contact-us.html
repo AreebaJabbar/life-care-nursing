@@ -114,7 +114,14 @@
   footer ul li{margin-bottom:.6rem;}
   footer ul li a{color:#CFE0DC; font-size:.9rem; opacity:.9;}
   footer ul li a:hover{opacity:1; color:var(--amber-500);}
-  .social-dot{display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.1); color:#fff; margin-right:.5rem;}
+  .social-dot{
+    width:34px; height:34px; border-radius:50%; background:var(--teal-500); color:#fff;
+    display:inline-flex; align-items:center; justify-content:center; margin-right:.5rem;
+    transition: all 0.3s ease;
+  }
+  .social-dot i{color:#fff;}
+  .social-dot:hover{background:var(--brand-navy); color:#fff;}
+  .social-dot:hover i{color:#fff;}
   .footer-bottom{border-top:1px solid rgba(255,255,255,.1); margin-top:2.5rem; padding:1.2rem 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; font-size:.82rem; opacity:.8;}
   .footer-bottom a{color:#CFE0DC;}
 

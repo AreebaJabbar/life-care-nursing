@@ -132,7 +132,11 @@ $staff = array_filter($allStaff, function($s) {
   .social-dot{
     width:34px; height:34px; border-radius:50%; background:var(--teal-500); color:#fff;
     display:inline-flex; align-items:center; justify-content:center; margin-right:.5rem;
+    transition: all 0.3s ease;
   }
+  .social-dot i{color:#fff;}
+  .social-dot:hover{background:var(--brand-navy); color:#fff;}
+  .social-dot:hover i{color:#fff;}
   .footer-bottom{
     border-top:1px solid rgba(14,59,54,.1); margin-top:2.5rem; padding:1.3rem 0;
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:.7rem; font-size:.82rem; color:#5C6A66;
@@ -261,6 +265,12 @@ $staff = array_filter($allStaff, function($s) {
       <div class="col-lg-4">
         <img src="assets/logo.png" alt="LifeCare Nursing & Medical Services" class="footer-logo">
         <p>LifeCare provides nursing, elderly care, physiotherapy, diagnostic services and other healthcare support for patients at home.</p>
+        <div class="mt-3">
+          <a href="#" class="social-dot"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="social-dot"><i class="bi bi-tiktok"></i></a>
+        </div>
       </div>
       <div class="col-lg-2 col-6">
         <h5>Quick Links</h5>

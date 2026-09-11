@@ -171,13 +171,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label class="form-label font-weight-bold"><i class="bi bi-award me-1"></i> Speciality</label>
         <select name="speciality" class="form-select" required>
           <option value="">-- Select Speciality --</option>
-          <option value="General Physician">General Physician</option>
-          <option value="Internal Medicine">Internal Medicine</option>
-          <option value="Cardiology">Cardiology</option>
-          <option value="Physiotherapy">Physiotherapy</option>
-          <option value="Home Care Specialist">Home Care Specialist</option>
-          <option value="Pediatrics">Pediatrics</option>
-          <option value="Neurology">Neurology</option>
+          <option value="Gynecologist" <?= (($_POST['speciality'] ?? '') === 'Gynecologist') ? 'selected' : '' ?>>Gynecologist</option>
+          <option value="Dentist" <?= (($_POST['speciality'] ?? '') === 'Dentist') ? 'selected' : '' ?>>Dentist</option>
+          <option value="Dermatologist" <?= (($_POST['speciality'] ?? '') === 'Dermatologist') ? 'selected' : '' ?>>Dermatologist</option>
+          <option value="Cardiologist" <?= (($_POST['speciality'] ?? '') === 'Cardiologist') ? 'selected' : '' ?>>Cardiologist</option>
+          <option value="Neurologist" <?= (($_POST['speciality'] ?? '') === 'Neurologist') ? 'selected' : '' ?>>Neurologist</option>
+          <option value="ENT Specialist" <?= (($_POST['speciality'] ?? '') === 'ENT Specialist') ? 'selected' : '' ?>>ENT Specialist</option>
+          <option value="Pediatrician" <?= (($_POST['speciality'] ?? '') === 'Pediatrician') ? 'selected' : '' ?>>Pediatrician</option>
+          <option value="Gastroenterologist" <?= (($_POST['speciality'] ?? '') === 'Gastroenterologist') ? 'selected' : '' ?>>Gastroenterologist</option>
+          <option value="General Physician" <?= (($_POST['speciality'] ?? '') === 'General Physician') ? 'selected' : '' ?>>General Physician</option>
+          <option value="Plastic Surgeon" <?= (($_POST['speciality'] ?? '') === 'Plastic Surgeon') ? 'selected' : '' ?>>Plastic Surgeon</option>
+          <option value="Urologist" <?= (($_POST['speciality'] ?? '') === 'Urologist') ? 'selected' : '' ?>>Urologist</option>
+          <option value="Psychiatrist" <?= (($_POST['speciality'] ?? '') === 'Psychiatrist') ? 'selected' : '' ?>>Psychiatrist</option>
         </select>
       </div>
 
