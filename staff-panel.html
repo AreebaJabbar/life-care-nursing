@@ -140,6 +140,50 @@
   .page-hero .eyebrow{color:var(--amber-100);}
   .page-hero .eyebrow::before{background:var(--amber-100);}
 
+  /* Hero "Register Yourself" (Staff) button */
+  .hero-register-btn{
+    position:absolute;
+    top:1.5rem;
+    right:1.5rem;
+    z-index:3;
+    background:#fff;
+    color:var(--teal-700);
+    font-weight:700;
+    font-size:.85rem;
+    padding:.6rem 1.2rem;
+    border-radius:30px;
+    text-decoration:none;
+    box-shadow:0 6px 16px rgba(0,0,0,.18);
+    transition:.25s ease;
+    display:inline-flex;
+    align-items:center;
+    white-space:nowrap;
+  }
+  .hero-register-btn:hover{
+    background:var(--amber-500);
+    color:#fff;
+  }
+  .hero-register-btn-mobile{
+    display:none;
+  }
+  @media(max-width:767px){
+    .hero-register-btn{ display:none; }
+    .hero-register-btn-mobile{
+      display:inline-flex;
+      align-items:center;
+      background:#fff;
+      color:var(--teal-700);
+      font-weight:700;
+      font-size:.82rem;
+      padding:.55rem 1.1rem;
+      border-radius:30px;
+      text-decoration:none;
+      box-shadow:0 4px 12px rgba(0,0,0,.15);
+      margin-bottom:1.1rem;
+    }
+    .hero-register-btn-mobile:hover{ background:var(--amber-500); color:#fff; }
+  }
+
   /* beBee-Style Filter Bar */
   .filter-card{
     background:#fff;
@@ -376,7 +420,13 @@
 
 <!-- HERO SECTION -->
 <section class="page-hero">
+  <a href="login.php?role=staff" class="hero-register-btn">
+    <i class="bi bi-person-plus-fill me-1"></i> Register Yourself
+  </a>
   <div class="container text-center">
+    <a href="login.php?role=staff" class="hero-register-btn-mobile">
+      <i class="bi bi-person-plus-fill me-1"></i> Register Yourself
+    </a>
     <div class="eyebrow justify-content-center mb-3">FIND NURSES & CAREGIVERS IN YOUR CITY</div>
     <h1 class="display-5 text-white mb-3 fw-bold">Find Healthcare Staff & Talent Directory</h1>
     <p class="lead mx-auto" style="max-width:700px; color:#DCEAE7; font-size:1.05rem;">
