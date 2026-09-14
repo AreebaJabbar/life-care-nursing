@@ -454,7 +454,7 @@
   }
 
   .facility-heading-text{font-size:2.6rem; color:var(--teal-900);}
-  .facility-heading-divider{width:70px; height:3px;}
+  .facility-heading-divider{width:70px; height:3px; background:var(--amber-500); border-radius:2px;}
   .facility-lead-paragraph{font-size:1.02rem; line-height:1.85; color:#4C5754;}
   .facility-lead-paragraph strong{color:var(--teal-900);}
 
@@ -638,12 +638,12 @@
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
   }
   .social-dot{
-    width:34px; height:34px; border-radius:50%; background:var(--teal-500); color:#fff;
-    display:inline-flex; align-items:center; justify-content:center; margin-right:.5rem;
+    width:36px;height:36px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.25);
+    display:inline-flex; align-items:center; justify-content:center;
+    margin-right:.5rem;
   }
-  .social-dot i{color:#fff;}
-  .social-dot:hover{background:var(--brand-navy); color:#fff;}
-  .social-dot:hover i{color:#fff;}
+  .social-dot:hover{background:var(--amber-500); border-color:var(--amber-500);}
 
   .whatsapp-fab{
     position:fixed; bottom:22px; right:22px; z-index:999;
@@ -719,74 +719,29 @@
   .service-box-card{
     background:#fff; border-radius:12px; padding:2.3rem 1.7rem;
     height:100%; box-shadow:0 10px 30px rgba(14,59,54,.06);
-    transition:.3s ease; text-decoration:none; display:block; cursor:pointer;
+    transition:.3s ease;
   }
+  .service-box-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(14,59,54,.12);}
   .service-box-card h5{
     font-family:var(--font-display); font-weight:700; font-size:1.15rem;
-    color:var(--teal-900); margin-bottom:.7rem; transition:.3s ease;
+    color:var(--teal-900); margin-bottom:.7rem;
   }
-  .service-box-card p{font-size:.9rem; line-height:1.65; color:#586360; margin:0; transition:.3s ease;}
+  .service-box-card p{font-size:.9rem; line-height:1.65; color:#586360; margin:0;}
 
   .service-icon-badge{
     width:64px; height:64px; border-radius:50%;
     background:var(--amber-100); color:var(--teal-700);
     display:flex; align-items:center; justify-content:center;
-    font-size:1.6rem; margin-bottom:1.3rem; transition:.3s ease;
+    font-size:1.6rem; margin-bottom:1.3rem;
   }
 
-  .service-box-card:hover{
-    background:var(--teal-500);
-    transform:translateY(-6px);
-    box-shadow:0 20px 45px rgba(46,140,130,.35);
-  }
-  .service-box-card:hover h5{color:#ffffff;}
-  .service-box-card:hover p{color:rgba(255,255,255,0.95);}
-  .service-box-card:hover .service-icon-badge{
-    background:rgba(255,255,255,.2);
-    color:#ffffff;
-  }
+  .featured-highlight-card{background:var(--teal-500); box-shadow:0 20px 45px rgba(46,140,130,.35);}
+  .featured-highlight-card:hover{transform:translateY(-6px); box-shadow:0 26px 50px rgba(46,140,130,.4);}
+  .featured-badge{background:rgba(255,255,255,.18); color:#fff;}
+  .text-white-80{color:rgba(255,255,255,.85)!important;}
 
   @media(max-width:991px){
     .services-main-title{font-size:2rem;}
-  }
-
-  /* ---------- Doctor & Staff Panels ---------- */
-  .panel-card{
-    background:#fff; border-radius:14px; overflow:hidden;
-    box-shadow:0 12px 35px rgba(14,59,54,.08); transition:.35s ease;
-    height:100%; display:flex; flex-direction:column; border:1px solid #E8F0EE;
-  }
-  .panel-card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 22px 48px rgba(14,59,54,.16);
-    border-color:var(--brand-teal);
-  }
-  .panel-card-img-holder{
-    position:relative; width:100%; height:250px; overflow:hidden; background:#EAF3F1;
-  }
-  .panel-card-img-holder img{
-    width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease;
-  }
-  .panel-card:hover .panel-card-img-holder img{transform:scale(1.06);}
-  .panel-card-badge{
-    position:absolute; bottom:12px; left:12px; background:var(--brand-navy); color:#fff;
-    font-size:.75rem; font-weight:700; padding:.35rem .85rem; border-radius:20px;
-    letter-spacing:.03em; text-transform:uppercase; box-shadow:0 4px 12px rgba(0,0,0,.2);
-  }
-  .panel-card-body{
-    padding:1.6rem; flex:1; display:flex; flex-direction:column; justify-content:space-between;
-  }
-  .panel-card-name{
-    font-family:var(--font-display); font-size:1.2rem; font-weight:700; color:var(--teal-900); margin-bottom:.3rem;
-  }
-  .panel-card-role{
-    color:var(--brand-teal); font-weight:700; font-size:.85rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.8rem;
-  }
-  .panel-card-desc{
-    font-size:.9rem; color:#52605C; line-height:1.65; margin-bottom:1.2rem;
-  }
-  .panel-card-btn{
-    width:100%; justify-content:center; padding:.75rem 1rem; font-size:.82rem; border-radius:6px;
   }
 
   /* ---------- Why Choose Us 3-Column Layout ---------- */
@@ -880,23 +835,20 @@
 
   .floating-contact-stack{
     position:fixed; right:22px; bottom:22px; z-index:999;
-    display:flex; flex-direction:column; align-items:flex-end; gap:.7rem;
+    display:flex; flex-direction:column; gap:.7rem;
   }
   .floating-contact-btn{
-    display:inline-flex; align-items:center; justify-content:center;
-    color:#fff; box-shadow:0 8px 20px rgba(0,0,0,.25);
-    transition:.25s ease; text-decoration:none;
+    width:54px; height:54px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:1.4rem;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+    transition:.25s ease;
   }
-  .floating-contact-btn:hover{transform:scale(1.06); color:#fff;}
-  .btn-call{width:50px; height:50px; border-radius:50%; font-size:1.3rem; background:var(--brand-navy);}
+  .floating-contact-btn:hover{transform:scale(1.08);}
+  .btn-call{background:var(--brand-navy);}
   .btn-call:hover{background:var(--brand-teal); color:#fff;}
-  .btn-wa{
-    background:#25D366; color:#fff; padding:.7rem 1.25rem; border-radius:50px;
-    font-weight:700; font-size:.9rem; gap:.5rem;
-    box-shadow:0 8px 22px rgba(37,211,102,.45);
-  }
-  .btn-wa:hover{background:#1EBE57; color:#fff;}
-  .btn-wa i{font-size:1.25rem;}
+  .btn-wa{background:var(--brand-teal);}
+  .btn-wa:hover{background:var(--brand-navy); color:#fff;}
 </style>
 </head>
 <body>
@@ -905,8 +857,8 @@
 <div class="topbar">
   <div class="container d-flex justify-content-between align-items-center flex-wrap">
     <div class="d-flex gap-3">
-      <a href="tel:+923008053198"><i class="bi bi-telephone-fill me-1"></i> 0300-8053198</a>
-      <a href="mailto:lifecarenursing5@gmail.com" class="d-none d-sm-inline"><i class="bi bi-envelope-fill me-1"></i> lifecarenursing5@gmail.com</a>
+      <a href="tel:+923000000000"><i class="bi bi-telephone-fill me-1"></i> +92 300 0000000</a>
+      <a href="mailto:info@lifecarenursing.pk" class="d-none d-sm-inline"><i class="bi bi-envelope-fill me-1"></i> info@lifecarenursing.pk</a>
     </div>
     <div class="d-flex gap-3">
       <a href="#"><i class="bi bi-facebook"></i></a>
@@ -942,12 +894,10 @@
             <li><a class="dropdown-item" href="respiratory-speech-therapy.html">Respiratory & Speech Therapy</a></li>
           </ul>
         </li>
+        <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="doctor-panel.html">Doctor Panel</a></li>
-        <li class="nav-item"><a class="nav-link" href="staff-panel.html">Staff Panel</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-        <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-care">Get an Appointment</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a href="#contact" class="btn-care">Get an Appointment</a></li>
       </ul>
     </div>
   </div>
@@ -966,10 +916,10 @@
               <div class="col-lg-7 hero-slide-text">
                 <div class="eyebrow mb-3">Welcome to LifeCare Nursing $ Medical Services</div>
                 <h1 class="mb-3">Trusted Home Nursing Care</h1>
-                <p class="lead-text mb-4">Since 2025, we've been providing compassionate, reliable, and professional healthcare services across the city. Whether you need in home nursing, elderly care, or medical support, we are here for you 24/7.</p>
+                <p class="lead-text mb-4">Since 2015, we've been providing compassionate, reliable, and professional healthcare services across the city. Whether you need in home nursing, elderly care, or medical support, we are here for you 24/7.</p>
                 <div class="d-flex gap-3 flex-wrap">
                   <a href="#services" class="btn-care">Our Services</a>
-                  <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-outline-care">Get an Appointment</a>
+                  <a href="#contact" class="btn-outline-care">Get an Appointment</a>
                 </div>
                 <div class="float-card"><i class="bi bi-patch-check-fill"></i> PHC Registered Provider</div>
               </div>
@@ -989,7 +939,7 @@
                 <p class="lead-text mb-4">Our qualified nurses visit your loved ones at home for routine check-ups, medication management, and daily care  bringing hospital quality attention into a familiar, comfortable setting.</p>
                 <div class="d-flex gap-3 flex-wrap">
                   <a href="#services" class="btn-care">Our Services</a>
-                  <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-outline-care">Get an Appointment</a>
+                  <a href="#contact" class="btn-outline-care">Get an Appointment</a>
                 </div>
                 <div class="float-card"><i class="bi bi-patch-check-fill"></i> PHC Registered Provider</div>
               </div>
@@ -1063,7 +1013,7 @@
         </div>
         <h2 class="who-we-are-heading-text">Who We Are</h2>
         <p class="who-we-are-paragraph mb-4">
-          <strong>LifeCare Nursing & Medical Services (Pvt.) Limited</strong> is a <strong>PHC-registered</strong> home healthcare company serving patients and families since <strong>2025</strong>. We provide professional <strong>Nursing Care at Home</strong>, <strong>elderly care</strong>, <strong>home physiotherapy</strong>, <strong>doctor home visits</strong>, and <strong>medical support</strong> through qualified healthcare professionals.
+          <strong>LifeCare Nursing & Medical Services (Pvt.) Limited</strong> is a <strong>PHC-registered</strong> home healthcare company serving patients and families since <strong>2015</strong>. We provide professional <strong>Nursing Care at Home</strong>, <strong>elderly care</strong>, <strong>home physiotherapy</strong>, <strong>doctor home visits</strong>, and <strong>medical support</strong> through qualified healthcare professionals.
         </p>
       </div>
     </div>
@@ -1111,13 +1061,13 @@
 
         <!-- Contact CTA Row -->
         <div class="contact-cta-row d-flex align-items-center gap-4 flex-wrap mb-4">
-          <a href="contact-us.html" class="btn-care-cyan">Contact Us</a>
+          <a href="#contact" class="btn-care-cyan">Contact Us</a>
           <div class="phone-display-block d-flex align-items-center gap-3">
-            <a href="tel:+923008053198" class="phone-icon-circle">
+            <a href="tel:+923113333424" class="phone-icon-circle">
               <i class="bi bi-telephone-fill"></i>
             </a>
             <div class="phone-numbers-text">
-              <div>0300-8053198</div>
+              <div>03249956129</div>
               
             </div>
           </div>
@@ -1183,13 +1133,13 @@
        
 
  <div class="contact-cta-row d-flex align-items-center gap-4 flex-wrap mb-4">
-          <a href="contact-us.html" class="btn-care-cyan">Contact Us</a>
+          <a href="#contact" class="btn-care-cyan">Contact Us</a>
           <div class="phone-display-block d-flex align-items-center gap-3">
-            <a href="tel:+923008053198" class="phone-icon-circle">
+            <a href="tel:+923113333424" class="phone-icon-circle">
               <i class="bi bi-telephone-fill"></i>
             </a>
             <div class="phone-numbers-text">
-              <div>0300-8053198</div>
+              <div>03249956129</div>
               
             </div>
           </div>
@@ -1215,74 +1165,74 @@
       
       <!-- Card 1: Doctor Consultation -->
       <div class="col-md-6 col-lg-3">
-        <a href="doctor-consultation.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-person-badge"></i></div>
           <h5>Doctor Consultation</h5>
           <p>Professional doctors available for in-home and online visits, offering trusted medical guidance anytime you need.</p>
-        </a>
+        </div>
       </div>
 
-      <!-- Card 2: Home Nursing Care -->
+      <!-- Card 2: Home Nursing Care (FEATURED HIGHLIGHT CARD) -->
       <div class="col-md-6 col-lg-3">
-        <a href="home-nursing-care.html" class="service-box-card">
-          <div class="service-icon-badge"><i class="bi bi-person-heart"></i></div>
-          <h5>Home Nursing Care</h5>
-          <p>Skilled nurses provide personalised home care, from post-surgery support to chronic illness management with compassion.</p>
-        </a>
+        <div class="service-box-card featured-highlight-card">
+          <div class="service-icon-badge featured-badge"><i class="bi bi-person-heart"></i></div>
+          <h5 class="text-white">Home Nursing Care</h5>
+          <p class="text-white-80">Skilled nurses provide personalised home care, from post-surgery support to chronic illness management with compassion.</p>
+        </div>
       </div>
 
       <!-- Card 3: Elderly / Senior Care -->
       <div class="col-md-6 col-lg-3">
-        <a href="elderly-senior-care.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-person-wheelchair"></i></div>
           <h5>Elderly / Senior Care</h5>
           <p>Dedicated caregivers and elderly home facilities ensure safe, respectful, and comfortable care for your loved ones.</p>
-        </a>
+        </div>
       </div>
 
       <!-- Card 4: Physiotherapy -->
       <div class="col-md-6 col-lg-3">
-        <a href="physiotherapy.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-activity"></i></div>
           <h5>Physiotherapy</h5>
           <p>Certified physiotherapists deliver recovery sessions at home, improving strength, mobility, and overall physical health.</p>
-        </a>
+        </div>
       </div>
 
       <!-- Card 5: Portable X-Ray & ECG -->
       <div class="col-md-6 col-lg-3">
-        <a href="portable-xray-ecg.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-x-diamond"></i></div>
           <h5>Portable X-Ray & ECG</h5>
           <p>On-site X-ray and ECG testing at your home with advanced portable equipment for quick, accurate, and convenient medical results.</p>
-        </a>
+        </div>
       </div>
 
       <!-- Card 6: Respiratory & Speech Therapy -->
       <div class="col-md-6 col-lg-3">
-        <a href="respiratory-speech-therapy.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-lungs"></i></div>
           <h5>Respiratory & Speech Therapy</h5>
           <p>Special therapies designed to improve breathing and speech, enhancing quality of life.</p>
-        </a>
+        </div>
       </div>
 
       <!-- Card 7: Medical Equipment -->
       <div class="col-md-6 col-lg-3">
-        <a href="medical-equipment.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-credit-card-2-front"></i></div>
           <h5>Medical Equipment</h5>
           <p>Rent or purchase hospital beds, oxygen cylinders, and mobility aids delivered at home for safe and reliable care.</p>
-        </a>
+        </div>
       </div>
 
       <!-- Card 8: Diagnostic Services -->
       <div class="col-md-6 col-lg-3">
-        <a href="diagnostic-services.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-heart-pulse"></i></div>
           <h5>Diagnostic Services</h5>
           <p>Comprehensive lab tests and health screenings at your doorstep, ensuring timely, accurate, and convenient results.</p>
-        </a>
+        </div>
       </div>
 
     </div>
@@ -1298,13 +1248,12 @@
         </div>
       </div>
       <div class="d-flex align-items-center gap-3 flex-wrap">
-        <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-banner-white">Make an Appointment</a>
+        <a href="#contact" class="btn-banner-white">Make an Appointment</a>
         <a href="#services" class="btn-banner-navy">All Services</a>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- ================= WHY CHOOSE US (MATCHING REFERENCE LAYOUT) ================= -->
 <section class="why-choose-us-section" id="why-choose-us">
@@ -1343,10 +1292,10 @@
           </div>
         </div>
 
-        <!-- Feature 3: Trusted Since 2025 -->
+        <!-- Feature 3: Trusted Since 2015 -->
         <div class="why-feature-item item-right-aligned">
           <div>
-            <h5>Trusted Since 2025</h5>
+            <h5>Trusted Since 2015</h5>
             <p>Delivering Professional Home Healthcare Services.</p>
           </div>
           <div class="why-icon-badge">
@@ -1572,7 +1521,7 @@
     <div class="row g-4">
       <div class="col-lg-4">
         <img src="assets/logo.png" alt="LifeCare Nursing & Medical Services" class="footer-logo mb-3">
-        <p>LifeCare provides nursing, elderly care, physiotherapy, diagnostic services and other healthcare support for patients at home.</p>
+        <p>Dedicated to Care, Committed to Your Well-Being. We provide nursing care, elderly care, physiotherapy, diagnostics and more with compassion and professionalism.</p>
         <div class="mt-3">
           <a href="#" class="social-dot"><i class="bi bi-facebook"></i></a>
           <a href="#" class="social-dot"><i class="bi bi-instagram"></i></a>
@@ -1602,9 +1551,8 @@
       <div class="col-lg-3">
         <h5>Get in Touch</h5>
         <ul>
-          <li><a href="tel:+923008053198"><i class="bi bi-telephone-fill me-2"></i>0300-8053198</a></li>
-          <li><a href="mailto:lifecarenursing5@gmail.com"><i class="bi bi-envelope-fill me-2"></i>lifecarenursing5@gmail.com</a></li>
-          <li><i class="bi bi-geo-alt-fill me-2"></i>Near Zee Garden Main Shekhupura / Lahore Road Faislabad</li>
+          <li><i class="bi bi-telephone-fill me-2"></i>03249956129</li>
+          <li><i class="bi bi-geo-alt-fill me-2"></i>Near Zee Garden Main Shekhupura / Lahore Road Faislabad </li>
         </ul>
       </div>
     </div>
@@ -1617,11 +1565,11 @@
 
 <!-- ================= FLOATING CONTACT BUTTONS (PHONE & WHATSAPP) ================= -->
 <div class="floating-contact-stack">
-  <a href="tel:+923008053198" class="floating-contact-btn btn-call" title="Call Us Now">
+  <a href="tel:+923000000000" class="floating-contact-btn btn-call" title="Call Us Now">
     <i class="bi bi-telephone-fill"></i>
   </a>
-  <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="floating-contact-btn btn-wa" title="Get Appointment on WhatsApp">
-    <i class="bi bi-whatsapp"></i> <span>Get Appointment</span>
+  <a href="https://wa.me/923249956129" target="_blank" class="floating-contact-btn btn-wa" title="WhatsApp Us">
+    <i class="bi bi-whatsapp"></i>
   </a>
 </div>
 
@@ -1640,92 +1588,6 @@
     </div>
   </div>
 </div>
-
-<!-- ================= CONTACT US MODAL ================= -->
-<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content border-0 shadow-lg" style="border-radius: 12px; overflow: hidden;">
-      <div class="modal-header text-white" style="background: var(--brand-navy); padding: 1.25rem 1.75rem;">
-        <h5 class="modal-title d-flex align-items-center gap-2" id="contactModalLabel" style="font-family: var(--font-display); font-weight: 700; font-size: 1.25rem;">
-          <i class="bi bi-envelope-paper-fill text-warning"></i> Contact Us — Send a Message
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-4 p-md-5" style="background: #FAF8F3;">
-        <p class="text-muted mb-4" style="font-size: 0.95rem;">
-Tell us what you need help with and leave your contact details below. Our team will get in touch with you. 
-
-        </p>
-
-        <div id="contactFormAlert" class="alert alert-success d-none mb-4" role="alert">
-          <i class="bi bi-check-circle-fill me-2"></i> Thank you. Your message has been sent. Our team will contact you soon.
-        </div>
-
-        <form id="contactForm" onsubmit="handleContactSubmit(event)">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label for="contactName" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Your Name *</label>
-              <input type="text" class="form-control form-control-lg" id="contactName" placeholder="e.g. Ali Khan" required style="font-size: 0.95rem; border-radius: 6px;">
-            </div>
-            <div class="col-md-6">
-              <label for="contactPhone" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Phone / WhatsApp *</label>
-              <input type="tel" class="form-control form-control-lg" id="contactPhone" placeholder="0300-8053198" required style="font-size: 0.95rem; border-radius: 6px;">
-            </div>
-            <div class="col-md-6">
-              <label for="contactEmail" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Email Address *</label>
-              <input type="email" class="form-control form-control-lg" id="contactEmail" placeholder="name@example.com" required style="font-size: 0.95rem; border-radius: 6px;">
-            </div>
-            <div class="col-md-6">
-              <label for="contactService" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Select Service</label>
-              <select class="form-select form-select-lg" id="contactService" style="font-size: 0.95rem; border-radius: 6px;">
-                <option value="General Inquiry" selected>General Inquiry</option>
-                <option value="Doctor Consultation">Doctor Consultation</option>
-                <option value="Home Nursing Care">Home Nursing Care</option>
-                <option value="Elderly / Senior Care">Elderly / Senior Care</option>
-                <option value="Physiotherapy">Physiotherapy</option>
-                <option value="Medical Equipment">Medical Equipment</option>
-                <option value="Diagnostic Services">Diagnostic Services</option>
-                <option value="Portable X-Ray & ECG">Portable X-Ray & ECG</option>
-                <option value="Respiratory & Speech Therapy">Respiratory & Speech Therapy</option>
-              </select>
-            </div>
-            <div class="col-12">
-              <label for="contactMessage" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Your Message *</label>
-              <textarea class="form-control" id="contactMessage" rows="4" placeholder="Please describe how we can assist you..." required style="font-size: 0.95rem; border-radius: 6px;"></textarea>
-            </div>
-            <div class="col-12 mt-4 d-flex justify-content-end gap-2">
-              <button type="button" class="btn btn-outline-secondary px-4 py-2" data-bs-dismiss="modal" style="font-weight: 600;">Cancel</button>
-              <button type="submit" class="btn-care px-4 py-2" style="border: none; cursor: pointer;">
-                <i class="bi bi-send-fill me-1"></i> Send Request
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-function handleContactSubmit(e) {
-  e.preventDefault();
-  const name = document.getElementById('contactName').value;
-  const phone = document.getElementById('contactPhone').value;
-  const email = document.getElementById('contactEmail').value;
-  const service = document.getElementById('contactService').value;
-  const message = document.getElementById('contactMessage').value;
-
-  const subject = encodeURIComponent(`New Contact Us Message from ${name} (${service})`);
-  const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`);
-
-  window.location.href = `mailto:lifecarenursing5@gmail.com?subject=${subject}&body=${body}`;
-
-  const alertBox = document.getElementById('contactFormAlert');
-  if (alertBox) {
-    alertBox.classList.remove('d-none');
-  }
-}
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -454,7 +454,7 @@
   }
 
   .facility-heading-text{font-size:2.6rem; color:var(--teal-900);}
-  .facility-heading-divider{width:70px; height:3px; }
+  .facility-heading-divider{width:70px; height:3px; background:var(--amber-500); border-radius:2px;}
   .facility-lead-paragraph{font-size:1.02rem; line-height:1.85; color:#4C5754;}
   .facility-lead-paragraph strong{color:var(--teal-900);}
 
@@ -638,12 +638,12 @@
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
   }
   .social-dot{
-    width:34px; height:34px; border-radius:50%; background:var(--teal-500); color:#fff;
-    display:inline-flex; align-items:center; justify-content:center; margin-right:.5rem;
+    width:36px;height:36px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.25);
+    display:inline-flex; align-items:center; justify-content:center;
+    margin-right:.5rem;
   }
-  .social-dot i{color:#fff;}
-  .social-dot:hover{background:var(--brand-navy); color:#fff;}
-  .social-dot:hover i{color:#fff;}
+  .social-dot:hover{background:var(--amber-500); border-color:var(--amber-500);}
 
   .whatsapp-fab{
     position:fixed; bottom:22px; right:22px; z-index:999;
@@ -719,74 +719,29 @@
   .service-box-card{
     background:#fff; border-radius:12px; padding:2.3rem 1.7rem;
     height:100%; box-shadow:0 10px 30px rgba(14,59,54,.06);
-    transition:.3s ease; text-decoration:none; display:block; cursor:pointer;
+    transition:.3s ease;
   }
+  .service-box-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(14,59,54,.12);}
   .service-box-card h5{
     font-family:var(--font-display); font-weight:700; font-size:1.15rem;
-    color:var(--teal-900); margin-bottom:.7rem; transition:.3s ease;
+    color:var(--teal-900); margin-bottom:.7rem;
   }
-  .service-box-card p{font-size:.9rem; line-height:1.65; color:#586360; margin:0; transition:.3s ease;}
+  .service-box-card p{font-size:.9rem; line-height:1.65; color:#586360; margin:0;}
 
   .service-icon-badge{
     width:64px; height:64px; border-radius:50%;
     background:var(--amber-100); color:var(--teal-700);
     display:flex; align-items:center; justify-content:center;
-    font-size:1.6rem; margin-bottom:1.3rem; transition:.3s ease;
+    font-size:1.6rem; margin-bottom:1.3rem;
   }
 
-  .service-box-card:hover{
-    background:var(--teal-500);
-    transform:translateY(-6px);
-    box-shadow:0 20px 45px rgba(46,140,130,.35);
-  }
-  .service-box-card:hover h5{color:#ffffff;}
-  .service-box-card:hover p{color:rgba(255,255,255,0.95);}
-  .service-box-card:hover .service-icon-badge{
-    background:rgba(255,255,255,.2);
-    color:#ffffff;
-  }
+  .featured-highlight-card{background:var(--teal-500); box-shadow:0 20px 45px rgba(46,140,130,.35);}
+  .featured-highlight-card:hover{transform:translateY(-6px); box-shadow:0 26px 50px rgba(46,140,130,.4);}
+  .featured-badge{background:rgba(255,255,255,.18); color:#fff;}
+  .text-white-80{color:rgba(255,255,255,.85)!important;}
 
   @media(max-width:991px){
     .services-main-title{font-size:2rem;}
-  }
-
-  /* ---------- Doctor & Staff Panels ---------- */
-  .panel-card{
-    background:#fff; border-radius:14px; overflow:hidden;
-    box-shadow:0 12px 35px rgba(14,59,54,.08); transition:.35s ease;
-    height:100%; display:flex; flex-direction:column; border:1px solid #E8F0EE;
-  }
-  .panel-card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 22px 48px rgba(14,59,54,.16);
-    border-color:var(--brand-teal);
-  }
-  .panel-card-img-holder{
-    position:relative; width:100%; height:250px; overflow:hidden; background:#EAF3F1;
-  }
-  .panel-card-img-holder img{
-    width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease;
-  }
-  .panel-card:hover .panel-card-img-holder img{transform:scale(1.06);}
-  .panel-card-badge{
-    position:absolute; bottom:12px; left:12px; background:var(--brand-navy); color:#fff;
-    font-size:.75rem; font-weight:700; padding:.35rem .85rem; border-radius:20px;
-    letter-spacing:.03em; text-transform:uppercase; box-shadow:0 4px 12px rgba(0,0,0,.2);
-  }
-  .panel-card-body{
-    padding:1.6rem; flex:1; display:flex; flex-direction:column; justify-content:space-between;
-  }
-  .panel-card-name{
-    font-family:var(--font-display); font-size:1.2rem; font-weight:700; color:var(--teal-900); margin-bottom:.3rem;
-  }
-  .panel-card-role{
-    color:var(--brand-teal); font-weight:700; font-size:.85rem; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.8rem;
-  }
-  .panel-card-desc{
-    font-size:.9rem; color:#52605C; line-height:1.65; margin-bottom:1.2rem;
-  }
-  .panel-card-btn{
-    width:100%; justify-content:center; padding:.75rem 1rem; font-size:.82rem; border-radius:6px;
   }
 
   /* ---------- Why Choose Us 3-Column Layout ---------- */
@@ -880,23 +835,20 @@
 
   .floating-contact-stack{
     position:fixed; right:22px; bottom:22px; z-index:999;
-    display:flex; flex-direction:column; align-items:flex-end; gap:.7rem;
+    display:flex; flex-direction:column; gap:.7rem;
   }
   .floating-contact-btn{
-    display:inline-flex; align-items:center; justify-content:center;
-    color:#fff; box-shadow:0 8px 20px rgba(0,0,0,.25);
-    transition:.25s ease; text-decoration:none;
+    width:54px; height:54px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:1.4rem;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+    transition:.25s ease;
   }
-  .floating-contact-btn:hover{transform:scale(1.06); color:#fff;}
-  .btn-call{width:50px; height:50px; border-radius:50%; font-size:1.3rem; background:var(--brand-navy);}
+  .floating-contact-btn:hover{transform:scale(1.08);}
+  .btn-call{background:var(--brand-navy);}
   .btn-call:hover{background:var(--brand-teal); color:#fff;}
-  .btn-wa{
-    background:#25D366; color:#fff; padding:.7rem 1.25rem; border-radius:50px;
-    font-weight:700; font-size:.9rem; gap:.5rem;
-    box-shadow:0 8px 22px rgba(37,211,102,.45);
-  }
-  .btn-wa:hover{background:#1EBE57; color:#fff;}
-  .btn-wa i{font-size:1.25rem;}
+  .btn-wa{background:var(--brand-teal);}
+  .btn-wa:hover{background:var(--brand-navy); color:#fff;}
 </style>
 </head>
 <body>
@@ -905,8 +857,8 @@
 <div class="topbar">
   <div class="container d-flex justify-content-between align-items-center flex-wrap">
     <div class="d-flex gap-3">
-      <a href="tel:+923008053198"><i class="bi bi-telephone-fill me-1"></i> 0300-8053198</a>
-      <a href="mailto:lifecarenursing5@gmail.com" class="d-none d-sm-inline"><i class="bi bi-envelope-fill me-1"></i> lifecarenursing5@gmail.com</a>
+      <a href="tel:+923000000000"><i class="bi bi-telephone-fill me-1"></i> +92 300 0000000</a>
+      <a href="mailto:info@lifecarenursing.pk" class="d-none d-sm-inline"><i class="bi bi-envelope-fill me-1"></i> info@lifecarenursing.pk</a>
     </div>
     <div class="d-flex gap-3">
       <a href="#"><i class="bi bi-facebook"></i></a>
@@ -942,12 +894,10 @@
             <li><a class="dropdown-item" href="respiratory-speech-therapy.html">Respiratory & Speech Therapy</a></li>
           </ul>
         </li>
+        <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
         <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-        <li class="nav-item"><a class="nav-link" href="doctor-panel.html">Doctor Panel</a></li>
-        <li class="nav-item"><a class="nav-link" href="staff-panel.html">Staff Panel</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-        <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-care">Get an Appointment</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+        <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a href="#contact" class="btn-care">Get an Appointment</a></li>
       </ul>
     </div>
   </div>
@@ -966,10 +916,10 @@
               <div class="col-lg-7 hero-slide-text">
                 <div class="eyebrow mb-3">Welcome to LifeCare Nursing</div>
                 <h1 class="mb-3">Trusted Home Nursing Care</h1>
-                <p class="lead-text mb-4">Since 2025, LifeCare has been helping families find reliable healthcare at home. From nursing and elderly care to medical support, our team is here to make everyday care easier and more comfortable.</p>
+                <p class="lead-text mb-4">Since 2015, we've been providing compassionate, reliable, and professional healthcare services across the city. Whether you need in-home nursing, elderly care, or medical support, we are here for you 24/7.</p>
                 <div class="d-flex gap-3 flex-wrap">
                   <a href="#services" class="btn-care">Our Services</a>
-                  <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-outline-care">Book an Appointment</a>
+                  <a href="#contact" class="btn-outline-care">Get an Appointment</a>
                 </div>
                 <div class="float-card"><i class="bi bi-patch-check-fill"></i> PHC Registered Provider</div>
               </div>
@@ -984,12 +934,12 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-7 hero-slide-text">
-                <div class="eyebrow mb-3">Care for Your Loved Ones</div>
-                <h1 class="mb-3">Quality Care in the Comfort of Home</h1>
-                <p class="lead-text mb-4">Our nurses provide care at home for older family members, including routine check-ups, medication support and everyday assistance. Your loved ones can receive the care they need while staying in a familiar and comfortable place.</p>
+                <div class="eyebrow mb-3">Compassionate Elderly Care</div>
+                <h1 class="mb-3">Personalized Care, Right at Home</h1>
+                <p class="lead-text mb-4">Our qualified nurses visit your loved ones at home for routine check-ups, medication management, and daily care — bringing hospital-quality attention into a familiar, comfortable setting.</p>
                 <div class="d-flex gap-3 flex-wrap">
                   <a href="#services" class="btn-care">Our Services</a>
-                  <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-outline-care">Book an Appointment</a>
+                  <a href="#contact" class="btn-outline-care">Get an Appointment</a>
                 </div>
                 <div class="float-card"><i class="bi bi-patch-check-fill"></i> PHC Registered Provider</div>
               </div>
@@ -1014,25 +964,25 @@
       <div class="col">
         <div class="stat-card-box">
           <div class="stat-num">5+</div>
-          <div class="stat-lbl">Awards & Recognition</div>
+          <div class="stat-lbl">National Awards</div>
         </div>
       </div>
       <div class="col">
         <div class="stat-card-box">
           <div class="stat-num">20+</div>
-          <div class="stat-lbl">Healthcare Professionals</div>
+          <div class="stat-lbl">Expert Doctors</div>
         </div>
       </div>
       <div class="col">
         <div class="stat-card-box">
           <div class="stat-num">10k+</div>
-          <div class="stat-lbl">SPatients Served</div>
+          <div class="stat-lbl">Satisfied Patients</div>
         </div>
       </div>
       <div class="col">
         <div class="stat-card-box">
           <div class="stat-num">100%</div>
-          <div class="stat-lbl">Commitment to Care</div>
+          <div class="stat-lbl">Satisfaction</div>
         </div>
       </div>
     </div>
@@ -1053,17 +1003,17 @@
             </div>
           </div>
           <div class="play-video-side-label" data-bs-toggle="modal" data-bs-target="#videoModal">
-            <i class="bi bi-play-circle-fill"></i>See How We Care
+            <i class="bi bi-play-circle-fill"></i> Play Video
           </div>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="eyebrow-teal-tag mb-2">
-          <i class="bi bi-stethoscope"></i> ABOUT LIFECARE
+          <i class="bi bi-stethoscope"></i> ABOUT US
         </div>
-        <h2 class="who-we-are-heading-text">Healthcare You Can Feel Comfortable With</h2>
+        <h2 class="who-we-are-heading-text">Who We Are</h2>
         <p class="who-we-are-paragraph mb-4">
-          <strong>LifeCare Nursing & Medical Services (Pvt.) Limited</strong> is a <strong>PHC-registered</strong> home healthcare company serving patients and families since <strong>2025</strong>. We also serve families in Faisalabad, Sheikhupura and Lahore, providing 24/7 nursing care, medical supervision, rehabilitation and support for older adults and patients who need ongoing care.
+          <strong>LifeCare Nursing & Medical Services (Pvt.) Limited</strong> is a <strong>PHC-registered</strong> home healthcare company serving patients and families since <strong>2015</strong>. We provide professional <strong>Nursing Care at Home</strong>, <strong>elderly care</strong>, <strong>home physiotherapy</strong>, <strong>doctor home visits</strong>, and <strong>medical support</strong> through qualified healthcare professionals.
         </p>
       </div>
     </div>
@@ -1103,20 +1053,20 @@
         <div class="location-bullet-box mb-4">
           <ul class="location-bullet-list">
             <li>
-              Our <strong>Head Office</strong> is located in <strong>Near Zee Garden Main Shekhupura / Lahore Road Faislabad</strong>, with a <strong>Branch Office</strong> in <strong>Faislabad, Shekhupura, Lahore</strong>. We also offering 24/7 nursing care, medical supervision, rehabilitation, and compassionate support for older adults and long-term care patients.
+              Our <strong>Head Office</strong> is located in <strong>Model Town, Lahore</strong>, with a <strong>Branch Office</strong> in <strong>DHA EME, Lahore</strong>. We also operate a <strong>40-bedded Nursing & Old Age Home</strong>, offering 24/7 nursing care, medical supervision, rehabilitation, and compassionate support for older adults and long-term care patients.
             </li>
           </ul>
         </div>
 
         <!-- Contact CTA Row -->
         <div class="contact-cta-row d-flex align-items-center gap-4 flex-wrap mb-4">
-          <a href="contact-us.html" class="btn-care-cyan">Contact Us</a>
+          <a href="#contact" class="btn-care-cyan">Contact Us</a>
           <div class="phone-display-block d-flex align-items-center gap-3">
-            <a href="tel:+923008053198" class="phone-icon-circle">
+            <a href="tel:+923113333424" class="phone-icon-circle">
               <i class="bi bi-telephone-fill"></i>
             </a>
             <div class="phone-numbers-text">
-              <div>0300-8053198</div>
+              <div>03249956129</div>
               
             </div>
           </div>
@@ -1128,13 +1078,13 @@
             <div class="col-md-6">
               <h4 class="vm-title">Our Vision</h4>
               <p class="vm-text">
-                We want to make quality healthcare easier to access at home and become a trusted choice for families across Pakistan. Our focus is simple: good care, professional service and better comfort for every patient.
+                Our vision is to be one of Pakistan's most trusted providers of Home Health Care Services, recognized for clinical excellence, compassionate care, and a commitment to improving the health and well-being of our communities.
               </p>
             </div>
             <div class="col-md-6">
               <h4 class="vm-title">Our Mission</h4>
               <p class="vm-text">
-               Our mission is to provide safe and dependable healthcare that meets the needs of each patient. We support families with nursing care, elderly care, rehabilitation and medical services while treating every patient with respect and kindness.
+                Our mission is to provide safe, compassionate, and high-quality <strong>Home Health Care Services</strong> that improve the health and well-being of our patients. We are committed to delivering personalized Nursing Care at Home, elderly care, rehabilitation, and medical support through qualified healthcare professionals.
               </p>
             </div>
           </div>
@@ -1170,25 +1120,25 @@
       <!-- Right Column: Heading, Paragraph, and Contact Button -->
       <div class="col-lg-6">
         <div class="eyebrow-teal-tag mb-2">
-          <i class="bi bi-stethoscope"></i> ELDERLY CARE
+          <i class="bi bi-stethoscope"></i> HOME CARE FACILITY
         </div>
-        <h2 class="facility-heading-text mb-3">Helping Seniors Stay Comfortable at Home</h2>
+        <h2 class="facility-heading-text mb-3">Elderly/Senior Care at Home</h2>
         <div class="facility-heading-divider mb-4"></div>
         
         <p class="facility-lead-paragraph mb-4">
-          Our elderly care service helps older adults with the everyday support they may need at home. Our caregivers can assist with bathing, dressing, personal hygiene, meals, medication reminders, mobility and companionship. We aim to help seniors feel safe, comfortable and cared for while staying close to their families.
+          Our <strong>Elder Care Services</strong> and <strong>Senior Care Services at Home</strong> provide compassionate support for older adults in the comfort of their own homes. Our trained caregivers assist with personal hygiene, bathing, dressing, <strong>Diet & Nutrition</strong>, medication reminders, mobility support, companionship, dementia care, and other daily activities, helping seniors live safely, comfortably, and independently while improving their quality of life.
         </p>
 
        
 
  <div class="contact-cta-row d-flex align-items-center gap-4 flex-wrap mb-4">
-          <a href="contact-us.html" class="btn-care-cyan">Contact Us</a>
+          <a href="#contact" class="btn-care-cyan">Contact Us</a>
           <div class="phone-display-block d-flex align-items-center gap-3">
-            <a href="tel:+923008053198" class="phone-icon-circle">
+            <a href="tel:+923113333424" class="phone-icon-circle">
               <i class="bi bi-telephone-fill"></i>
             </a>
             <div class="phone-numbers-text">
-              <div>0300-8053198</div>
+              <div>03249956129</div>
               
             </div>
           </div>
@@ -1207,81 +1157,81 @@
       <div class="eyebrow-teal-tag justify-content-center mb-2">
         <i class="bi bi-stethoscope"></i> SERVICES
       </div>
-      <h2 class="services-main-title">How We Can Help</h2>
+      <h2 class="services-main-title">Our Services</h2>
     </div>
 
     <div class="row g-4">
       
       <!-- Card 1: Doctor Consultation -->
       <div class="col-md-6 col-lg-3">
-        <a href="doctor-consultation.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-person-badge"></i></div>
           <h5>Doctor Consultation</h5>
-          <p>Speak with a doctor from the comfort of your home through an in-person or online consultation. </p>
-        </a>
+          <p>Professional doctors available for in-home and online visits, offering trusted medical guidance anytime you need.</p>
+        </div>
       </div>
 
-      <!-- Card 2: Home Nursing Care -->
+      <!-- Card 2: Home Nursing Care (FEATURED HIGHLIGHT CARD) -->
       <div class="col-md-6 col-lg-3">
-        <a href="home-nursing-care.html" class="service-box-card">
-          <div class="service-icon-badge"><i class="bi bi-person-heart"></i></div>
-          <h5>Home Nursing Care</h5>
-          <p>Our nurses provide practical support at home, including post-surgery care, routine nursing and help with ongoing health needs..</p>
-        </a>
+        <div class="service-box-card featured-highlight-card">
+          <div class="service-icon-badge featured-badge"><i class="bi bi-person-heart"></i></div>
+          <h5 class="text-white">Home Nursing Care</h5>
+          <p class="text-white-80">Skilled nurses provide personalised home care, from post-surgery support to chronic illness management with compassion.</p>
+        </div>
       </div>
 
       <!-- Card 3: Elderly / Senior Care -->
       <div class="col-md-6 col-lg-3">
-        <a href="elderly-senior-care.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-person-wheelchair"></i></div>
           <h5>Elderly / Senior Care</h5>
-          <p>We provide everyday support for older adults, helping them stay comfortable, safe and connected with their families.</p>
-        </a>
+          <p>Dedicated caregivers and elderly home facilities ensure safe, respectful, and comfortable care for your loved ones.</p>
+        </div>
       </div>
 
       <!-- Card 4: Physiotherapy -->
       <div class="col-md-6 col-lg-3">
-        <a href="physiotherapy.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-activity"></i></div>
           <h5>Physiotherapy</h5>
-          <p>Our physiotherapists provide home sessions to help patients improve movement, strength and mobility as they recover.</p>
-        </a>
+          <p>Certified physiotherapists deliver recovery sessions at home, improving strength, mobility, and overall physical health.</p>
+        </div>
       </div>
 
       <!-- Card 5: Portable X-Ray & ECG -->
       <div class="col-md-6 col-lg-3">
-        <a href="portable-xray-ecg.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-x-diamond"></i></div>
           <h5>Portable X-Ray & ECG</h5>
-          <p>Get X-ray and ECG services at home without the need to travel to a facility, making testing more convenient for patients and families.</p>
-        </a>
+          <p>On-site X-ray and ECG testing at your home with advanced portable equipment for quick, accurate, and convenient medical results.</p>
+        </div>
       </div>
 
       <!-- Card 6: Respiratory & Speech Therapy -->
       <div class="col-md-6 col-lg-3">
-        <a href="respiratory-speech-therapy.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-lungs"></i></div>
           <h5>Respiratory & Speech Therapy</h5>
-          <p>Our therapy services support patients who need help with breathing, communication and speech in their daily lives.</p>
-        </a>
+          <p>Special therapies designed to improve breathing and speech, enhancing quality of life.</p>
+        </div>
       </div>
 
       <!-- Card 7: Medical Equipment -->
       <div class="col-md-6 col-lg-3">
-        <a href="medical-equipment.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-credit-card-2-front"></i></div>
           <h5>Medical Equipment</h5>
-          <p>We provide essential medical equipment such as hospital beds, oxygen cylinders and mobility aids for patients who need extra support at home.</p>
-        </a>
+          <p>Rent or purchase hospital beds, oxygen cylinders, and mobility aids delivered at home for safe and reliable care.</p>
+        </div>
       </div>
 
       <!-- Card 8: Diagnostic Services -->
       <div class="col-md-6 col-lg-3">
-        <a href="diagnostic-services.html" class="service-box-card">
+        <div class="service-box-card">
           <div class="service-icon-badge"><i class="bi bi-heart-pulse"></i></div>
           <h5>Diagnostic Services</h5>
-          <p>Arrange selected laboratory tests and health screenings at home, making routine testing easier for patients and their families.</p>
-        </a>
+          <p>Comprehensive lab tests and health screenings at your doorstep, ensuring timely, accurate, and convenient results.</p>
+        </div>
       </div>
 
     </div>
@@ -1292,18 +1242,17 @@
           <i class="bi bi-clock-history"></i>
         </div>
         <div>
-          <h4 class="mb-1" style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: #ffffff;">Need Care? We're Here to Help</h4>
-          <p class="mb-0" style="color: rgba(255, 255, 255, 0.9); font-size: 0.95rem;">Contact our team whenever you need help arranging healthcare services.</p>
+          <h4 class="mb-1" style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: #ffffff;">Open for Appointments</h4>
+          <p class="mb-0" style="color: rgba(255, 255, 255, 0.9); font-size: 0.95rem;">We're available 24/7 to assist you.</p>
         </div>
       </div>
       <div class="d-flex align-items-center gap-3 flex-wrap">
-        <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="btn-banner-white">Book Your Appointment</a>
-        <a href="#services" class="btn-banner-navy">View All Services</a>
+        <a href="#contact" class="btn-banner-white">Make an Appointment</a>
+        <a href="#services" class="btn-banner-navy">All Services</a>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- ================= WHY CHOOSE US (MATCHING REFERENCE LAYOUT) ================= -->
 <section class="why-choose-us-section" id="why-choose-us">
@@ -1312,7 +1261,7 @@
       <div class="eyebrow-teal-tag justify-content-center mb-2">
         <i class="bi bi-stethoscope"></i> WHY CHOOSE US
       </div>
-      <h2 class="why-main-title">Care That Puts You and Your Family First</h2>
+      <h2 class="why-main-title">We Provide Quality Care That Treats Everyone Like Family</h2>
     </div>
 
     <div class="row align-items-center g-4">
@@ -1324,7 +1273,7 @@
         <div class="why-feature-item item-right-aligned">
           <div>
             <h5>24/7 Availability</h5>
-            <p>Our team is available when you need healthcare support.</p>
+            <p>Always here when you need us.</p>
           </div>
           <div class="why-icon-badge">
             <i class="bi bi-clock-history"></i>
@@ -1335,18 +1284,18 @@
         <div class="why-feature-item item-right-aligned">
           <div>
             <h5>Affordable Care</h5>
-            <p>We aim to provide reliable care at reasonable rates.</p>
+            <p>Quality services at cost-effective rates.</p>
           </div>
           <div class="why-icon-badge">
             <i class="bi bi-person-plus-fill"></i>
           </div>
         </div>
 
-        <!-- Feature 3: Trusted Since 2025 -->
+        <!-- Feature 3: Trusted Since 2015 -->
         <div class="why-feature-item item-right-aligned">
           <div>
-            <h5>Serving Families Since 2025</h5>
-            <p>Providing healthcare support to patients and families since 2025.</p>
+            <h5>Trusted Since 2015</h5>
+            <p>Delivering Professional Home Healthcare Services.</p>
           </div>
           <div class="why-icon-badge">
             <i class="bi bi-handshake-fill"></i>
@@ -1372,7 +1321,7 @@
           </div>
           <div>
             <h5>Qualified Staff</h5>
-            <p>Our team includes trained nurses, caregivers and healthcare professionals.</p>
+            <p>Registered nurses, skilled caregivers, and licensed doctors.</p>
           </div>
         </div>
 
@@ -1382,8 +1331,8 @@
             <i class="bi bi-house-door-fill"></i>
           </div>
           <div>
-            <h5>Senior Care Facility</h5>
-            <p>A dedicated facility for older adults who need nursing care and daily support.</p>
+            <h5>Old-Age Home</h5>
+            <p>40-Bedded Nursing & Old Age Home Providing Compassionate Senior Care.</p>
           </div>
         </div>
 
@@ -1393,8 +1342,8 @@
             <i class="bi bi-person-gear"></i>
           </div>
           <div>
-            <h5>Care Based on Your Needs</h5>
-            <p>We plan our care around the patient's condition and everyday needs.</p>
+            <h5>Personalised Plans</h5>
+            <p>Care tailored to your unique needs.</p>
           </div>
         </div>
 
@@ -1408,17 +1357,17 @@
 <section class="bg-alt">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="eyebrow justify-content-center mb-3">OUR NETWORK</div>
-      <h2>Working With Healthcare Partners</h2>
+      <div class="eyebrow justify-content-center mb-3">Network</div>
+      <h2>Our Trusted Partners & Collaborations</h2>
     </div>
     <div class="row g-4">
       <div class="col-md-6">
         <div class="partners-table">
-          <div class="col-head"><i class="bi bi-hospital me-2"></i>Healthcare Partners</div>
+          <div class="col-head"><i class="bi bi-hospital me-2"></i>Healthcare & Academic Partners</div>
           <ul>
-            <li><i class="bi bi-check-circle-fill"></i> Diagnostic Laboratories</li>
-            <li><i class="bi bi-check-circle-fill"></i> Medical & Academic Institutions</li>
-            <li><i class="bi bi-check-circle-fill"></i> Local Pharmacies</li>
+            <li><i class="bi bi-check-circle-fill"></i> Partner Diagnostic Labs</li>
+            <li><i class="bi bi-check-circle-fill"></i> Local Medical Universities</li>
+            <li><i class="bi bi-check-circle-fill"></i> Partner Pharmacies</li>
             <li><i class="bi bi-check-circle-fill"></i> Physiotherapy Clinics</li>
             <li><i class="bi bi-check-circle-fill"></i> Affiliated Hospitals</li>
           </ul>
@@ -1426,11 +1375,11 @@
       </div>
       <div class="col-md-6">
         <div class="partners-table">
-          <div class="col-head"><i class="bi bi-building me-2"></i>Community Partners</div>
+          <div class="col-head"><i class="bi bi-building me-2"></i>Community & Residential Partners</div>
           <ul>
             <li><i class="bi bi-check-circle-fill"></i> Housing Societies</li>
-            <li><i class="bi bi-check-circle-fill"></i> Local Communities</li>
-            <li><i class="bi bi-check-circle-fill"></i> Corporate Health Programs</li>
+            <li><i class="bi bi-check-circle-fill"></i> Residential Communities</li>
+            <li><i class="bi bi-check-circle-fill"></i> Corporate Wellness Partners</li>
             <li><i class="bi bi-check-circle-fill"></i> Community Health Initiatives</li>
             <li><i class="bi bi-check-circle-fill"></i> Local NGOs</li>
           </ul>
@@ -1444,71 +1393,64 @@
 <section>
   <div class="container">
     <div class="text-center mb-5">
-      <div class="eyebrow justify-content-center mb-3">MEET THE TEAM</div>
-      <h2>The People Behind Our Care</h2>
+      <div class="eyebrow justify-content-center mb-3">Our Team</div>
+      <h2>Meet Our Expert Medical Professionals</h2>
     </div>
-    <div class="row g-4" id="indexTeamContainer">
-      <!-- Dynamic Team Cards fetched from admin backend -->
+    <div class="row g-4">
+      <div class="col-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
+          <div class="info"><h5>Dr. A. Rahman</h5><p>Consultant Physician</p></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
+          <div class="info"><h5>Dr. S. Faisal</h5><p>Physical Therapist</p></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
+          <div class="info"><h5>Ayesha Naz</h5><p>Staff Nurse</p></div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="team-card">
+          <div class="team-photo"><i class="bi bi-person-badge"></i></div>
+          <div class="info"><h5>Bilal Ahmed</h5><p>Male Nurse</p></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  fetch('api/get_cards.php?type=team')
-    .then(res => res.json())
-    .then(res => {
-      const container = document.getElementById('indexTeamContainer');
-      if (res.success && res.data && res.data.length > 0) {
-        let html = '';
-        res.data.forEach(tm => {
-          html += `
-            <div class="col-6 col-lg-3">
-              <div class="team-card h-100">
-                <div class="team-photo overflow-hidden position-relative" style="height:220px; background:#eaf3f1;">
-                  <img src="${tm.image}" alt="${tm.name}" style="width:100%; height:100%; object-fit:cover;">
-                </div>
-                <div class="info p-3">
-                  <h5 class="m-0 font-weight-bold">${tm.name}</h5>
-                  <p class="m-0 text-muted" style="font-size:0.85rem;">${tm.role}</p>
-                </div>
-              </div>
-            </div>
-          `;
-        });
-        container.innerHTML = html;
-      }
-    })
-    .catch(err => console.log('Team load error:', err));
-});
-</script>
 
 <!-- ================= TESTIMONIALS ================= -->
 <section class="testi-section">
   <div class="container">
     <div class="text-center mb-5">
       <div class="eyebrow justify-content-center mb-3">Testimonials</div>
-      <h2 style="color:#fff;">What Families Say About Our Care</h2>
+      <h2 style="color:#fff;">What Our Patients Say About Us</h2>
     </div>
     <div class="row g-4">
       <div class="col-md-6 col-lg-4">
         <div class="testi-card">
           <i class="bi bi-quote quote"></i>
-          <p>"After my mother's surgery, we needed someone to help with her care at home. The nurse was kind, patient and very helpful throughout her recovery."</p>
+          <p>"LifeCare provided exceptional care for my mother after surgery. The nurses were skilled and kind &mdash; we felt like family."</p>
           <div class="who">Ayesha M. <span>Home Nursing Client</span></div>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
         <div class="testi-card">
           <i class="bi bi-quote quote"></i>
-          <p>"The physiotherapy sessions at home made things much easier for my father. The therapist was on time, explained everything clearly and worked patiently with him."</p>
+          <p>"Their physiotherapy team helped my father regain mobility at home. Professional, punctual, and genuinely caring."</p>
           <div class="who">Imran Z. <span>Physiotherapy Client</span></div>
         </div>
       </div>
       <div class="col-md-6 col-lg-4">
         <div class="testi-card">
           <i class="bi bi-quote quote"></i>
-          <p>"It was easy to arrange the doctor's home visit, and the team came when they said they would. The whole process was convenient for our family."</p>
+          <p>"Booking a doctor's home visit was so easy, and the diagnostic team came the same day. Highly recommended."</p>
           <div class="who">Sana K. <span>Diagnostic Services Client</span></div>
         </div>
       </div>
@@ -1520,67 +1462,53 @@ document.addEventListener('DOMContentLoaded', function() {
 <section class="bg-alt" id="blog">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="eyebrow justify-content-center mb-3">HEALTH & CARE</div>
-      <h2>Helpful Tips for Better Home Care</h2>
+      <div class="eyebrow justify-content-center mb-3">Blog</div>
+      <h2>Latest Blog Posts</h2>
     </div>
-    <div class="row g-4" id="indexBlogContainer">
-      <!-- Dynamic Blog Cards fetched from admin backend -->
-      <div class="col-12 text-center py-4">
-        <div class="spinner-border text-teal" style="color:var(--teal-700);" role="status">
-          <span class="visually-hidden">Loading blogs...</span>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="blog-card">
+          <div class="blog-photo"><img src="assets/ChatGPT Image Aug 25, 2026, 05_59_14 PM.png" alt="Home nurse assisting elderly patient"></div>
+          <div class="info">
+            <div class="blog-date">18 Aug 2026</div>
+            <h5>How Skilled Home Nursing Improves Recovery at Home</h5>
+            <a href="#" class="more">Learn more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="blog-card">
+          <div class="blog-photo"><img src="assets/bp-check.jpg" alt="Nurse checking blood pressure at home"></div>
+          <div class="info">
+            <div class="blog-date">05 Aug 2026</div>
+            <h5>Professional Home Nursing Care | Quality Healthcare Services</h5>
+            <a href="#" class="more">Learn more <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="blog-card">
+          <div class="blog-photo"><img src="assets/bed-care.jpg" alt="Nurse caring for bedridden elderly patient"></div>
+          <div class="info">
+            <div class="blog-date">26 Feb 2026</div>
+            <h5>5 Signs Your Loved One Needs In-Home Nursing Support</h5>
+            <a href="#" class="more">Learn more <i class="bi bi-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="text-center mt-5">
-      <a href="blog.html" class="btn-care">
-        <i class="bi bi-journal-text me-1"></i> View All Articles & Blogs
-      </a>
-    </div>
   </div>
 </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Temporary hardcoded team data (PHP backend abhi Vercel par kaam nahi karta)
-  // Jab backend real hosting par chala jaye, is array ki jagah wapis
-  // fetch('api/get_cards.php?type=team') use kar dein
-  const teamData = [
-    { name: "Dr Zahid Choudary", role: "MANAGING DIRECTOR", image: "./assets/WhatsApp Image 2026-09-04 at 12.11.51 AM.jpeg" },
-    { name: "Zeeshan Zahid Gill", role: "Businessman & Enterpenure", image: "./assets/WhatsApp Image 2026-09-04 at 12.11.51 AM (1).jpeg" } 
-  ];
-
-  const container = document.getElementById('indexTeamContainer');
-  if (container && teamData.length > 0) {
-    let html = '';
-    teamData.forEach(tm => {
-      html += `
-        <div class="col-6 col-lg-3">
-          <div class="team-card h-100">
-            <div class="team-photo overflow-hidden position-relative" style="height:220px; background:#eaf3f1;">
-              <img src="${tm.image}" alt="${tm.name}" style="width:100%; height:100%; object-fit:cover;">
-            </div>
-            <div class="info p-3">
-              <h5 class="m-0 font-weight-bold">${tm.name}</h5>
-              <p class="m-0 text-muted" style="font-size:0.85rem;">${tm.role}</p>
-            </div>
-          </div>
-        </div>
-      `;
-    });
-    container.innerHTML = html;
-  }
-});
-</script>
 
 <!-- ================= NEWSLETTER ================= -->
 <section>
   <div class="container">
     <div class="newsletter">
-      <h3>Stay Updated With LifeCare</h3>
-      <p style="color:#5A4C2E;">Get useful health tips, updates about our services and helpful information delivered to your inbox.</p>
+      <h3>Subscribe to Our Newsletter</h3>
+      <p style="color:#5A4C2E;">Get expert health tips, service updates, and exclusive offers directly in your inbox.</p>
       <form class="newsletter-form" onsubmit="return false;">
-        <input type="email" placeholder="Enter your email address" required>
-        <button class="btn-care" type="submit">Sign Up</button>
+        <input type="email" placeholder="Enter your email" required>
+        <button class="btn-care" type="submit">Subscribe</button>
       </form>
     </div>
   </div>
@@ -1592,7 +1520,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="row g-4">
       <div class="col-lg-4">
         <img src="assets/logo.png" alt="LifeCare Nursing & Medical Services" class="footer-logo mb-3">
-        <p>LifeCare provides nursing, elderly care, physiotherapy, diagnostic and other healthcare services for patients who need support at home.</p>
+        <p>Dedicated to Care, Committed to Your Well-Being. We provide nursing care, elderly care, physiotherapy, diagnostics and more with compassion and professionalism.</p>
         <div class="mt-3">
           <a href="#" class="social-dot"><i class="bi bi-facebook"></i></a>
           <a href="#" class="social-dot"><i class="bi bi-instagram"></i></a>
@@ -1622,9 +1550,8 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="col-lg-3">
         <h5>Get in Touch</h5>
         <ul>
-          <li><a href="tel:+923008053198"><i class="bi bi-telephone-fill me-2"></i>0300-8053198</a></li>
-          <li><a href="mailto:lifecarenursing5@gmail.com"><i class="bi bi-envelope-fill me-2"></i>lifecarenursing5@gmail.com</a></li>
-          <li><i class="bi bi-geo-alt-fill me-2"></i>Near Zee Garden Main Shekhupura / Lahore Road Faislabad</li>
+          <li><i class="bi bi-telephone-fill me-2"></i>03249956129</li>
+          <li><i class="bi bi-geo-alt-fill me-2"></i>Near Zee Garden Main Shekhupura / Lahore Road Faislabad </li>
         </ul>
       </div>
     </div>
@@ -1637,11 +1564,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- ================= FLOATING CONTACT BUTTONS (PHONE & WHATSAPP) ================= -->
 <div class="floating-contact-stack">
-  <a href="tel:+923008053198" class="floating-contact-btn btn-call" title="Call Us Now">
+  <a href="tel:+923000000000" class="floating-contact-btn btn-call" title="Call Us Now">
     <i class="bi bi-telephone-fill"></i>
   </a>
-  <a href="https://wa.me/923008053198?text=Hello%2C%20I%20would%20like%20to%20book%20an%20appointment" target="_blank" class="floating-contact-btn btn-wa" title="Get Appointment on WhatsApp">
-    <i class="bi bi-whatsapp"></i> <span>Get Appointment</span>
+  <a href="https://wa.me/923249956129" target="_blank" class="floating-contact-btn btn-wa" title="WhatsApp Us">
+    <i class="bi bi-whatsapp"></i>
   </a>
 </div>
 
@@ -1660,113 +1587,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 </div>
-
-<!-- ================= CONTACT US MODAL ================= -->
-<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content border-0 shadow-lg" style="border-radius: 12px; overflow: hidden;">
-      <div class="modal-header text-white" style="background: var(--brand-navy); padding: 1.25rem 1.75rem;">
-        <h5 class="modal-title d-flex align-items-center gap-2" id="contactModalLabel" style="font-family: var(--font-display); font-weight: 700; font-size: 1.25rem;">
-          <i class="bi bi-envelope-paper-fill text-warning"></i> Contact Us — Send a Message
-        </h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-4 p-md-5" style="background: #FAF8F3;">
-        <p class="text-muted mb-4" style="font-size: 0.95rem;">
-Tell us what kind of care you need and leave your contact details below. Our team will get in touch with you.
-        </p>
-
-        <div id="contactFormAlert" class="alert alert-success d-none mb-4" role="alert">
-          <i class="bi bi-check-circle-fill me-2"></i> Thank you! Your message has been prepared and sent to <strong>lifecarenursing5@gmail.com</strong>. We will get back to you shortly.
-        </div>
-
-        <form id="contactForm" onsubmit="handleContactSubmit(event)">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label for="contactName" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Name *</label>
-              <input type="text" class="form-control form-control-lg" id="contactName" placeholder="e.g. Ali Khan" required style="font-size: 0.95rem; border-radius: 6px;">
-            </div>
-            <div class="col-md-6">
-              <label for="contactPhone" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Phone / WhatsApp </label>
-              <input type="tel" class="form-control form-control-lg" id="contactPhone" placeholder="0300-8053198" required style="font-size: 0.95rem; border-radius: 6px;">
-            </div>
-            <div class="col-md-6">
-              <label for="contactEmail" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">Email </label>
-              <input type="email" class="form-control form-control-lg" id="contactEmail" placeholder="name@example.com" required style="font-size: 0.95rem; border-radius: 6px;">
-            </div>
-            <div class="col-md-6">
-              <label for="contactService" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">What Service Do You Need?</label>
-              <select class="form-select form-select-lg" id="contactService" style="font-size: 0.95rem; border-radius: 6px;">
-                <option value="General Inquiry" selected>General Inquiry</option>
-                <option value="Doctor Consultation">Doctor Consultation</option>
-                <option value="Home Nursing Care">Home Nursing Care</option>
-                <option value="Elderly / Senior Care">Elderly / Senior Care</option>
-                <option value="Physiotherapy">Physiotherapy</option>
-                <option value="Medical Equipment">Medical Equipment</option>
-                <option value="Diagnostic Services">Diagnostic Services</option>
-                <option value="Portable X-Ray & ECG">Portable X-Ray & ECG</option>
-                <option value="Respiratory & Speech Therapy">Respiratory & Speech Therapy</option>
-              </select>
-            </div>
-            <div class="col-12">
-              <label for="contactMessage" class="form-label font-weight-bold" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--teal-900);">How Can We Help? </label>
-              <textarea class="form-control" id="contactMessage" rows="4" placeholder="Tell us what you need help with..." required style="font-size: 0.95rem; border-radius: 6px;"></textarea>
-            </div>
-            <div class="col-12 mt-4 d-flex justify-content-end gap-2">
-              <button type="button" class="btn btn-outline-secondary px-4 py-2" data-bs-dismiss="modal" style="font-weight: 600;">Cancel</button>
-              <button type="submit" class="btn-care px-4 py-2" style="border: none; cursor: pointer;">
-                <i class="bi bi-send-fill me-1"></i> Send Request
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-function handleContactSubmit(e) {
-  e.preventDefault();
-  const alertBox = document.getElementById('contactFormAlert');
-  const name = document.getElementById('contactName').value;
-  const phone = document.getElementById('contactPhone').value;
-  const email = document.getElementById('contactEmail').value;
-  const service = document.getElementById('contactService').value;
-  const message = document.getElementById('contactMessage').value;
-
-  const formData = new FormData();
-  formData.append('name', name);
-  formData.append('phone', phone);
-  formData.append('email', email);
-  formData.append('service', service);
-  formData.append('message', message);
-
-  fetch('send_email.php', {
-    method: 'POST',
-    body: formData
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (alertBox) {
-      alertBox.className = 'alert ' + (data.success ? 'alert-success' : 'alert-danger') + ' mb-4';
-      alertBox.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i> ' + data.message;
-      alertBox.classList.remove('d-none');
-    }
-    if (data.success) {
-      document.getElementById('contactForm').reset();
-    }
-  })
-  .catch(err => {
-    const subject = encodeURIComponent(`New Contact Us Message from ${name} (${service})`);
-    const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`);
-    window.location.href = `mailto:lifecarenursing5@gmail.com?subject=${subject}&body=${body}`;
-    if (alertBox) {
-      alertBox.classList.remove('d-none');
-    }
-  });
-}
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
