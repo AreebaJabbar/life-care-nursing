@@ -211,6 +211,9 @@ $staff = array_filter($allStaff, function($s) {
     <div class="eyebrow mb-3">Healthcare & Nursing Team</div>
     <h1>Staff Panel</h1>
     <div class="breadcrumb-care"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> Staff Panel</div>
+    <a href="staff-register.php" class="btn btn-light rounded-pill px-3 py-2 fw-semibold mt-3 d-inline-flex align-items-center gap-2" style="color:var(--teal-900); font-size:0.85rem;">
+      <i class="bi bi-person-plus-fill"></i> Register Yourself
+    </a>
   </div>
 </section>
 

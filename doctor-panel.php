@@ -222,6 +222,9 @@ $doctors = array_filter($allDoctors, function($d) {
     <div class="eyebrow mb-3">Our Doctors</div>
     <h1>Doctor Panel</h1>
     <div class="breadcrumb-care"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> Doctor Panel</div>
+    <a href="doctor-register.php" class="btn btn-light rounded-pill px-3 py-2 fw-semibold mt-3 d-inline-flex align-items-center gap-2" style="color:var(--teal-900); font-size:0.85rem;">
+      <i class="bi bi-person-plus-fill"></i> Register Yourself
+    </a>
   </div>
 </section>
 

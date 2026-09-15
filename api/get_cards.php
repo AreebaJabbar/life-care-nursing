@@ -8,10 +8,21 @@ $valid_types = ['blogs', 'doctors', 'staff', 'team'];
 
 if (in_array($type, $valid_types)) {
     $data = getData($type);
+    $data = $data ? $data : [];
+
+    // For doctors & staff, only expose publicly APPROVED profiles.
+    // Pending self-registrations stay hidden until an admin approves them.
+    if (in_array($type, ['doctors', 'staff'])) {
+        $data = array_values(array_filter($data, function ($item) {
+            $status = $item['status'] ?? 'approved';
+            return $status === 'approved';
+        }));
+    }
+
     echo json_encode([
         'success' => true,
         'type' => $type,
-        'data' => $data ? $data : []
+        'data' => $data
     ]);
     exit;
 }
